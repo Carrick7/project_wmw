@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require ('express-async-handler');
+//Models Needed for this controllerS
 const User = require('../model/user_model');
-
 
 // Register a new user
 // @route  POST api/users

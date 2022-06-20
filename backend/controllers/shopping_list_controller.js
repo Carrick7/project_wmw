@@ -26,7 +26,6 @@ const postShoppingLists = asyncHandler(async (req, res) => {
       title: req.body.title,
       user: req.user._id
     }
-   
 );
 
   res.status(200).json(shopping_list)

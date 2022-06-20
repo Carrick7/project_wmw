@@ -1,4 +1,4 @@
-//Functions that run whena request is made
+//Functions that run when a request is made
 const errorHandler = (err, req, res, next) => {
   const status_code = res.status_code ? res.status_code : 500;
 

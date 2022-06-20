@@ -13,9 +13,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//Routes Handlers
+// Routes Handlers
+// Shopping List Route
 app.use('/api/shopping_lists', require('./routes/shopping_lists_routes'));
+// User Route
 app.use('/api/users', require('./routes/user_routes'));
+// Product Route
+app.use('/api/all_products', require('./routes/all_products_routes'));
 
 //error handler
 app.use(errorHandler);
