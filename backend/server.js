@@ -20,6 +20,8 @@ app.use('/api/shopping_lists', require('./routes/shopping_lists_routes'));
 app.use('/api/users', require('./routes/user_routes'));
 // Product Route
 app.use('/api/all_products', require('./routes/all_products_routes'));
+// Receipt List Route
+app.use('/api/receipt_lists', require('./routes/receipt_lists_routes'));
 
 //error handler
 app.use(errorHandler);

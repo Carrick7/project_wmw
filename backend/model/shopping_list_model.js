@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 // Schema for embedded data (product name and quantities) in shopping_listSchema
 const product_infoScehma = new mongoose.Schema([{
   product_name: { 
-    type: String
+    type: String,
   },
   quantity: { 
-    type: Number
+    type: Number,
   } 
 }],  
 );
