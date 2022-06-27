@@ -22,8 +22,8 @@ const getSingleShoppingList = asyncHandler(async (req, res) => {
   }
   //If user is not the owner of the shopping list
   if (shopping_list.user.toString() !== user.id) {
-    res.status(401)
-    throw new Error('Not authorised');
+   return res.status(401).send(
+    {message: 'Not authorised'});
   }
 
   res.status(200).json(shopping_list)

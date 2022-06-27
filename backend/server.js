@@ -27,4 +27,6 @@ app.use('/api/all_products', require('./routes/all_products_routes'));
 app.use(errorHandler);
 
 // Server running on port 5000
-app.listen(port, () => console.log(`Server running on port ${port}`));
+ app.listen(port, () => console.log(`Server running on port ${port}`));
+ 
+ module.exports = app;

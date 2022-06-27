@@ -22,9 +22,9 @@ const login_user = asyncHandler( async(req, res) => {
       token: generate_token(user._id)
     });
   }
-  else {
-    res.status(400)
-    throw new Error('Invalid credentials');
+  else { 
+    return res.status(400).send(
+      {message: 'Invalid credentials'});
   }
   
   res.json({message: 'Login User'});	

@@ -1,8 +1,11 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require ('express-async-handler');
+
 //Models Needed for this controllers
 const User = require('../../model/user_model');
+// Regex imports
+const { validatePassword, validateEmail, validateUserName } = require('../../middleware/regex_middleware');
 
 // Register a new user
 // @route  POST api/users
@@ -12,17 +15,34 @@ const register_user = asyncHandler(async (req, res) => {
 
   //Validation to ensure that all fields are filled out
   if (!user_name || !email || !password) {
-    res.status(400)
-    throw new Error('Please enter all fields');
+    return res.status(400).send(
+      {message: 'Please fill out all fields'});
   }
 
   //Check if user exists
   const user_exists = await User.findOne({ email });
   if (user_exists) {
-    res.status(400)
-    throw new Error('User already exists');
+    return res.status(400).send(
+      {message: 'Email is already in use'});
   }
 
+  //User Input Validation
+  //Password Regex
+  if (!password.match(validatePassword)) {
+    return res.status(400).send(
+      {message: 'Password must be at least 6 characters long with at least 1 of the following special characters: !(){}_@#$%^£~<>?&+='});
+  }
+  //Email Regex
+  if (!email.match(validateEmail)) {
+    return res.status(400).send(
+      {message: 'Email is invalid'});
+  }
+  //User Name Regex
+  if (!user_name.match(validateUserName)) {
+    return res.status(400).send(
+      {message: 'User name can only contain letters, numbers and spaces with a 20 character limit'});
+  }
+ 
   //Hash the password
   const salt = await bcrypt.genSalt(10);
   const hashed_password = await bcrypt.hash(password, salt);
@@ -33,7 +53,7 @@ const register_user = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.status(201).json({
+   return res.status(201).json({
       _id: user._id,
       user_name: user.user_name,
       email: user.email,
@@ -41,10 +61,11 @@ const register_user = asyncHandler(async (req, res) => {
     });
   }
   else {
-    res.status(400)
-    throw new Error('User data is invalid');
+    return res.status(400).send(
+      {message: 'Email is already in use'});
   }
-});
+}
+);
 	
 //Generate a token for a user
   const generate_token = (id) => {

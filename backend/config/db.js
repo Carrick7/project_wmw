@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 // creating a new list dependancy
-const Shopping_list = require('../model/shopping_list_model');
+// const Shopping_list = require('../model/shopping_list_model');
 
 const connectDB = async () => {
   try {

@@ -9,6 +9,11 @@ const User = require('../../model/user_model');
 const getShoppingLists = asyncHandler(async (req, res) => {
   const shopping_lists = await Shopping_list.find({user: req.user._id });
 
+  if (!shopping_lists) {
+    res.status(401)
+    throw new Error('No Shopping Lists Found');
+  }
+  
   res.status(200).json(shopping_lists)
 });
 
