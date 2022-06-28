@@ -10,23 +10,26 @@ const getSingleShoppingList = asyncHandler(async (req, res) => {
   const shopping_list = await Shopping_list.findById(req.params.id);
 
   if (!shopping_list) {
-    res.status(404)
-    throw new Error('Shopping List not found');
+    return res.status(404).send(
+      {message: 'Shopping List not found'});
   }
+
   //Get the correct user
   const user = await User.findById(req.user.id);
+
   //If user doesnt exist
   if (!user) {
-    res.status(401)
-    throw new Error('User not found');
+    return res.status(401).send(
+      {message: 'User not found'});
   }
+
   //If user is not the owner of the shopping list
   if (shopping_list.user.toString() !== user.id) {
    return res.status(401).send(
     {message: 'Not authorised'});
   }
 
-  res.status(200).json(shopping_list)
+  res.status(200).json(shopping_list);
 });
 
 module.exports = { getSingleShoppingList };

@@ -9,5 +9,5 @@ const validatePassword = /^[a-zA-Z0-9]{6,}(?=.*[!(){}_@#$%^£~<>?&+=]).*$/;
 module.exports = {
   validateEmail,
   validateUserName,
-  validatePassword
+  validatePassword,
 };

@@ -14,7 +14,7 @@ const updateProductPrice = asyncHandler(async (req, res) => {
   }
 
   const updatedProductPrice = await All_products.findOneAndUpdate({barcode: req.params.barcode, shop: req.params.shop}, 
-    // $push is used to add a new object to the array
+    // $push is used to add a new object to the array without deleting previous objects
     {$push: {historical_prices: req.body.historical_prices}}, {new: true});
 
   res.status(200).json(updatedProductPrice);
