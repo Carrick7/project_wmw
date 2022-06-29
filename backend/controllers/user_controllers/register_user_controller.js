@@ -64,13 +64,11 @@ const register_user = asyncHandler(async (req, res) => {
     return res.status(400).send(
       {message: 'Email is already in use'});
   }
-}
-);
+});
 	
 //Generate a token for a user
   const generate_token = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 }
-
 
 module.exports = { register_user };

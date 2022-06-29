@@ -10,11 +10,11 @@ const getShoppingLists = asyncHandler(async (req, res) => {
   const shopping_lists = await Shopping_list.find({user: req.user._id });
 
   if (!shopping_lists) {
-    res.status(401)
-    throw new Error('No Shopping Lists Found');
+    return res.status(401).send(
+      {message: 'You have no shopping lists'});
   }
   
-  res.status(200).json(shopping_lists)
+  res.status(200).json(shopping_lists);
 });
 
 module.exports = { getShoppingLists };
