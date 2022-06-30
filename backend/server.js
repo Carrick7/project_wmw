@@ -1,7 +1,8 @@
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
-const { errorHandler } = require('./middleware/error_middleware');
+const { errorHandler, castErrorDB} = require('./middleware/error_middleware');
+
 const connectDB = require('./config/db');
 const port = process.env.Port || 5000;
 
@@ -21,10 +22,11 @@ app.use('/api/users', require('./routes/user_routes'));
 // Product Route
 app.use('/api/all_products', require('./routes/all_products_routes'));
 // Receipt List Route
-app.use('/api/receipt_lists', require('./routes/receipt_lists_routes'));
+// app.use('/api/receipt_lists', require('./routes/receipt_lists_routes'));
 
-//error handler
+//error handlers
 app.use(errorHandler);
 
 // Server running on port 5000
-app.listen(port, () => console.log(`Server running on port ${port}`));
+ app.listen(port, () => console.log(`Server running on port ${port}`));
+ 

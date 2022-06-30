@@ -5,50 +5,67 @@ const product_namesScehma = new mongoose.Schema({
   generic_name: { 
     type: String,
     required: [true, 'A generic name is required. IE "bananas"'],
+    immutable: true
   },
   official_name: { 
     type: String,
     required: [true, 'The official brand and name are required. IE "Chiquita Brands International"'],
+    immutable: true
   } 
-},  
-);
+});
+
 // Schema for embedded data for the different prices a product can have
 const product_price_infoScehma = new mongoose.Schema([{
   sale: { 
     type: String,
-    enum: ['Yes', 'No'],
+    enum: ['yes', 'no'],
     required: [true, 'Select if the product is on sale'],
+    lowercase: true
   },
   price_per_unit: { 
     type: Number,
-    required: [true, 'The price per unit is required'],
-  }, 
-  purchase_date: { 
-    type: String,
-    required: [true, 'The purchase date is required'],
-  }  
-}], { timestamps: true });
+    min: [0.01],
+    max: [1000],
+    required: [true, 'The price per unit is required'], 
+  },
+  createdAt: {
+    type: Date,
+    immutable: true,
+    default: () => Date.now()
+  },
+  updatedAt: {
+    type: Date,
+    immutable: true,
+    default: () => Date.now()
+  }
+}]
+);
 
 // Schema for Product info
 const all_productsSchema = new mongoose.Schema({
   product_names: [product_namesScehma],
   category: {
     type: String,
-    enum: ['Fruit', 'Vegetable', 'Dairy', 'Meat', 'Fish/Seafood', 'Grains', 'Drinks', 'Sweets', 'Toiletries', 'Home Essentials', 'Other'],
+    enum: ['fruit', 'vegetable', 'dairy', 'meat', 'fish/Seafood', 'grains', 'drinks', 'sweets/biscuits', 'toiletries', 'home essentials', 'other'],
     required: [true, 'The category is required'],
+    lowercase: true,
+    immutable: true
   },
   historical_prices: [product_price_infoScehma],
   shop: {
     type: String,
-    enum: ['Aldi', 'Lidl', 'Spar', 'Tesco', 'Eurospar', 'Donnybrook Fair', 'Fresh', "Joyce's", 'SuperValu', 'Dunnes', 'Waitrose', 'Iceland', 'Marks & Spencer', 'Centra', 'Londis', 'Mace', 'Gala', 'Daybreak', 'Costcutter', 'Other'],
+    enum: ['aldi', 'lidl', 'spar', 'tesco', 'eurospar', 'donnybrook fair', 'fresh', "joyce's", 'supervalu', 'dunnes', 'waitrose', 'iceland', 'marks & spencer', 'centra', 'londis', 'mace', 'gala', 'daybreak', 'costcutter', 'other'],
     required: [true, 'The shop is required'],
+    lowercase: true,
+    immutable: true
   },
   barcode: {
-    type: String,
+    type: Number,
+    min: [100000000000],
+    max: [9999999999999],
     required: [true, 'The barcode is required'],
-  },
-
-  } 
+    immutable: true
+  }} 
 );
 
 module.exports = mongoose.model('All_products', all_productsSchema);

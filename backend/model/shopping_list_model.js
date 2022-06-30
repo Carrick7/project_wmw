@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { validateProductName } = require('../middleware/regex_middleware');
 
 // Schema for embedded data (product name and quantities) in shopping_listSchema
 const product_infoScehma = new mongoose.Schema([{
@@ -7,6 +8,9 @@ const product_infoScehma = new mongoose.Schema([{
   },
   quantity: { 
     type: Number,
+    min: [1, 'Quantity must be at least 1'],
+    max: [100, 'Quantity must be less than 100'],
+    runValidators: true
   } 
 }],  
 );
@@ -21,6 +25,7 @@ const shopping_listSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'title is required'],
+    maxlength: [50, 'title must be less than 50 characters'],
   },
   product_info: [product_infoScehma]
 }, 
