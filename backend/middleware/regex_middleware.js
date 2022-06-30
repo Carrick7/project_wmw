@@ -16,6 +16,7 @@ const validateSale = ['yes', 'no']
 //barcode validation
 const validateBarcodeLength = /^[0-9]{12,13}$/
 
+
 module.exports = {
   validateEmail,
   validateUserName,
@@ -23,5 +24,5 @@ module.exports = {
   validateShop,
   validateCategory,
   validateSale,
-  validateBarcodeLength
+  validateBarcodeLength,
 };
