@@ -5,7 +5,6 @@ const User = require('../../model/user_model');
 const Receipt_lists = require('../../model/receipt_list_model');
 const All_products = require('../../model/all_products_model');
 
-
 const additemsReceiptList = asyncHandler(async (req, res) => {
 
   //Validation for Receipt List
