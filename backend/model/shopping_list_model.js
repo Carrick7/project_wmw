@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { validateProductName } = require('../middleware/regex_middleware');
 
 // Schema for embedded data (product name and quantities) in shopping_listSchema
 const product_infoScehma = new mongoose.Schema([{
