@@ -13,6 +13,11 @@ const products_in_receipt_listSchema = new mongoose.Schema([{
     type: String,
     immutable: true
   },
+  category: {
+    type: String,
+    enum: ['fruit', 'vegetable', 'dairy', 'meat', 'fish/Seafood', 'grains', 'drinks', 'sweets/biscuits', 'toiletries', 'home essentials', 'other'],
+    lowercase: true,
+  },
   shop: {
     type: String,
     enum: ['aldi', 'lidl', 'spar', 'tesco', 'eurospar', 'donnybrook fair', 'fresh', "joyce's", 'supervalu', 'dunnes', 'waitrose', 'iceland', 'marks & spencer', 'centra', 'londis', 'mace', 'gala', 'daybreak', 'costcutter', 'other'],

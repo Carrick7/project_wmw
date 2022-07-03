@@ -47,7 +47,7 @@ const additemsReceiptList = asyncHandler(async (req, res) => {
   const findProduct = await All_products.findOne({barcode: items[0].barcode, shop: items[0].shop});
 
   //Accessing Data from the All_products
-  //Ensuring the product exists on the database
+  //Ensuring the product exists in the database
   if(!findProduct){
     return res.status(400).send({message: 'Product does not exist'});
   }
