@@ -5,12 +5,14 @@ const product_namesScehma = new mongoose.Schema({
   generic_name: { 
     type: String,
     required: [true, 'A generic name is required. IE "bananas"'],
-    immutable: true
+    immutable: true,
+    lowercase: true
   },
   official_name: { 
     type: String,
     required: [true, 'The official brand and name are required. IE "Chiquita Brands International"'],
-    immutable: true
+    immutable: true,
+    lowercase: true
   } 
 });
 
@@ -46,7 +48,7 @@ const all_productsSchema = new mongoose.Schema({
   product_names: [product_namesScehma],
   category: {
     type: String,
-    enum: ['fruit', 'vegetable', 'dairy', 'meat', 'fish/Seafood', 'grains', 'drinks', 'sweets/biscuits', 'toiletries', 'home essentials', 'other'],
+    enum: ['fruit', 'vegetable', 'dairy', 'meat', 'fish/seafood', 'grains', 'drinks', 'sweets/biscuits', 'toiletries', 'home essentials', 'other'],
     required: [true, 'The category is required'],
     lowercase: true,
     immutable: true
