@@ -23,12 +23,18 @@ function Header() {
      <Nav className="me-auto">
       <Row>
        <Col>
-        
+        {/*What they user sees whether they're logged in*/}
         {user ? (
-          <button className="btn btn-outline-light" onClick={onLogout}>Logout</button>
-        ) : (<>
-        <Link to='/'>Home</Link> || <Link to='/login'>Login</Link> 
-        </>)}
+           <Col>
+           <button className="btn btn-outline-light" onClick={onLogout}>Logout</button>
+           <Link to='/shopping_lists'>Shopping List</Link> || <Link to='/'>Home</Link>
+           </Col>  
+            ):(
+             <> 
+              <Link to='/'>Home</Link> || <Link to='/login'>Login</Link> 
+             </>
+            )
+        }
        </Col>
       </Row>
      </Nav>
