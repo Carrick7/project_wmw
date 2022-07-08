@@ -2,9 +2,11 @@
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Navigation/Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //Pages
 import Landing_and_Registration from './pages/Landing_and_Registration';
-import Login from './pages/Login';
+import Login from './pages/Login_page';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         </Routes>
       </Container>
     </Router>
+    <ToastContainer />
     </>
   );
 }
