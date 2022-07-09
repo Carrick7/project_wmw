@@ -14,7 +14,7 @@ import { deleteShoppingList } from "../../../features/shopping_lists/shopping_li
           <Col>
             {shopping_lists.map((shopping_list) => {
               return (
-                <Col>
+                <Col key={shopping_list._id}>
                   {shopping_list.title} 
                   <button onClick={() => dispatch(deleteShoppingList(shopping_list._id))}> X </button>
                 </Col>
