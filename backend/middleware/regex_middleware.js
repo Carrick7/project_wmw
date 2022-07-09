@@ -4,7 +4,7 @@ const validateEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".
 // user_name Regex
 const validateUserName = /^[a-zA-Z ]{2,20}$/;
 // password Regex
-const validatePassword = /^[a-zA-Z0-9]{6,}(?=.*[!(){}_@#$%^£~<>?&+=]).*$/; 
+const validatePassword = /^[a-zA-Z0-9]{6,}(?=.*[!()_@#$%^£~<>?&+=]).*$/; 
 
 // All_Products Schema
 // shop validation

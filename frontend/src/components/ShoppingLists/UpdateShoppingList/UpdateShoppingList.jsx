@@ -1,18 +1,23 @@
-import { useSelector } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+
 
   function UpdateShoppingList() {  
 
   // Get the shopping list states from the redux store
-  const {shopping_lists, isLoading, isError, message} = useSelector((state) => state.shopping_lists);
+  const {shopping_lists} = useSelector((state) => state.shopping_lists);
+
+  // initializing the dispatch function
+  const dispatch = useDispatch();
 
     return (
-      <div>
-        {shopping_lists.map((shopping_list) => {
-          return (
-            <div>{shopping_list.title}</div>
-        )
-      })}
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            UPDATE LIST      
+          </Col>
+        </Row>
+      </Container>
     )
   }
   

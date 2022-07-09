@@ -39,6 +39,20 @@ export const getAllShoppingLists = createAsyncThunk(
     }
 );
 
+// Delete Shopping List
+export const deleteShoppingList = createAsyncThunk(
+  'shopping_list/delete', async (id, thunkAPI) => {
+  try{
+    // getting the token from the auth state
+    const token = thunkAPI.getState().auth.user.token;
+    return await shopping_listService.deleteShoppingList(id, token);
+  }
+  catch(error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
   //Slice
 export const shopping_listSlice = createSlice({
@@ -73,6 +87,20 @@ export const shopping_listSlice = createSlice({
         state.shopping_lists = action.payload;
       })
       .addCase(getAllShoppingLists.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // Delete a shopping list
+      .addCase(deleteShoppingList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteShoppingList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.shopping_lists = state.shopping_lists.filter((shopping_list) => shopping_list._id !== action.payload.id);
+      })
+      .addCase(deleteShoppingList.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
