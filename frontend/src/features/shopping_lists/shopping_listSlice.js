@@ -19,11 +19,25 @@ export const createShoppingList = createAsyncThunk(
     }
     catch(error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-      return thunkAPI.rejectWithValue({message});
+      return thunkAPI.rejectWithValue(message);
       }
     }
 );
 
+// get all shopping lists
+export const getAllShoppingLists = createAsyncThunk(
+    'shopping_list/getAll', async (_, thunkAPI) => {
+    try{
+      // getting the token from the auth state
+      const token = thunkAPI.getState().auth.user.token;
+      return await shopping_listService.getAllShoppingLists(token);
+    }
+    catch(error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+      }
+    }
+);
 
 
   //Slice
@@ -47,7 +61,21 @@ export const shopping_listSlice = createSlice({
       .addCase(createShoppingList.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.message = action.error.message;
+        state.message = action.payload;
+      })
+      // Get all shopping lists
+      .addCase(getAllShoppingLists.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllShoppingLists.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.shopping_lists = action.payload;
+      })
+      .addCase(getAllShoppingLists.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       })
     }
 }); 

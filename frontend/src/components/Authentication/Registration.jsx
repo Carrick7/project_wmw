@@ -17,11 +17,13 @@ function Registration() {
     confirmPassword: ''
   });
 
+  //set the form data
   const { user_name, email, password, confirmPassword } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // getting the relevant info from the redux store
   const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth);
 
   useEffect(() => {

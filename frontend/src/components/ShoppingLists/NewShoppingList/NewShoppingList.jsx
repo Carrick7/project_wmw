@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createShoppingList, reset } from '../../features/shopping_lists/shopping_listSlice';
-import Spinner from '../Spinner/Spinner';
+import { createShoppingList } from '../../../features/shopping_lists/shopping_listSlice';
+import Spinner from '../../Spinner/Spinner';
 //CSS
 import './NewShoppingList.css';
 
@@ -39,12 +39,12 @@ function NewShoppingList() {
         <form onSubmit={onSubmit}>
           {/* title */}
           <Col className='sl_form_input'>      
-            <input type="text" className="sl_form-control" id='title' name='title' value={title} placeholder='Weekly Shop' onChange={onChange}/>
+            <input type="text" className="sl_form-control" id='title' name='title' value={title} placeholder='Shopping List Name' onChange={onChange}/>
           </Col>
           {/* Submit Button */}     
           <Col className='sl_form_input'>
             <button type='submit' className='btn btn-primary'>Submit</button>
-          </Col>     
+          </Col>       
         </form>
       </section>
     </Container> 

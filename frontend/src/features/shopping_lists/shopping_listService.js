@@ -1,6 +1,9 @@
 //Used for HTTP requests and sending data to the server
 import axios from 'axios';
+// targetting all the shopping lists
 const API_URL = '/api/shopping_lists/';
+// getShoppingListById
+
 
 // Create a new shopping list
 const createShoppingList = async (shopping_listData, token) => {
@@ -13,9 +16,21 @@ const createShoppingList = async (shopping_listData, token) => {
   const response = await axios.post(API_URL, shopping_listData, config);
   return response.data;
 }
+// getAllShoppingLists
+const getAllShoppingLists = async (token) => {
+  // Looking for the token in the localStorage
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
+  const response = await axios.get(API_URL, config);
+  return response.data;
+}
 
 const shopping_listService = {
   createShoppingList,
+  getAllShoppingLists
 }
 
 export default shopping_listService;
