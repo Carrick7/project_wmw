@@ -30,7 +30,7 @@ const register_user = asyncHandler(async (req, res) => {
   //Password Regex
   if (!password.match(validatePassword)) {
     return res.status(400).send(
-      {message: 'Password must be at least 6 characters long with at least 1 of the following special characters: !(){}_@#$%^£~<>?&+='});
+      {message: 'Password must be at least 6 characters long with at least 1 of the following special characters: !()_@#$%^£~<>?&+='});
   }
   //Email Regex
   if (!email.match(validateEmail)) {

@@ -8,14 +8,14 @@ const userSchema = new mongoose.Schema({
     minlength: [2, 'name must be at least 2 letters'],
     maxlength: [20, 'name cannot be more than 20 letters'],
     validate: [validateUserName],
-    match: [/^[a-zA-Z ]{2,20}$/],
+    match: [validateUserName],
     trim: true  
   },
   email: {
     type: String,
     required: [true, 'email is required'],
     validate: [validateEmail],
-    match: [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Email is invalid'],
+    match: [validateEmail],
     unique: true
   },
   password: {

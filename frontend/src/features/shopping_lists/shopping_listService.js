@@ -28,9 +28,22 @@ const getAllShoppingLists = async (token) => {
   return response.data;
 }
 
+// Delete a shopping list
+const deleteShoppingList = async (shopping_list_id, token) => {
+  // Looking for the token in the localStorage
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
+  const response = await axios.delete(API_URL + shopping_list_id, config);
+  return response.data;
+}
+
 const shopping_listService = {
   createShoppingList,
-  getAllShoppingLists
+  getAllShoppingLists,
+  deleteShoppingList
 }
 
 export default shopping_listService;

@@ -44,7 +44,7 @@ const updateProductPrice = asyncHandler(async (req, res) => {
      {message: `Please fill out the price per unit field`});    
   }
 
-  // Validate the price_per_unit input (ENUM)
+  // Validate the price_per_unit input 
   const price = historical_prices[0].price_per_unit;
   if(price <= 0.01 || price > 1000 ){
     return res.status(400).send(

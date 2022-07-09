@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import NewShoppingList from '../components/ShoppingLists/NewShoppingList/NewShoppingList';
-import { Container, Row, Col } from 'react-bootstrap';
-import Spinner from '../components/Spinner/Spinner';
+// Slice/Redux import
 import { getAllShoppingLists, reset } from '../features/shopping_lists/shopping_listSlice';
+import { useSelector, useDispatch } from 'react-redux';
+// Components imports
+import RemoveShoppingList from '../components/ShoppingLists/DeleteShoppingList/DeleteShoppingList';
+import NewShoppingList from '../components/ShoppingLists/NewShoppingList/NewShoppingList';
 import UpdateShoppingList from '../components/ShoppingLists/UpdateShoppingList/UpdateShoppingList';
+import Spinner from '../components/Spinner/Spinner';
+//CSS import
+import { Container, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+
 function Shopping_Lists_page() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,10 +56,12 @@ function Shopping_Lists_page() {
       </Row>
       <NewShoppingList />
       <br />
-      Testing getting the values from redux store -
+      Shopping List Names
       <br />
       <br />
       <UpdateShoppingList/>
+      <hr />
+      <Col> DELETING THIS LISTS <RemoveShoppingList /></Col>
     </Container>
   )
 }
