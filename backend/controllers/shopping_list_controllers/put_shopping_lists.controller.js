@@ -15,7 +15,6 @@ const putShoppingLists = asyncHandler(async (req, res) => {
     return res.status(400).send(
       {message: 'The Shopping List ID is invalid'});
   }
-  else{
     //If Valid
     const product_info = req.body.product_info;
     const shopping_list = await Shopping_list.findById(req.params.id);
@@ -41,26 +40,27 @@ const putShoppingLists = asyncHandler(async (req, res) => {
         {message: 'Not Authorised'});
     }
 
-    // Validation for product_name
-    for (let i = 0; i < product_info.length; i++){
-      if(product_info[i].product_name.length > 50){
-        return res.status(400).send(
-          {message: 'The product name must be less than 50 characters'});
-      }
-      
-      // Validation for quantity
-      if(product_info[i].quantity > 100 || product_info[i].quantity < 1){
-        return res.status(400).send(
-          {message: 'The quantity must be between 1 and 100'});
-      }
+    //Validating 1 item is added to the shopping list
+    if(product_info.length > 1){
+      return res.status(400).send({message: 'Only one item can be added at a time'});
+   }
+   
+   //Validating product_info input
+   if(product_info[0].product_name.length > 50){
+     return res.status(400).send(
+      {message: 'The product name must be less than 50 characters'});
+  }
+
+   if(product_info[0].quantity > 100 || product_info[0].quantity < 1){
+     return res.status(400).send(
+      {message: 'The quantity must be between 1 and 100'});
     }
 
-    const updatedShoppingList = await Shopping_list.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const updatedShoppingList = await Shopping_list.findByIdAndUpdate(req.params.id, 
+      {$push: {product_info: product_info}}, {new:true});
 
     res.status(200).json(updatedShoppingList)
- }
+
 });
 
 module.exports = { putShoppingLists };
