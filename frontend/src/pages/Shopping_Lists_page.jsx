@@ -57,11 +57,10 @@ function Shopping_Lists_page() {
       <NewShoppingList />
       <br />
       Shopping List Names
-      <br />
-      <br />
-      <UpdateShoppingList/>
       <hr />
-      <Col> DELETING THIS LISTS <RemoveShoppingList /></Col>
+        <UpdateShoppingList />
+      <br />
+      <Col> Delete Lists <RemoveShoppingList /></Col>
     </Container>
   )
 }

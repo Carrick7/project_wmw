@@ -16,8 +16,7 @@ import { deleteShoppingList } from "../../../features/shopping_lists/shopping_li
               return (
                 <Col key={shopping_list._id}>
                   {shopping_list.title} 
-                  <button onClick={() => dispatch(deleteShoppingList(shopping_list._id))}> X </button> --
-                  <button > Edit {shopping_list.title} </button>
+                  <button onClick={() => dispatch(deleteShoppingList(shopping_list._id))}> X </button>
                 </Col>
               )
             })}          

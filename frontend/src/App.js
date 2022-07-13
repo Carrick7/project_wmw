@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Landing_and_Registration from './pages/Landing_and_Registration';
 import Login from './pages/Login_page';
 import Shopping_Lists_page from './pages/Shopping_Lists_page';
+import UpdateShoppingList from './components/ShoppingLists/UpdateShoppingList/UpdateShoppingList';
+import Test from './components/ShoppingLists/UpdateShoppingList/Test';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route path="/" element={<Landing_and_Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/shopping_lists" element={<Shopping_Lists_page />} />
+          <Route path="/shopping_lists/:id" element={<Test />} />
         </Routes>
       </Container>
     </Router>

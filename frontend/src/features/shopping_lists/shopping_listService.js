@@ -2,8 +2,6 @@
 import axios from 'axios';
 // targetting all the shopping lists
 const API_URL = '/api/shopping_lists/';
-// getShoppingListById
-
 
 // Create a new shopping list
 const createShoppingList = async (shopping_listData, token) => {
@@ -16,6 +14,19 @@ const createShoppingList = async (shopping_listData, token) => {
   const response = await axios.post(API_URL, shopping_listData, config);
   return response.data;
 }
+
+// edit a shopping list
+const editShoppingList = async (shopping_list_id, shopping_listData, token) => {
+  // Looking for the token in the localStorage
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
+  const response = await axios.put(API_URL + shopping_listData, shopping_list_id,  config);
+  return response.data;
+}
+
 // getAllShoppingLists
 const getAllShoppingLists = async (token) => {
   // Looking for the token in the localStorage
@@ -25,6 +36,18 @@ const getAllShoppingLists = async (token) => {
     }
   }
   const response = await axios.get(API_URL, config);
+  return response.data;
+}
+
+// getAllShoppingLists
+const getSingleShoppingLists = async (shopping_list_id, token) => {
+  // Looking for the token in the localStorage
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
+  const response = await axios.get(API_URL + shopping_list_id, config);
   return response.data;
 }
 
@@ -43,7 +66,9 @@ const deleteShoppingList = async (shopping_list_id, token) => {
 const shopping_listService = {
   createShoppingList,
   getAllShoppingLists,
-  deleteShoppingList
+  deleteShoppingList,
+  editShoppingList,
+  getSingleShoppingLists
 }
 
 export default shopping_listService;

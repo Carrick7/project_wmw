@@ -24,6 +24,36 @@ export const createShoppingList = createAsyncThunk(
     }
 );
 
+// Edit Shopping List
+export const editShoppingList = createAsyncThunk(
+    'shopping_list/edit', async (shopping_list_id, shopping_listData, thunkAPI) => {
+    try{
+      // getting the token from the auth state
+      const token = thunkAPI.getState().auth.user.token;
+      return await shopping_listService.editShoppingList(shopping_list_id, shopping_listData, token);
+    }
+    catch(error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+      }
+    }
+);
+
+// get single shopping lists
+export const getSingleShoppingLists = createAsyncThunk(
+    'shopping_list/getSingle', async (id, thunkAPI) => {
+    try{
+      // getting the token from the auth state
+      const token = thunkAPI.getState().auth.user.token;
+      return await shopping_listService.getSingleShoppingLists(id, token);
+    }
+    catch(error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+      }
+    }
+);
+
 // get all shopping lists
 export const getAllShoppingLists = createAsyncThunk(
     'shopping_list/getAll', async (_, thunkAPI) => {
@@ -77,6 +107,24 @@ export const shopping_listSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+
+      // Edit Shopping List
+      .addCase(editShoppingList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editShoppingList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        if(state.shopping_lists = state.shopping_lists.filter((shopping_list) => shopping_list._id !== action.payload.id)){
+          state.shopping_lists.push(action.payload); 
+         }
+      })
+      .addCase(editShoppingList.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+
       // Get all shopping lists
       .addCase(getAllShoppingLists.pending, (state) => {
         state.isLoading = true;
@@ -91,6 +139,23 @@ export const shopping_listSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+
+      // Get single shopping lists
+      .addCase(getSingleShoppingLists.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSingleShoppingLists.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+      
+        state.shopping_lists = action.payload;
+      })
+      .addCase(getSingleShoppingLists.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+
       // Delete a shopping list
       .addCase(deleteShoppingList.pending, (state) => {
         state.isLoading = true;

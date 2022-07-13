@@ -12,6 +12,7 @@ function NewShoppingList() {
   //useState for the form data
   const [ title, setTitle ] = useState('');
 
+  //initiaslise dispatch
   const dispatch = useDispatch();
 
   // Submit input for form
