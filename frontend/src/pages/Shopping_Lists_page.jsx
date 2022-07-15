@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 // Components imports
 import RemoveShoppingList from '../components/ShoppingLists/DeleteShoppingList/DeleteShoppingList';
 import NewShoppingList from '../components/ShoppingLists/NewShoppingList/NewShoppingList';
-import UpdateShoppingList from '../components/ShoppingLists/UpdateShoppingList/UpdateShoppingList';
 import Spinner from '../components/Spinner/Spinner';
 //CSS import
 import { Container, Row, Col } from 'react-bootstrap';
@@ -59,9 +58,9 @@ function Shopping_Lists_page() {
       Shopping List Names
       <br />
       <br />
-      <UpdateShoppingList/>
       <hr />
-      <Col> DELETING THIS LISTS <RemoveShoppingList /></Col>
+       DELETING THIS LISTS <RemoveShoppingList />
+       <hr />
     </Container>
   )
 }

@@ -16,6 +16,7 @@ const createShoppingList = async (shopping_listData, token) => {
   const response = await axios.post(API_URL, shopping_listData, config);
   return response.data;
 }
+
 // getAllShoppingLists
 const getAllShoppingLists = async (token) => {
   // Looking for the token in the localStorage
@@ -43,7 +44,7 @@ const deleteShoppingList = async (shopping_list_id, token) => {
 const shopping_listService = {
   createShoppingList,
   getAllShoppingLists,
-  deleteShoppingList
+  deleteShoppingList,
 }
 
 export default shopping_listService;
