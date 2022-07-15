@@ -2,8 +2,6 @@
 import axios from 'axios';
 // targetting all the shopping lists
 const API_URL = '/api/shopping_lists/';
-// getShoppingListById
-
 
 // Create a new shopping list
 const createShoppingList = async (shopping_listData, token) => {

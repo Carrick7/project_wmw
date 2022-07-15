@@ -1,7 +1,6 @@
 const asyncHandler = require('express-async-handler');
 //Models Needed for this controller
 const Shopping_list = require('../../model/shopping_list_model');
-const User = require('../../model/user_model');
 
 //Description: Get Shopping Lists
 //Route: GET /api/shopping_lists

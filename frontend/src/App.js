@@ -8,23 +8,48 @@ import 'react-toastify/dist/ReactToastify.css';
 import Landing_and_Registration from './pages/Landing_and_Registration';
 import Login from './pages/Login_page';
 import Shopping_Lists_page from './pages/Shopping_Lists_page';
+import Receipt_List_page from './pages/Receipt_List_page';
+//Components
 import SingleShoppinngList from './components/ShoppingLists/UpdateShoppingList/SingleShoppinngList';
+import SingleReceiptList from './components/ReceiptLists/SingleRecieptList/SingleReceiptList';
+import AddItemReceiptList from './components/ReceiptLists/UpdateReceiptList/AddItemReceiptList';
 function App() {
   return (
     <>
-    <Router>
-      <Container>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Landing_and_Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/shopping_lists" element={<Shopping_Lists_page />} />
-          <Route path="/shopping_lists/:id" element={<SingleShoppinngList />} />
-          <Route path="/shopping_lists/:id/product/:id" element={<SingleShoppinngList />} />
-        </Routes>
-      </Container>
-    </Router>
-    <ToastContainer />
+      <Router>
+        <Container>
+          <Header />
+          <Routes>
+            {/*Landing/home page & sign up*/}
+            <Route path="/" element={<Landing_and_Registration />} />
+
+            {/*Login*/}
+            <Route path="/login" element={<Login />} />
+
+            {/*To get all Shopping List*/}
+            <Route path="/shopping_lists" element={<Shopping_Lists_page />} />
+
+            {/*To get a Shopping List*/}
+            <Route path="/shopping_lists/:id" element={<SingleShoppinngList />} />
+
+            {/*To Delete Product from Shopping List*/}
+            <Route path="/shopping_lists/:id/product/:id" element={<SingleShoppinngList />} />
+
+            {/*To get all Receipt List*/}
+            <Route path="/receipt_lists" element={<Receipt_List_page />} />
+
+            {/*To get a Receipt List*/}
+            <Route path="/receipt_lists/:id" element={<SingleReceiptList />} />
+            
+            {/*To Delete Product from Receipt List*/}
+            <Route path="/shopping_lists/:id/product/:id" element={<SingleReceiptList />} />
+
+            {/*Test*/}
+            <Route path="/test" element={<AddItemReceiptList />} />
+          </Routes>
+        </Container>
+      </Router>
+      <ToastContainer />
     </>
   );
 }

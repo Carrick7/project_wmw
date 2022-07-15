@@ -1,9 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import Spinner from '../../Spinner/Spinner';
 //CSS
 import './UpdateShoppingList.css';
 import axios from 'axios';

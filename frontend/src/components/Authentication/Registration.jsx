@@ -1,12 +1,16 @@
-import { Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//Router Dom
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { register, reset } from '../../features/auth/authSlice';
+//Components
 import Spinner from '../Spinner/Spinner';
+//Redux/Slice
+import { register, reset } from '../../features/auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
 //CSS
 import './Registration.css';
+import { Container, Row, Col } from 'react-bootstrap';
+//Toastify
+import { toast } from 'react-toastify';
 
 function Registration() {
   // useState for the form data
@@ -20,6 +24,7 @@ function Registration() {
   //set the form data
   const { user_name, email, password, confirmPassword } = formData;
 
+  //Initialise navigate & dispatch
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

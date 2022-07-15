@@ -1,12 +1,11 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useLocation, Link } from "react-router-dom"
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, Link } from "react-router-dom"
 import { toast } from 'react-toastify';
-import Spinner from '../../Spinner/Spinner';
+import axios from 'axios';
 //CSS
 import './UpdateShoppingList.css';
-import axios from 'axios';
 
 
 function RemoveItemShoppingList( {product, shopping_list_id} ) {
@@ -19,7 +18,7 @@ function RemoveItemShoppingList( {product, shopping_list_id} ) {
       Authorization: `Bearer ${token}`,
     }
   }  
-  //Isolating ID from URL
+  //Isolating product ID from URL
   const product_path = useLocation().pathname.split("/")[4];
 
   // useState for shopping list data

@@ -1,26 +1,25 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useState } from 'react';
+import {  useDispatch } from 'react-redux';
+//Slice/Redux import
 import { createShoppingList } from '../../../features/shopping_lists/shopping_listSlice';
-import Spinner from '../../Spinner/Spinner';
 //CSS
 import './NewShoppingList.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function NewShoppingList() {
   //useState for the form data
   const [ title, setTitle ] = useState('');
 
+  //initialising dispatch
   const dispatch = useDispatch();
 
   // Submit input for form
   const onSubmit = (e) => {
     e.preventDefault();
-
     dispatch(createShoppingList({title}));
     setTitle('');
   }
+  
   // Allow user to enter text into input
   const onChange = (e) => {
     setTitle(e.target.value);

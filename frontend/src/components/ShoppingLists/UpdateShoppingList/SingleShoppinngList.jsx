@@ -7,8 +7,6 @@ import { toast } from 'react-toastify';
 import { deleteShoppingList } from "../../../features/shopping_lists/shopping_listSlice";
 import AddItemShoppingList from "./AddItemShoppingList";
 import RemoveItemShoppingList from "./RemoveItemShoppingList";
-import Spinner from "../../Spinner/Spinner";
-
 
 const SingleShoppinngList = () => {
 

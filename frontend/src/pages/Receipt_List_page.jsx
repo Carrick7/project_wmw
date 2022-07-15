@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
+//Router Dom
 import { useNavigate } from 'react-router-dom';
-// Slice/Redux import
-import { getAllShoppingLists, reset } from '../features/shopping_lists/shopping_listSlice';
-import { useSelector, useDispatch } from 'react-redux';
-// Components imports
-import AllShoppingLists from '../components/ShoppingLists/AllShoppingLists/AllShoppingLists';
-import NewShoppingList from '../components/ShoppingLists/NewShoppingList/NewShoppingList';
+//Componenets
+import AllReceiptLists from '../components/ReceiptLists/AllReceiptLists/AllReceiptLists';
+import NewReceiptList from '../components/ReceiptLists/NewReceiptList/NewReceiptList';
 import Spinner from '../components/Spinner/Spinner';
-//CSS import
-import { Container, Row, Col } from 'react-bootstrap';
+// Slice/Redux import
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllReceiptLists, reset_rl } from '../features/receipt_lists/receipt_listSlice';
+//Toast Errors
 import { toast } from 'react-toastify';
+//CSS
+import { Container, Row, Col } from 'react-bootstrap';
 
-function Shopping_Lists_page() {
+const Receipt_List_page = () => {
   //Initialising dispatch & navigate
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,12 +31,14 @@ function Shopping_Lists_page() {
       navigate('/login');
     }
 
-    // executing the getAllShoppingLists action
-    dispatch(getAllShoppingLists());
-    // when user leaves, the state is reset (wipe out user storage)
+    // executing the getAllReceiptLists action
+    dispatch(getAllReceiptLists());
+    // when user leaves, the state is reset_rl (wipe out user storage)
       return() => {
-        dispatch(reset());
+        dispatch(reset_rl());
     }
+
+    
   }, [user, navigate, isError, message, dispatch]);
 
   // Loading spinner
@@ -46,17 +50,22 @@ function Shopping_Lists_page() {
     <Container>
       <Row>
         <Col>
-          <h1> Welcome {user.user_name}</h1>
-          <h1>Create a new Shopping List</h1>
+          <h1>Receipt_List_page</h1>
         </Col>
       </Row>
-      <NewShoppingList />
-      <br />
-      <hr />
-       All List Names <AllShoppingLists />
-       <hr />
+      <Row>
+        {/*Create New List*/}
+        <Col>
+          <NewReceiptList />
+        </Col>
+        <hr />
+        {/*All Receipt Lists*/}
+        <Col>
+          <AllReceiptLists />
+        </Col>
+      </Row>
     </Container>
   )
 }
 
-export default Shopping_Lists_page
+export default Receipt_List_page
