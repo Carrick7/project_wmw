@@ -42,7 +42,7 @@ function AddItemShoppingList( {shoppingListData} ) {
       const res = await axios.put(`/api/shopping_lists/${shoppingListData._id}`, add_product, config);
       const result = { data: res.data };
       setUpdatedResult(formatData(result));
-        
+      toast.success(`${updated_product_name.current.value} added to ${shoppingListData.title}`);
     }
     catch(error){
       toast.error(error.response.data.message + ' Please try again.');

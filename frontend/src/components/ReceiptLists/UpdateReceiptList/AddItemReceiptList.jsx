@@ -1,8 +1,4 @@
 import { useState, useRef } from "react"
-//Components
-import Spinner from '../../Spinner/Spinner';
-//Router Dom
-import { useNavigate } from 'react-router-dom';
 //helpers
 import { shops, categories, onSale } from '../../../helpers/helpers';
 // Axios
@@ -14,7 +10,7 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 //Toastify
 import { toast } from 'react-toastify';
 
-const AddItemReceiptList = ( {receiptListData} ) => {
+const AddItemReceiptList = ( { receiptListData } ) => {
     
   //fething user data (profile) & setting up header
     const { user } = useSelector((state) => state.auth);
@@ -57,6 +53,7 @@ const AddItemReceiptList = ( {receiptListData} ) => {
         const res = await axios.put(`/api/receipt_lists/${receiptListData._id}`, addItem, config);
         const result = { data: res.data };
         setUpdatedResult(formatData(result));
+        toast.success(`${official_name_input.current.value} added to ${receiptListData.list_name}`);
       }
       catch (error) {
         toast.error(error.response.data.message + ' Please try again.');

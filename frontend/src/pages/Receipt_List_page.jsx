@@ -36,10 +36,8 @@ const Receipt_List_page = () => {
     // executing the getAllReceiptLists action
     dispatch(getAllReceiptLists());
     // when user leaves, the state is reset_rl (wipe out user storage)
-      return() => {
-        dispatch(reset_rl());
-    } 
-  }, [user, navigate, isError, message, dispatch ]);
+
+  }, [user, navigate, isError, message, dispatch, receipt_lists ]);
 
   // Loading spinner
   if (isLoading) {

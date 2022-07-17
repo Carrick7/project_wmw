@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 //axios
 import axios from 'axios';
 //Components
-import Spinner from "../../Spinner/Spinner";
+import RemoveItemReceiptList from "../UpdateReceiptList/RemoveItemReceiptList";
 import AddItemReceiptList from "../UpdateReceiptList/AddItemReceiptList";
 //Slices/Redux
 import {  useSelector } from "react-redux";
@@ -38,6 +38,7 @@ const SingleReceiptList = () => {
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
   const item_info = receiptListData.item_info;
   const receipt_list_id = receiptListData._id;
+  const receipt_list_name = receiptListData.list_name;
 
   // axios get request to get the shopping list
   const getSingleList = async () => {
@@ -67,13 +68,17 @@ const SingleReceiptList = () => {
           {item_info.map((item) => {
             return (
             <Col key={item._id}>
-              Name: {item.official_name} ||
-              Category: {item.category} ||
-              Shop: {item.shop} ||
-              Price: {item.price_per_unit} ||
-              Quantity: {item.quantity} ||
-              Barcode: {item.barcode} ||
-              Sale: {item.sale}
+              <Col>
+                Name: {item.official_name} ||
+                Category: {item.category} ||
+                Shop: {item.shop} ||
+                Price: {item.price_per_unit} ||
+                Quantity: {item.quantity} ||
+                Barcode: {item.barcode} ||
+                Sale: {item.sale}
+              </Col>
+              {/* Delete Item */}
+              <RemoveItemReceiptList item={item} receipt_list_id={receipt_list_id} receipt_list_name={receipt_list_name}/>
             </Col>
             )
           })}

@@ -10,7 +10,7 @@ import Login from './pages/Login_page';
 import Shopping_Lists_page from './pages/Shopping_Lists_page';
 import Receipt_List_page from './pages/Receipt_List_page';
 //Components
-import SingleShoppinngList from './components/ShoppingLists/UpdateShoppingList/SingleShoppinngList';
+import SingleShoppinngList from './components/ShoppingLists/SingleShoppingList/SingleShoppingList';
 import SingleReceiptList from './components/ReceiptLists/SingleRecieptList/SingleReceiptList';
 import AddItemReceiptList from './components/ReceiptLists/UpdateReceiptList/AddItemReceiptList';
 function App() {
@@ -42,7 +42,7 @@ function App() {
             <Route path="/receipt_lists/:id" element={<SingleReceiptList />} />
             
             {/*To Delete Product from Receipt List*/}
-            <Route path="/shopping_lists/:id/product/:id" element={<SingleReceiptList />} />
+            <Route path="/receipt_lists/:id/product/:id" element={<SingleReceiptList />} />
 
             {/*Test*/}
             <Route path="/test" element={<AddItemReceiptList />} />

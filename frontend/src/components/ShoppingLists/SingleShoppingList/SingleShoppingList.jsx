@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 //Router Dom import
 import { useNavigate, useLocation, Link } from "react-router-dom"
 // Components imports
-import AddItemShoppingList from "./AddItemShoppingList";
-import RemoveItemShoppingList from "./RemoveItemShoppingList";
+import AddItemShoppingList from "../UpdateShoppingList/AddItemShoppingList";
+import RemoveItemShoppingList from "../UpdateShoppingList/RemoveItemShoppingList";
 //Axios
 import axios from "axios";
 //Toast Errors
@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 //CSS import
 import { Container, Row, Col } from "react-bootstrap";
 
-const SingleShoppinngList = () => {
+const SingleShoppingList = () => {
 
   //useState for shopping list data
   const [shoppingListData, setShoppingListData] = useState({});
@@ -37,6 +37,7 @@ const SingleShoppinngList = () => {
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
   const product_info = shoppingListData.product_info;
   const shopping_list_id = shoppingListData._id;
+  const shopping_list_name = shoppingListData.title;
 
   // axios get request to get the shopping list
   const getSingleList = async () => {
@@ -67,7 +68,8 @@ const SingleShoppinngList = () => {
         {product_info.map((product) => {
           return (
             <Col key={product._id}>
-              { product.product_name } - { product.quantity } - <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id}/>
+              { product.product_name } - { product.quantity } - 
+              <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id} shopping_list_name={shopping_list_name}/>
             </Col>
             
           )
@@ -84,4 +86,4 @@ const SingleShoppinngList = () => {
     )
   }
 }  
-export default SingleShoppinngList
+export default SingleShoppingList
