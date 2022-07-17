@@ -5,17 +5,29 @@ import { Link } from "react-router-dom";
 import { deleteShoppingList } from "../../../features/shopping_lists/shopping_listSlice";
 import { useDispatch, useSelector } from "react-redux";
 //Component 
-
+import Spinner from "../../Spinner/Spinner";
 //CSS
 import { Container, Row, Col } from "react-bootstrap";
+//Toast Errors
+import { toast } from 'react-toastify';
 
   function AllShoppingLists() {  
   // initializing the dispatch function
   const dispatch = useDispatch();
 
   // Get the shopping lists state from the redux store
-  const {shopping_lists} = useSelector((state) => state.shopping_lists);
-    
+  const {shopping_lists, isLoading, isError, message} = useSelector((state) => state.shopping_lists);
+
+  useEffect(() => {
+    //send error and load spinner
+    if(isError) {
+    toast.error(message + ' Please try again.');
+    }
+    if (isLoading) {
+      return <Spinner />;
+    }  
+  }, [shopping_lists, isError, message, dispatch]);
+
     return (
       <>
        <Col>

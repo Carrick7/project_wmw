@@ -52,6 +52,7 @@ function RemoveItemShoppingList( {product, shopping_list_id} ) {
   e.preventDefault();
   deleteProduct();
 }
+//The Button can be a div so user can click anywhere on the div and then the delete button can be clicked
   return (
     <>
       <Link to={{pathname:`/shopping_lists/${shopping_list_id}/product/${product._id}`}}><button> Select {product.product_name}</button></Link> ||

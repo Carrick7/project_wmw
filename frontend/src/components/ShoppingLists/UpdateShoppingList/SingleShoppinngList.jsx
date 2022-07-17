@@ -1,12 +1,17 @@
-import { Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// Slice/Redux import
+import { useSelector } from "react-redux";
+//Router Dom import
 import { useNavigate, useLocation, Link } from "react-router-dom"
-import { toast } from 'react-toastify';
-import { deleteShoppingList } from "../../../features/shopping_lists/shopping_listSlice";
+// Components imports
 import AddItemShoppingList from "./AddItemShoppingList";
 import RemoveItemShoppingList from "./RemoveItemShoppingList";
+//Axios
+import axios from "axios";
+//Toast Errors
+import { toast } from 'react-toastify';
+//CSS import
+import { Container, Row, Col } from "react-bootstrap";
 
 const SingleShoppinngList = () => {
 
@@ -20,15 +25,19 @@ const SingleShoppinngList = () => {
   //Isolating ID from URL
   const path = useLocation().pathname.split("/")[2];
 
-  //fething user data (profile)
+  //fething user data (profile) and settin up header
   const { user } = useSelector((state) => state.auth);
   const token = user.token;
-  //setting up header
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     }
   }
+
+  //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
+  const product_info = shoppingListData.product_info;
+  const shopping_list_id = shoppingListData._id;
+
   // axios get request to get the shopping list
   const getSingleList = async () => {
     try {
@@ -38,21 +47,14 @@ const SingleShoppinngList = () => {
       setLoading(true);
     } catch (error) {
       toast.error(error.response.data.message + ' Please try again.');
-      navigate('/');
+      navigate('/shopping_lists');
     }
   }
 
-  // useEffect to run the getSingleList function 
+  // useEffect to run the getSingleList function whnever the path name & product_info changes
   useEffect(() => {
     getSingleList();
-  }, [path, shoppingListData]);
-
-  // initializing the dispatch function
-  const dispatch = useDispatch();
-
-  //Settin 
-  const product_info = shoppingListData.product_info;
-  const shopping_list_id = shoppingListData._id;
+  }, [path, product_info]);
 
   if(loading) {
     return (
@@ -60,7 +62,6 @@ const SingleShoppinngList = () => {
         <Row>
           <Col>
            <h1>{shoppingListData.title}</h1>
-           <Link to={{pathname:`/shopping_lists`}}><button onClick={() => dispatch(deleteShoppingList(shoppingListData._id))}> X </button></Link>
 
         {/* Product Listings */}
         {product_info.map((product) => {
@@ -82,5 +83,5 @@ const SingleShoppinngList = () => {
       </Container>
     )
   }
-  }  
+}  
 export default SingleShoppinngList

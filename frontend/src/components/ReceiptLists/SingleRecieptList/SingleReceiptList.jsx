@@ -1,12 +1,13 @@
-import { useEffect } from "react"
+import { useEffect,useState } from "react"
 //Router Dom
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+//axios
+import axios from 'axios';
 //Components
 import Spinner from "../../Spinner/Spinner";
 import AddItemReceiptList from "../UpdateReceiptList/AddItemReceiptList";
 //Slices/Redux
-import { useDispatch, useSelector } from "react-redux";
-import { deleteReceiptList, getSingleReceiptList, reset_rl } from "../../../features/receipt_lists/receipt_listSlice";
+import {  useSelector } from "react-redux";
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS
@@ -14,61 +15,75 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './SingleReceiptList.css';
 
 const SingleReceiptList = () => {
-  // Get the receipt lists state from the redux store
-  const {receipt_lists, isLoading_rl, isError_rl, message_rl } = useSelector((state) => state.receipt_lists);
 
-  //Initialising dispatch & navigate
-  const dispatch = useDispatch();
+  //useState for shopping list data
+  const [receiptListData, setReceiptListData] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  // Url Location
-  const id_from_path = useLocation().pathname.split("/")[2];
+  // Initialise Navigate
+  const navigate = useNavigate();
 
-  //Reloads the state of the receipt list when the user refreshes the page
-  useEffect(() => {
-    if (isError_rl) {
-      toast.error(message_rl + ' Please try again.');
+  //Isolating ID from URL
+  const path = useLocation().pathname.split("/")[2];
+
+  //fething user data (profile) and settin up header
+  const { user } = useSelector((state) => state.auth);
+  const token = user.token;
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
     }
-
-    // executing the getAllReceiptLists action
-    dispatch(getSingleReceiptList(id_from_path));
-
-    // when user leaves, the state is reset_rl (wipe out user storage)
-      return() => {
-        dispatch(reset_rl());  
-      };
-   }, []);
-
- //Loading spinner
-  if (isLoading_rl) {
-    return <Spinner />;
   }
 
-  return (
-    <>
-      {/*Title & Delete button*/}
-      <h1>{receipt_lists.list_name}</h1>
-      <Link to={{pathname:`/receipt_lists`}}><button onClick={() => dispatch(deleteReceiptList(receipt_lists._id))}> X </button></Link>
-      {/*List Items
-      <Row>
-        {receipt_lists.item_info.map((item) => {
-          <Col key={item._id}>
-            Name: {item.official_name}
-            Category: {item.category}
-            Shop: {item.shop}
-            Price: {item.price_per_unit}
-            Quantity: {item.quantity}
-            Barcode: {item.barcode}
-          </Col>
-        })}
-      </Row>
-      *********************************************
-      CURRENTLY BREAKING SHIT
-      *********************************************
-      */}
-      {/* Add Item */}
-      <AddItemReceiptList />
-    </>
-  )
+  //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
+  const item_info = receiptListData.item_info;
+  const receipt_list_id = receiptListData._id;
+
+  // axios get request to get the shopping list
+  const getSingleList = async () => {
+    try {
+      const response = await axios.get(`/api/receipt_lists/${path}`, config);
+      const res = response.data
+      setReceiptListData(res);
+      setLoading(true);
+    } catch (error) {
+      toast.error(error.response.data.message + ' Please try again.');
+      navigate('/receipt_lists');
+    }
+  }
+
+  // useEffect to run the getSingleList function whnever the path name & item_info changes
+  useEffect(() => {
+    getSingleList();
+  }, [path, item_info]);
+
+  if(loading) {
+    return (
+      <>
+        {/*Title & Delete button*/}
+        <h1>{receiptListData.list_name}</h1>
+
+        <Row>
+          {item_info.map((item) => {
+            return (
+            <Col key={item._id}>
+              Name: {item.official_name} ||
+              Category: {item.category} ||
+              Shop: {item.shop} ||
+              Price: {item.price_per_unit} ||
+              Quantity: {item.quantity} ||
+              Barcode: {item.barcode} ||
+              Sale: {item.sale}
+            </Col>
+            )
+          })}
+        </Row>
+
+        {/* Add Item */}
+        <AddItemReceiptList receiptListData={receiptListData}/>
+      </>
+    )
+  }
 }
 
 export default SingleReceiptList

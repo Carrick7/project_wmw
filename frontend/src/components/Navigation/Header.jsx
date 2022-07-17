@@ -24,12 +24,6 @@ function Header() {
     navigate('/');
   }
 
-  //reset receipt list store and load back up all receipt lists
-  const onResetReceipt = () => {
-    dispatch(reset_rl());
-    dispatch(getAllReceiptLists());
-  }
-
   return (
   <>
    <Navbar bg="dark" variant="dark">
@@ -41,11 +35,9 @@ function Header() {
         {user ? (
            <Col>
             <button className="btn btn-outline-light" onClick={onLogout}>Logout</button>
-            <Link to='/shopping_lists'>Shopping List</Link> || 
-            <Link to='/'>Home</Link> || 
-            <Link to='/receipt_lists'> 
-              <button onClick={onResetReceipt}>Receipt List</button> 
-            </Link>
+            <Link to='/shopping_lists'> Shopping List </Link> || 
+            <Link to='/'> Home </Link> || 
+            <Link to='/receipt_lists'> Receipt List </Link>
            </Col>  
             ):(
              <> 

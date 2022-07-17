@@ -21,6 +21,9 @@ const Receipt_List_page = () => {
   //fething user data (profile)
   const { user, isLoading, isError, message } = useSelector((state) => state.auth);
 
+  // Get the receipt lists state from the redux store
+  const {receipt_lists, isLoading_rl, isError_rl, message_rl, isSuccess_rl} = useSelector((state) => state.receipt_lists);
+
   useEffect(() => {
     // using toast to display error message from backend
     if(isError){
@@ -30,22 +33,19 @@ const Receipt_List_page = () => {
     if (!user) {
       navigate('/login');
     }
-
     // executing the getAllReceiptLists action
     dispatch(getAllReceiptLists());
     // when user leaves, the state is reset_rl (wipe out user storage)
       return() => {
         dispatch(reset_rl());
-    }
-
-    
-  }, [user, navigate, isError, message, dispatch]);
+    } 
+  }, [user, navigate, isError, message, dispatch ]);
 
   // Loading spinner
   if (isLoading) {
     return <Spinner />;
   }
-
+  
   return (
     <Container>
       <Row>

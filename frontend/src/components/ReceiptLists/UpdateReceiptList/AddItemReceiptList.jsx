@@ -1,54 +1,73 @@
-import { useState, useEffect } from "react"
+import { useState, useRef } from "react"
 //Components
 import Spinner from '../../Spinner/Spinner';
 //Router Dom
 import { useNavigate } from 'react-router-dom';
 //helpers
 import { shops, categories, onSale } from '../../../helpers/helpers';
+// Axios
+import axios from 'axios';
 //Redux/Slice
-import { useSelector, useDispatch } from 'react-redux';
-import { addItemReceiptList, reset_rl } from "../../../features/receipt_lists/receipt_listSlice";
+import { useSelector } from 'react-redux';
 //CSS
 import { Container, Row, Col, Form } from 'react-bootstrap';
 //Toastify
 import { toast } from 'react-toastify';
 
-const AddItemReceiptList = ({}) => {
-  const [ formData, setFormData ] = useState({
-    item_info:[
-               {
-                  barcode: '',
-                  official_name: '',
-                  category: '',
-                  shop: '',
-                  price_per_unit:'',
-                  quantity:'',
-                  sale: ''
-                }
-              ]
-  });
+const AddItemReceiptList = ( {receiptListData} ) => {
+    
+  //fething user data (profile) & setting up header
+    const { user } = useSelector((state) => state.auth);
+    const token = user.token;
+    const config = {
+      headers: {
+       Authorization: `Bearer ${token}`,
+      }
+    } 
 
-  //set the form data 
-  const { barcode, official_name, category, shop, price_per_unit, quantity, sale } = formData; //formData.item_info[0] try this if the other fails
+    // setting up for useRef
+    const barcode_input = useRef(null);
+    const official_name_input = useRef(null);
+    const category_input = useRef(null);
+    const shop_input = useRef(null);
+    const price_per_unit_input = useRef(null);
+    const quantity_input = useRef(null);
+    const sale_input = useRef(null);
 
-  //Initialise navigate & dispatch
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+    //set up for useState
+    const [ updateResult , setUpdatedResult ] = useState(null);
+    
+    // formatting user input to JSON
+    const formatData = (res) => { return JSON.stringify(res, null, 2); }
 
-  //Getting receipt list state from the redux store
-  const { receipt_lists, isLoading_rl, isError_rl, message_rl, isSuccess_rl } = useSelector((state) => state.receipt_lists);
-
-  useEffect(() => {
-    //if there is an error, display it
-    if(isError_rl) {
-      toast.error(message_rl + ' Please try again.');
+    // Add Item to Receipt List
+    const addItemToReceipt = async () => {
+      const addItem = {
+        item_info: [{
+             barcode: barcode_input.current.value,
+             official_name: official_name_input.current.value,
+             category: category_input.current.value,
+             shop: shop_input.current.value,
+             price_per_unit: price_per_unit_input.current.value,
+             quantity:quantity_input.current.value,
+             sale: sale_input.current.value
+           }]        
+      }
+      try {
+        const res = await axios.put(`/api/receipt_lists/${receiptListData._id}`, addItem, config);
+        const result = { data: res.data };
+        setUpdatedResult(formatData(result));
+      }
+      catch (error) {
+        toast.error(error.response.data.message + ' Please try again.');
+      }
     }
-    //Spinner
-    if(isLoading_rl) {
-      return <Spinner />;
-    }
 
-  }, [isSuccess_rl, isError_rl, message_rl, navigate, dispatch]);
+  //Submit Button
+  const onSubmit = (e) => {
+  e.preventDefault();
+  addItemToReceipt();
+  }    
 
   return (
     <>
@@ -61,20 +80,20 @@ const AddItemReceiptList = ({}) => {
       </section>
       {/* Registration Form Body */}
       <section className='formBody'>
-        <form >
+        <form onSubmit={onSubmit}>
           {/* barcode */}
           <Col className='rl_form_input'>      
-            <input type="number" id='barcode' name='barcode' value={barcode} placeholder='123456789101'/>
+            <input type="number" id='barcode' name='barcode' ref={barcode_input} placeholder='123456789101'/>
           </Col>          
           {/* official_name */}
           <Col className='rl_form_input'>
-           <input type="text" id='official_name' name='official_name' value={official_name} placeholder='Ivorian Bananas'/>          
+           <input type="text" id='official_name' name='official_name' ref={official_name_input} placeholder='Ivorian Bananas'/>          
           </Col>
           {/* category enum*/}
           <Col>
             <Form.Group className="mb-3">
               <Form.Label >Choose Category</Form.Label>
-              <Form.Select id='category' name='category' value={category}>
+              <Form.Select id='category' name='category' ref={category_input}>
                 {categories.map((category, index) => {
                   return(
                   <option key={index}>
@@ -88,7 +107,7 @@ const AddItemReceiptList = ({}) => {
           <Col>
             <Form.Group className="mb-3">
               <Form.Label >Choose Shop</Form.Label>
-              <Form.Select id='shop' name='shop' value={shop}>
+              <Form.Select id='shop' name='shop' ref={shop_input}>
                 {shops.map((shop, index) => {
                   return(
                   <option key={index}>
@@ -100,17 +119,17 @@ const AddItemReceiptList = ({}) => {
           </Col>
           {/* price_per_unit */}
           <Col className='rl_form_input'>
-            <input type="number" id='price_per_unit' name='price_per_unit' value={price_per_unit} placeholder='price_per_unit'/>          
+            <input type="number" step={0.01} id='price_per_unit' name='price_per_unit' ref={price_per_unit_input} placeholder='price_per_unit'/>          
           </Col >
           {/* quantity */}
           <Col className='rl_form_input'>
-            <input type="number" id='quantity' name='quantity' value={quantity} placeholder='quantity'/>          
+            <input type="number" id='quantity' name='quantity' ref={quantity_input} placeholder='quantity'/>          
           </Col >
           {/* sale */}
           <Col>
             <Form.Group className="mb-3">
               <Form.Label >On Sale?</Form.Label>
-              <Form.Select id='sale' name='sale' value={sale}>
+              <Form.Select id='sale' name='sale' ref={sale_input}>
                 {onSale.map((sales, index) => {
                   return(
                   <option key={index}>

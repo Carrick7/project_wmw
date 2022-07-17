@@ -1,9 +1,12 @@
-import { Container, Row, Col } from 'react-bootstrap';
 import { useState, useRef } from 'react';
+//Redux/Slice
 import { useSelector } from 'react-redux';
+//Toastify
 import { toast } from 'react-toastify';
 //CSS
 import './UpdateShoppingList.css';
+import { Container, Row, Col } from 'react-bootstrap';
+//Axios
 import axios from 'axios';
 
 
@@ -38,7 +41,7 @@ function AddItemShoppingList( {shoppingListData} ) {
     try{
       const res = await axios.put(`/api/shopping_lists/${shoppingListData._id}`, add_product, config);
       const result = { data: res.data };
-        setUpdatedResult(formatData(result));
+      setUpdatedResult(formatData(result));
         
     }
     catch(error){
@@ -46,6 +49,7 @@ function AddItemShoppingList( {shoppingListData} ) {
     }
   }
 
+  //Submit Button
   const onSubmit = (e) => {
     e.preventDefault();
     addProductItem();

@@ -6,7 +6,7 @@ const initialState = {
     isError_rl: false,
     isLoading_rl: false,
     isSuccess_rl: false,
-    message_rl: ''
+    message_rl: '',
 }
 
 // Create Receipt List
@@ -18,7 +18,7 @@ export const createReceiptList = createAsyncThunk(
       return await receipt_listService.createReceiptList(receipt_listData, token);
     }
     catch(error) {
-      const message_rl = (error.response && error.response.data && error.response.data.message_rl) || error.message_rl || error.toString();
+      const message_rl = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
       return thunkAPI.rejectWithValue(message_rl);
       }
     }
@@ -33,7 +33,7 @@ export const getAllReceiptLists = createAsyncThunk(
     return await receipt_listService.getAllReceiptLists(token);
   }
   catch(error) {
-    const message_rl = (error.response && error.response.data && error.response.data.message_rl) || error.message_rl || error.toString();
+    const message_rl = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message_rl);
     }
   }
@@ -48,37 +48,7 @@ export const deleteReceiptList = createAsyncThunk(
     return await receipt_listService.deleteReceiptList(id, token);
   }
   catch(error) {
-    const message_rl = (error.response && error.response.data && error.response.data.message_rl) || error.message_rl || error.toString();
-    return thunkAPI.rejectWithValue(message_rl);
-    }
-  }
-);
-
-// get single receipt list
-export const getSingleReceiptList = createAsyncThunk(
-  'receipt_list/getSingle', async (id, thunkAPI) => {
-  try{
-    // getting the token from the auth state
-    const token = thunkAPI.getState().auth.user.token;
-    return await receipt_listService.getSingleReceiptList(id, token);
-  }
-  catch(error) {
-    const message_rl = (error.response && error.response.data && error.response.data.message_rl) || error.message_rl || error.toString();
-    return thunkAPI.rejectWithValue(message_rl);
-    }
-  }
-);
-
-// add item receipt list
-export const addItemReceiptList = createAsyncThunk(
-  'receipt_list/addItem', async (id, item_info, thunkAPI) => {
-  try{
-    // getting the token from the auth state
-    const token = thunkAPI.getState().auth.user.token;
-    return await receipt_listService.addItemReceiptList(id, item_info, token);
-  }
-  catch(error) {
-    const message_rl = (error.response && error.response.data && error.response.data.message_rl) || error.message_rl || error.toString();
+    const message_rl = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message_rl);
     }
   }
@@ -104,7 +74,7 @@ export const receipt_listSlice = createSlice({
       })
       .addCase(createReceiptList.rejected, (state, action) => {
         state.isLoading_rl = false;
-        state.isError = true;
+        state.isError_rl = true;
         state.message_rl = action.payload;
       })
 
@@ -119,7 +89,7 @@ export const receipt_listSlice = createSlice({
       })
       .addCase(getAllReceiptLists.rejected, (state, action) => {
         state.isLoading_rl = false;
-        state.isError = true;
+        state.isError_rl = true;
         state.message_rl = action.payload;
       })
 
@@ -134,37 +104,7 @@ export const receipt_listSlice = createSlice({
       })
       .addCase(deleteReceiptList.rejected, (state, action) => {
         state.isLoading_rl = false;
-        state.isError = true;
-        state.message_rl = action.payload;
-      })
-
-      // get single receipt list
-      .addCase(getSingleReceiptList.pending, (state) => {
-        state.isLoading_rl = true;
-      })
-      .addCase(getSingleReceiptList.fulfilled, (state, action) => {
-        state.isLoading_rl = false;
-        state.isSuccess_rl = true;
-        state.receipt_lists = action.payload;
-      })
-      .addCase(getSingleReceiptList.rejected, (state, action) => {
-        state.isLoading_rl = false;
-        state.isError = true;
-        state.message_rl = action.payload;
-      })
-
-      // add item receipt list
-      .addCase(addItemReceiptList.pending, (state) => {
-        state.isLoading_rl = true;
-      })
-      .addCase(addItemReceiptList.fulfilled, (state, action) => {
-        state.isLoading_rl = false;
-        state.isSuccess_rl = true;
-        state.receipt_lists.push(action.payload);
-      })
-      .addCase(addItemReceiptList.rejected, (state, action) => {
-        state.isLoading_rl = false;
-        state.isError = true;
+        state.isError_rl = true;
         state.message_rl = action.payload;
       })
     }

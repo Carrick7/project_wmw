@@ -39,36 +39,10 @@ const deleteReceiptList = async (receipt_list_id, token) => {
   return response.data;
 }
 
-// get single shopping list
-const getSingleReceiptList = async (receipt_list_id, token) => {
-  // Looking for the token in the localStorage
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
-  const response = await axios.get(API_URL + receipt_list_id, config);
-  return response.data;
-}
-
-// get single shopping list
-const addItemReceiptList = async (receipt_list_id, item_info, token) => {
-  // Looking for the token in the localStorage
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
-  const response = await axios.put(API_URL + receipt_list_id, item_info, config);
-  return response.data;
-}
-
 const receipt_listService = {
   createReceiptList,
   getAllReceiptLists,
   deleteReceiptList,
-  getSingleReceiptList,
-  addItemReceiptList,
 }
 
 export default receipt_listService
