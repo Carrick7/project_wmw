@@ -37,24 +37,11 @@ const removeItemsReceiptList = asyncHandler(async (req, res) => {
   }
 
   //Validating Product Details by Ensuring they exist in All_products
-  const items = req.body.item_info;
-
-  //Ensuring that only 1 item is added at a time
-   if(items.length > 1){
-     return res.status(400).send({message: 'Only one item can be added at a time'});
-  }
-  
-  //Ensuring that the barcode and shop name combinations exist
-  const findProduct = await All_products.findOne({barcode: items[0].barcode, shop: items[0].shop});
-
-  //Accessing Data from the All_products
-  if(!findProduct){
-    return res.status(400).send({message: 'Product does not exist'});
-  }
+  const item_info = req.body.item_info[0];
 
   //Updating the list with the new item(s)
   const updated_list = await Receipt_lists.findByIdAndUpdate(req.params.id,
-    {$pull: {item_info: items[0]}}, {new:true});
+    {$pull: {item_info: item_info}}, {new:true});
    
   return res.status(200).send(updated_list);
   

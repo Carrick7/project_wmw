@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 // Schema for Receipt List (all_products)
 const products_in_receipt_listSchema = new mongoose.Schema([{
-  _id: false,
   barcode: {
     type: Number,
     min: [100000000000],
@@ -34,6 +33,12 @@ const products_in_receipt_listSchema = new mongoose.Schema([{
     default: 1,
     min: [1, 'Quantity must be at least 1'],
     max: [1000, 'Quantity must be less than 1000'],
+  },
+  sale: { 
+    type: String,
+    enum: ['yes', 'no'],
+    required: [true, 'Select if the product is on sale'],
+    lowercase: true
   }
 }]);
 

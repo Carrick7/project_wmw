@@ -1,22 +1,22 @@
 //Used for HTTP requests and sending data to the server
 import axios from 'axios';
-// targetting all the shopping lists
-const API_URL = '/api/shopping_lists/';
+// targetting all the receipt lists
+const API_URL = '/api/receipt_lists/';
 
-// Create a new shopping list
-const createShoppingList = async (shopping_listData, token) => {
+// Create a new receipt List 
+const createReceiptList = async (receipt_listData, token) => {
   // Looking for the token in the localStorage
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     }
   }
-  const response = await axios.post(API_URL, shopping_listData, config);
+  const response = await axios.post(API_URL, receipt_listData, config);
   return response.data;
 }
 
-// getAllShoppingLists
-const getAllShoppingLists = async (token) => {
+// getAllReceiptLists
+const getAllReceiptLists = async (token) => {
   // Looking for the token in the localStorage
   const config = {
     headers: {
@@ -28,21 +28,21 @@ const getAllShoppingLists = async (token) => {
 }
 
 // Delete a shopping list
-const deleteShoppingList = async (shopping_list_id, token) => {
+const deleteReceiptList = async (receipt_list_id, token) => {
   // Looking for the token in the localStorage
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     }
   }
-  const response = await axios.delete(API_URL + shopping_list_id, config);
+  const response = await axios.delete(API_URL + receipt_list_id, config);
   return response.data;
 }
 
-const shopping_listService = {
-  createShoppingList,
-  getAllShoppingLists,
-  deleteShoppingList,
+const receipt_listService = {
+  createReceiptList,
+  getAllReceiptLists,
+  deleteReceiptList,
 }
 
-export default shopping_listService;
+export default receipt_listService

@@ -77,6 +77,7 @@ export const shopping_listSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      
       // Get all shopping lists
       .addCase(getAllShoppingLists.pending, (state) => {
         state.isLoading = true;
@@ -91,6 +92,7 @@ export const shopping_listSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+
       // Delete a shopping list
       .addCase(deleteShoppingList.pending, (state) => {
         state.isLoading = true;

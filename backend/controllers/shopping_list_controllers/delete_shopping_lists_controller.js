@@ -39,9 +39,9 @@ const deleteShoppingLists = asyncHandler(async (req, res) => {
             {message: 'Not Authorised'});
         }
 
-    //Successful response (List has been deleted)
-    await shopping_list.remove();
-    res.status(200).json({ id: req.params.id, message: 'Shopping List has been deleted' });
+      //Successful response (List has been deleted)
+      await shopping_list.remove();
+        res.status(200).json({ id: req.params.id, message: 'Shopping List has been deleted' });
   }
 });
 

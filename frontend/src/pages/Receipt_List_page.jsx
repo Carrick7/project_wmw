@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
+//Router Dom
 import { useNavigate } from 'react-router-dom';
-// Slice/Redux import
-import { getAllShoppingLists, reset } from '../features/shopping_lists/shopping_listSlice';
-import { useSelector, useDispatch } from 'react-redux';
-// Components imports
-import AllShoppingLists from '../components/ShoppingLists/AllShoppingLists/AllShoppingLists';
-import NewShoppingList from '../components/ShoppingLists/NewShoppingList/NewShoppingList';
+//Componenets
+import AllReceiptLists from '../components/ReceiptLists/AllReceiptLists/AllReceiptLists';
+import NewReceiptList from '../components/ReceiptLists/NewReceiptList/NewReceiptList';
 import Spinner from '../components/Spinner/Spinner';
-//CSS import
-import { Container, Row, Col } from 'react-bootstrap';
+// Slice/Redux import
+import { useSelector, useDispatch } from 'react-redux';
+//Toast Errors
 import { toast } from 'react-toastify';
+//CSS
+import { Container, Row, Col } from 'react-bootstrap';
 
-function Shopping_Lists_page() {
+const Receipt_List_page = () => {
   //Initialising dispatch & navigate
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,28 +29,33 @@ function Shopping_Lists_page() {
     if (!user) {
       navigate('/login');
     }
-  }, [user, navigate, isError, message, dispatch]);
+  }, [user, navigate, isError, message, dispatch ]);
 
   // Loading spinner
   if (isLoading) {
     return <Spinner />;
   }
-
+  
   return (
     <Container>
       <Row>
         <Col>
-          <h1> Welcome {user.user_name}</h1>
-          <h1>Create a new Shopping List</h1>
+          <h1>Receipt_List_page</h1>
         </Col>
       </Row>
-      <NewShoppingList />
-      <br />
-      <hr />
-       All List Names <AllShoppingLists />
-       <hr />
+      <Row>
+        {/*Create New List*/}
+        <Col>
+          <NewReceiptList />
+        </Col>
+        <hr />
+        {/*All Receipt Lists*/}
+        <Col>
+          <AllReceiptLists />
+        </Col>
+      </Row>
     </Container>
   )
 }
 
-export default Shopping_Lists_page
+export default Receipt_List_page
