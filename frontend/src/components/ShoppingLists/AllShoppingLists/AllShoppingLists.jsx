@@ -2,7 +2,7 @@ import { useEffect } from "react";
 //Router Dom
 import { Link } from "react-router-dom";
 //Slice/Reducx
-import { deleteShoppingList } from "../../../features/shopping_lists/shopping_listSlice";
+import { deleteShoppingList, getAllShoppingLists, reset } from "../../../features/shopping_lists/shopping_listSlice";
 import { useDispatch, useSelector } from "react-redux";
 //Component 
 import Spinner from "../../Spinner/Spinner";
@@ -25,8 +25,10 @@ import { toast } from 'react-toastify';
     }
     if (isLoading) {
       return <Spinner />;
-    }  
-  }, [shopping_lists, isError, message, dispatch]);
+    }
+    // executing the getAllShoppingLists action
+    dispatch(getAllShoppingLists());
+  }, [ dispatch ]);
 
     return (
       <>

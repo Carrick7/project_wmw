@@ -23,10 +23,13 @@ const AllReceiptLists = () => {
     if(isError_rl) {
     toast.error(message_rl + ' Please try again.');
     }
-    if (isLoading_rl) {
+    //send spinner
+    if(isLoading_rl) {
       return <Spinner />;
-    }  
-  }, [receipt_lists, isError_rl, message_rl, dispatch]);
+    }
+    // executing the getAllShoppingLists action
+    dispatch(getAllReceiptLists());
+  }, [ dispatch ]);
   
   return (
     <>
@@ -35,7 +38,7 @@ const AllReceiptLists = () => {
          return (
            <Col key={receipt_list._id}>
              {receipt_list.list_name} ||
-             <button onClick={() => {dispatch(deleteReceiptList(receipt_list._id));}}> X </button> || 
+             <button onClick={() => {dispatch(deleteReceiptList(receipt_list._id))}}> X </button> || 
               <Link to={{pathname:`/receipt_lists/${receipt_list._id}`}}> View {receipt_list.title}</Link>
            </Col>
          )

@@ -34,10 +34,10 @@ const deleteReceiptList = asyncHandler(async (req, res) => {
     return res.status(401).send(
       {message: 'Not Authorised'});
   }
-
-  //Deleting the list
+  
+  //Successful response (List has been deleted)
   await receipt_list.remove();
-  return res.status(200).send({message: 'Receipt List Deleted'});
+   return res.status(200).json({ id: req.params.id, message: 'Receipt List Deleted' });
   
 });
 

@@ -41,7 +41,7 @@ const NewReceiptList = () => {
     if(isLoading_rl) {
       return <Spinner />;
     }
-  }, [isSuccess_rl, isError_rl, message_rl, dispatch]);
+  }, [isError_rl, message_rl, dispatch]);
 
   return (
     <>

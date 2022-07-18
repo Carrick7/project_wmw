@@ -9,6 +9,7 @@ const All_products = require('../../model/all_products_model');
 //Access: Public
 const getSingleProduct = asyncHandler(async (req, res) => {
 
+
   // Validating the barcode length and format
   const validBarcode = req.params.barcode;
   if (!validBarcode.match(validateBarcodeLength)){

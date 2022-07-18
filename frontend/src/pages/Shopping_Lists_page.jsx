@@ -28,13 +28,6 @@ function Shopping_Lists_page() {
     if (!user) {
       navigate('/login');
     }
-
-    // executing the getAllShoppingLists action
-    dispatch(getAllShoppingLists());
-    // when user leaves, the state is reset (wipe out user storage)
-      return() => {
-        dispatch(reset());
-    }
   }, [user, navigate, isError, message, dispatch]);
 
   // Loading spinner

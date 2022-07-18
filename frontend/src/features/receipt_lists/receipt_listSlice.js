@@ -96,6 +96,8 @@ export const receipt_listSlice = createSlice({
       // Delete a receipt list
       .addCase(deleteReceiptList.pending, (state) => {
         state.isLoading_rl = true;
+        state.isSuccess_rl = false;
+        state.isError_rl = false;
       })
       .addCase(deleteReceiptList.fulfilled, (state, action) => {
         state.isLoading_rl = false;

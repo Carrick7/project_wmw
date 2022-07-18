@@ -12,7 +12,7 @@ import Receipt_List_page from './pages/Receipt_List_page';
 //Components
 import SingleShoppinngList from './components/ShoppingLists/SingleShoppingList/SingleShoppingList';
 import SingleReceiptList from './components/ReceiptLists/SingleRecieptList/SingleReceiptList';
-import AddItemReceiptList from './components/ReceiptLists/UpdateReceiptList/AddItemReceiptList';
+
 function App() {
   return (
     <>
@@ -44,8 +44,6 @@ function App() {
             {/*To Delete Product from Receipt List*/}
             <Route path="/receipt_lists/:id/product/:id" element={<SingleReceiptList />} />
 
-            {/*Test*/}
-            <Route path="/test" element={<AddItemReceiptList />} />
           </Routes>
         </Container>
       </Router>

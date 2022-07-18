@@ -7,7 +7,6 @@ import NewReceiptList from '../components/ReceiptLists/NewReceiptList/NewReceipt
 import Spinner from '../components/Spinner/Spinner';
 // Slice/Redux import
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllReceiptLists, reset_rl } from '../features/receipt_lists/receipt_listSlice';
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS
@@ -21,9 +20,6 @@ const Receipt_List_page = () => {
   //fething user data (profile)
   const { user, isLoading, isError, message } = useSelector((state) => state.auth);
 
-  // Get the receipt lists state from the redux store
-  const {receipt_lists, isLoading_rl, isError_rl, message_rl, isSuccess_rl} = useSelector((state) => state.receipt_lists);
-
   useEffect(() => {
     // using toast to display error message from backend
     if(isError){
@@ -33,11 +29,7 @@ const Receipt_List_page = () => {
     if (!user) {
       navigate('/login');
     }
-    // executing the getAllReceiptLists action
-    dispatch(getAllReceiptLists());
-    // when user leaves, the state is reset_rl (wipe out user storage)
-
-  }, [user, navigate, isError, message, dispatch, receipt_lists ]);
+  }, [user, navigate, isError, message, dispatch ]);
 
   // Loading spinner
   if (isLoading) {

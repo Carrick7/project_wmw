@@ -54,6 +54,8 @@ function Registration() {
       [e.target.name]: e.target.value
     }));
   }
+  
+  //Submit
   const onSubmit = (e) => {
     e.preventDefault();
 
