@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 //Components
 import RemoveItemReceiptList from "../UpdateReceiptList/RemoveItemReceiptList";
-import AddItemReceiptList from "../UpdateReceiptList/AddItemReceiptList";
 import GetSingleProduct from "../../AllProducts/GetSingleProduct/GetSingleProduct";
 import NewProduct from "../../AllProducts/NewProduct/NewProduct";
 //Slices/Redux
@@ -86,11 +85,7 @@ const SingleReceiptList = () => {
           })}
         </Row>
 
-        {/* Add Item */}
-        <AddItemReceiptList receiptListData={receiptListData}/>
-          <br />
-          <hr />
-          <br />
+
 
         {/*Get Single Product*/}
         <GetSingleProduct />

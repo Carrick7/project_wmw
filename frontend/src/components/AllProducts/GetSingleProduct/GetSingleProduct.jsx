@@ -1,15 +1,18 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 //axios
 import axios from 'axios'
 //helpers
 import { shops } from '../../../helpers/helpers';
 //redux
 import { useSelector } from 'react-redux'
+//Components 
+import AddItemReceiptListViaFindProduct from "../../ReceiptLists/UpdateReceiptList/AddItemReceiptListViaFindProduct";
 //Toast 
 import { toast } from 'react-toastify';
 //CSS
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import './GetSingleProduct.css';
+import UpdateProductPrice from '../UpdateProductPrice/UpdateProductPrice';
 
 const GetSingleProduct = () => {
 
@@ -28,6 +31,10 @@ const GetSingleProduct = () => {
 
   //useState for product data
   const [productData, setProductData] = useState({});
+  //historical prices
+  const [historicalPrices, setHistoricalPrices] = useState([]);
+  //official name
+  const [productNames, setProductNames] = useState({});
   
   //getting the product from db
   const getProduct = async () => {
@@ -35,32 +42,41 @@ const GetSingleProduct = () => {
       const res = await axios.get(`/api/all_products/${find_barcode.current.value}/${find_shop.current.value}`, config);
       const result = res.data;
       setProductData(result);
+      setProductNames(result.product_names[0]);      
+      //getting latest price
+      const latestPrice = result.historical_prices[result.historical_prices.length - 1];
+      setHistoricalPrices(latestPrice);
     }
     catch (error) {
-      //error not working because the redux slice has not been made yet*******************************
-      if(find_barcode.current.value===undefined){
+      if(find_barcode.current.value === ''){
         toast.error('No barcode entered. Please try again.');
       }
       else{
       toast.error(error.response.data.message + ' Please try again.');
-    }
-  }
+      }
+     }
   }
 
   //Submit Button
   const onSubmit = (e) => {
     e.preventDefault();
-    getProduct();
-    //testing purposes 
-    console.log(productData);
+    getProduct(); 
   } 
+  
+  //testing purposes to view product data
+  useEffect(() => {
+    console.log(productData);
+    console.log(productNames);
+    console.log(historicalPrices);
+
+    }, [productData]);
 
   return (
     <Container>
       {/* Find Product Title */}
       <section>
         <Col>
-          <h1>Find Product</h1>
+          <h1>Find &amp; Add Products to your Receipt List</h1>
           <span>Enter the barcode and shop to fetch the product</span>
         </Col>
       </section>
@@ -87,10 +103,16 @@ const GetSingleProduct = () => {
           </Col>
           {/* submit button */}
           <Col>
-            <button type='submit' className='btn btn-primary'>Find</button>
+            <button onClick={onSubmit} className='btn btn-primary'>Find</button>
           </Col>                               
         </form>
       </section>
+      <hr />
+      {/* Adding Product to the receipt list form */}
+      <AddItemReceiptListViaFindProduct productData={productData} productNames={productNames} historicalPrices={historicalPrices}/>
+      <hr />
+      {/* Update Product Price */}
+      <UpdateProductPrice productData={productData} productNames={productNames}/>
     </Container>
   )
 }

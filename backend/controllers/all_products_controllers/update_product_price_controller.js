@@ -11,6 +11,12 @@ const updateProductPrice = asyncHandler(async (req, res) => {
   const product = await All_products.findOne({barcode: req.params.barcode, shop: req.params.shop}); 
   const { historical_prices } = req.body;
 
+  //ensuring parameters are filled in
+  if(req.params.barcode === undefined && req.params.shop === undefined) {
+    return res.status(400).send(
+      {message: `No Product has been selected`});
+  }
+
   // Ensuring that the product exists
   if (!product) {
     return res.status(404).send(
