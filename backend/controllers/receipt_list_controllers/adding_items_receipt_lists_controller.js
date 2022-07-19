@@ -52,6 +52,16 @@ const additemsReceiptList = asyncHandler(async (req, res) => {
     return res.status(400).send({message: 'Product does not exist'});
   }
 
+  //quantity validation
+  if(items[0].quantity === 0 || 
+    items[0].quantity === " " || 
+    items[0].quantity === null || 
+    items[0].quantity === undefined || 
+    items[0].quantity === "" ||
+    items[0].quantity <= 0){
+    return res.status(400).send({message: 'Quantity is required and cammot be 0 or less'});
+  }
+
   //Updating the list with the new item(s)
   const updated_list = await Receipt_lists.findByIdAndUpdate(req.params.id,
     {$push: {item_info: items}}, {new:true});

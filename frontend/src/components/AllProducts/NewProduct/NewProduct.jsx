@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-//React Router Dom
-import { useNavigate } from 'react-router-dom';
 //Slice/Redux import
-import { createProduct } from '../../../features/products/productSlice';
+import { createProduct, reset_p } from '../../../features/products/productSlice';
 import { useDispatch, useSelector } from "react-redux";
 //Components
 import Spinner from '../../Spinner/Spinner';
@@ -33,9 +31,8 @@ const NewProduct = () => {
   //set the form data
   const { generic_name, official_name, category, sale, price_per_unit, shop, barcode } = formData;
 
-  //initialize the dispatch & navigate
+  //initialize the dispatch 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // getting the relevant product info from the redux store
   const { isLoading_p, isError_p, isSuccess_p, message_p } = useSelector((state) => state.products);
@@ -44,10 +41,15 @@ const NewProduct = () => {
     if(isLoading_p){
       return <Spinner />
     }
+
     if(isError_p){
       toast.error(message_p + ' Please try again.');
     }
-  }, [isSuccess_p, isError_p, message_p, navigate, dispatch]);
+    if(isSuccess_p){
+      toast.success(official_name + ' has been added');
+      clearFormData();
+    }
+  }, [isSuccess_p, isError_p, dispatch]);
 
   // onChange function for the form data
   const onChange = (e) => {
@@ -56,7 +58,24 @@ const NewProduct = () => {
       [e.target.name]: e.target.value
     }));
   }
-  
+
+  //clear the form data after submit
+  const clearFormData = () => {
+    setFormData({
+      product_names: {
+        generic_name: '',
+        official_name: ''
+      },
+      category: '',
+      historical_prices:[{
+        sale: '',
+        price_per_unit: ''
+      }],
+      shop: '',
+      barcode: ''
+    });
+  }  
+
   // onSubmit function for the form data
   const onSubmit = (e) => {
     e.preventDefault();
@@ -74,6 +93,7 @@ const NewProduct = () => {
       barcode        
      };
     dispatch(createProduct(productData));
+    dispatch(reset_p());
     console.log(productData);
   }
 
@@ -107,7 +127,7 @@ const NewProduct = () => {
               <Form.Label >Choose Category</Form.Label>
               <Form.Select id='category_p' name='category' value={category || ''} onChange={onChange}>
                 {categories.map((category, index) => {
-                  return(
+                  return(  
                   <option key={index}>
                     {category.type}
                   </option>                    
