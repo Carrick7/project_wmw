@@ -1,12 +1,16 @@
-import { Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+//Router Dom
 import { useNavigate } from 'react-router-dom';
+//Toastify
 import { toast } from 'react-toastify';
+//Redux/Slice
 import { login, reset } from '../../features/auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+//Components
 import Spinner from '../Spinner/Spinner';
 //CSS
 import './Login.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function Login() {
   // useState for the form data

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import AllReceiptLists from '../components/ReceiptLists/AllReceiptLists/AllReceiptLists';
 import NewReceiptList from '../components/ReceiptLists/NewReceiptList/NewReceiptList';
 import Spinner from '../components/Spinner/Spinner';
+import UserStats from '../components/UserStats/UserStats';
 // Slice/Redux import
 import { useSelector, useDispatch } from 'react-redux';
 //Toast Errors
@@ -53,6 +54,9 @@ const Receipt_List_page = () => {
         <Col>
           <AllReceiptLists />
         </Col>
+        <hr />
+        {/*All Receipt Cost*/}
+        <UserStats />
       </Row>
     </Container>
   )

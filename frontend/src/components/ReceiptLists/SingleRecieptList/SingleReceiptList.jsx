@@ -7,6 +7,7 @@ import axios from 'axios';
 import RemoveItemReceiptList from "../UpdateReceiptList/RemoveItemReceiptList";
 import GetSingleProduct from "../../AllProducts/GetSingleProduct/GetSingleProduct";
 import NewProduct from "../../AllProducts/NewProduct/NewProduct";
+import SingleReceiptCost from "../../UserStats/SingleReceiptCost/SingleReceiptCost";
 //Slices/Redux
 import {  useSelector } from "react-redux";
 //Toast Errors
@@ -94,6 +95,11 @@ const SingleReceiptList = () => {
           <br />
           {/*Get Single Product, this will be a tab that can be open up*/}
           <NewProduct />
+          <br />
+          <hr />
+          <br />
+          {/* Single Receipt Cost */}
+          <SingleReceiptCost receiptListData={receiptListData}/>
       </>
     )
   }
