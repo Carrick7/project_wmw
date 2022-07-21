@@ -3,6 +3,7 @@ import authReducer from '../features/auth/authSlice';
 import shopping_listReducer from '../features/shopping_lists/shopping_listSlice';
 import receipt_listReducer from '../features/receipt_lists/receipt_listSlice';
 import productReducer from '../features/products/productSlice';
+import counterReducer from '../features/counter/counterSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     shopping_lists: shopping_listReducer,
     receipt_lists: receipt_listReducer,
     products: productReducer,
+    counter: counterReducer,
   },
 });

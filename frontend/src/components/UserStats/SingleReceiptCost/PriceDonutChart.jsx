@@ -10,12 +10,16 @@ const PriceDonutChart = ({finalCost, costNumberArray, productNameArray }) => {
   //useState for the chart data
   const [nameArray, setNameArray] = useState();
   const [priceArray, setPriceArray] = useState();
+  const [percentageArray, setPercentageArray] = useState();
+  //empty array
+  const percentArray = [];
 
   //update the chart data
   useEffect(() => {
+   // console.log(percentArray);
     setNameArray(productNameArray);
     setPriceArray(costNumberArray);
-  }, [ costNumberArray, productNameArray ]);
+  }, [ finalCost ]);
 
   const data = {
   labels: nameArray,

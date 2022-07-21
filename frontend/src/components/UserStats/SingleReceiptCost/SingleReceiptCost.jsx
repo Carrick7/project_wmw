@@ -14,14 +14,17 @@ const SingleReceiptCost = ({ receiptListData }) => {
   //Show JSX for Stats
   const [ showStats, setShowStats ] = useState(false);
   const [ finalCost, setFinalCost ] = useState(0);
+  const [roundedPercentage, setRoundedPercentage] = useState([]);
 
   //setting up the total cost arrays for pricing
   const costStringArray = [];
   const costNumberArray = [];
+  const costPercentArray = [];
   //setting up the total cost arrays for product names
   const productNameArray = [];
-  
-  const convertAndSum = () => {
+  const roundedArray = [];
+
+  const convertSumPercent = () => {
     //Ensuring that the function is only executed when the receiptListData is loaded
     if(showStats){
       //Converting the string array to a number array
@@ -31,15 +34,17 @@ const SingleReceiptCost = ({ receiptListData }) => {
       //Adding the numbers in the number array
       const total = costNumberArray.reduce((result, number) => result + number);
       setFinalCost(total.toFixed(2));
-    }
+    
+    //converting to % of total cost
+    costPercentArray.forEach(string => {
+      roundedArray.push(parseFloat(string).toFixed(2));
+    });
+    setRoundedPercentage(roundedArray)}
   } 
 
   //useEffect 
   useEffect(() => {
-    convertAndSum();
-   //console.log(costNumberArray);
-   // console.log(finalCost);
-    //console.log(productNameArray);
+    convertSumPercent();
   }, [finalCost, receiptListData]);
 
   return (
@@ -57,8 +62,11 @@ const SingleReceiptCost = ({ receiptListData }) => {
                 <Col type="number" className="hide_array_index">{productNameArray.push(`${item.official_name}`)}</Col>
                 Quantity: {item.quantity} ||
                 Price Per Unit: €{item.price_per_unit} ||
-                Cost: €{item.price_per_unit*item.quantity}  
-                <Col type="number" className="hide_array_index">{costStringArray.push(`${item.price_per_unit*item.quantity}`)}</Col>           
+                Cost: €{item.price_per_unit*item.quantity}
+                {/* Populating the CostStringArray with the total cost of each item as an array of strings */}  
+                <Col type="number" className="hide_array_index">{costStringArray.push(`${item.price_per_unit*item.quantity}`)}</Col>
+                {/* Populating the costPercentArray with the % cost of each item as an array of strings */}           
+                <Col type="number" className="hide_array_index">{costPercentArray.push(`${((item.price_per_unit*item.quantity)/finalCost)*100}`)}</Col>           
               </Col>  
             )})}
           </Col>
@@ -67,7 +75,7 @@ const SingleReceiptCost = ({ receiptListData }) => {
           {/* Total List Cost*/}
           <Col>Total Cost for {receiptListData.list_name}: €{finalCost}</Col>
           {/* DonutChart*/}
-          <Col><PriceDonutChart costNumberArray={costNumberArray} finalCost={finalCost} productNameArray={productNameArray}/></Col>
+          <Col><PriceDonutChart costNumberArray={costNumberArray} finalCost={finalCost} productNameArray={productNameArray} roundedPercentage={roundedPercentage}/></Col>
         </Col>
       : null}
     </>

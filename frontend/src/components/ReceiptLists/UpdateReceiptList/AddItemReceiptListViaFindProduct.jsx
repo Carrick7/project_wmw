@@ -6,14 +6,18 @@ import axios from 'axios';
 //Router Dom
 import { useLocation } from 'react-router-dom';
 //Redux/Slice
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../../../features/counter/counterSlice';
 //CSS
 import { Container, Row, Col, Form } from 'react-bootstrap';
 //Toastify
 import { toast } from 'react-toastify';
 
 const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) => {
-    
+  
+  //initialise dispatch
+  const dispatch = useDispatch();
+
   //fething user data (profile) & setting up header
     const { user } = useSelector((state) => state.auth);
     const token = user.token;
@@ -41,7 +45,7 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
         barcode: '',
         official_name: '',
         category: '',
-        shop: productData.shop,
+        shop: '', // productData.shop
         price_per_unit: '',
         quantity:'',
         sale: ''
@@ -93,9 +97,10 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
       }
     }
 
-  //Submit Button
+  //Submit Button for adding item to receipt list and updating the state of counter
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(increment());
     addItemToReceipt();
     console.log(item_info);
   }    
@@ -171,7 +176,6 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
           </Col>
         </form>
       </section>
-
     </>
   )
 }

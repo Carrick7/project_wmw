@@ -68,8 +68,7 @@ const GetSingleProduct = () => {
     console.log(productData);
     console.log(productNames);
     console.log(historicalPrices);
-
-    }, [productData]);
+    }, []);
 
   return (
     <Container>
@@ -109,7 +108,12 @@ const GetSingleProduct = () => {
       </section>
       <hr />
       {/* Adding Product to the receipt list form */}
-      <AddItemReceiptListViaFindProduct productData={productData} productNames={productNames} historicalPrices={historicalPrices}/>
+      <span> If all the information below is correct, enter the quantity and click on Submit</span>
+      <AddItemReceiptListViaFindProduct 
+        productData={productData} 
+        productNames={productNames} 
+        historicalPrices={historicalPrices}
+      />{/* */}
       <hr />
       {/* Update Product Price */}
       <UpdateProductPrice productData={productData} productNames={productNames}/>
