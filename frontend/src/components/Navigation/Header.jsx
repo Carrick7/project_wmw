@@ -37,7 +37,8 @@ function Header() {
             <button className="btn btn-outline-light" onClick={onLogout}>Logout</button>
             <Link to='/shopping_lists'> Shopping List </Link> || 
             <Link to='/'> Home </Link> || 
-            <Link to='/receipt_lists'> Receipt List </Link>
+            <Link to='/receipt_lists'> Receipt List </Link> ||
+            <Link to='/products'> Products </Link>
            </Col>  
             ):(
              <> 

@@ -48,7 +48,6 @@ const SingleReceiptList = () => {
   useEffect(() => {
     getSingleList();
     dispatch(reset_c());
-    console.log(count);
   }, [count]);
 
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList

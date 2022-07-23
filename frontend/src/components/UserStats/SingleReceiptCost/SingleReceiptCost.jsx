@@ -1,27 +1,32 @@
 import { useEffect,useState } from "react"
-//Router Dom
-import { useLocation, useNavigate } from 'react-router-dom';
 //Components
+import PricePercentageDoughnutChart from "./DoughnutCharts/PricePercentageDoughnutChart";
 //Slices/Redux
-import {  useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from '../../../features/counter/counterSlice';
 //CSS
 import { Container, Row, Col } from 'react-bootstrap';
 import './SingleReceiptCost.css';
-import PriceDonutChart from "./PriceDonutChart";
+
 
 const SingleReceiptCost = ({ receiptListData }) => {
+
+  //initialise dispatch
+  const dispatch = useDispatch();
 
   //Show JSX for Stats
   const [ showStats, setShowStats ] = useState(false);
   const [ finalCost, setFinalCost ] = useState(0);
   const [roundedPercentage, setRoundedPercentage] = useState([]);
-
   //setting up the total cost arrays for pricing
   const costStringArray = [];
   const costNumberArray = [];
+
+  //Empty array for the product names
+  const productNameArray = [];  
+  
+  // empty arrays for calulating the percentage cost of each product
   const costPercentArray = [];
-  //setting up the total cost arrays for product names
-  const productNameArray = [];
   const roundedArray = [];
 
   const convertSumPercent = () => {
@@ -47,9 +52,16 @@ const SingleReceiptCost = ({ receiptListData }) => {
     convertSumPercent();
   }, [finalCost, receiptListData]);
 
+  //onClick function to show the stats
+  const showStatsClick = () => {
+    dispatch(increment());
+    setShowStats(!showStats);
+  }
+
   return (
     <>
-      <button onClick={() => {setShowStats(!showStats)}}> 
+      {/* hiding button when it is clicked */ }
+      <button onClick={showStatsClick} > 
         {showStats ? `Hide ${receiptListData.list_name} Data`:`Show ${receiptListData.list_name} Data`}
       </button>
       {showStats ? 
@@ -74,12 +86,17 @@ const SingleReceiptCost = ({ receiptListData }) => {
           <hr />
           {/* Total List Cost*/}
           <Col>Total Cost for {receiptListData.list_name}: €{finalCost}</Col>
-          {/* DonutChart*/}
-          <Col><PriceDonutChart costNumberArray={costNumberArray} finalCost={finalCost} productNameArray={productNameArray} roundedPercentage={roundedPercentage}/></Col>
+          {/* DonutChart for percentage cost of each item*/}
+          <Col>
+          <h2>PERCENTAGE %</h2>
+            <PricePercentageDoughnutChart 
+              finalCost={finalCost} 
+              productNameArray={productNameArray} 
+              roundedPercentage={roundedPercentage}/>
+          </Col>
         </Col>
       : null}
     </>
   )
 }
-
 export default SingleReceiptCost

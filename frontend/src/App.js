@@ -9,9 +9,11 @@ import Landing_and_Registration from './pages/Landing_and_Registration';
 import Login from './pages/Login_page';
 import Shopping_Lists_page from './pages/Shopping_Lists_page';
 import Receipt_List_page from './pages/Receipt_List_page';
+import Products_page from './pages/Products_page';
 //Components
 import SingleShoppinngList from './components/ShoppingLists/SingleShoppingList/SingleShoppingList';
 import SingleReceiptList from './components/ReceiptLists/SingleRecieptList/SingleReceiptList';
+
 
 function App() {
   return (
@@ -43,6 +45,9 @@ function App() {
             
             {/*To Delete Product from Receipt List*/}
             <Route path="/receipt_lists/:id/product/:id" element={<SingleReceiptList />} />
+
+            {/*Products Stats Page*/}
+            <Route path="/products" element={<Products_page />} />
 
           </Routes>
         </Container>

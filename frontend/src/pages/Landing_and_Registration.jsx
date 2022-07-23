@@ -1,6 +1,7 @@
 import Registration from "../components/Authentication/Registration"
 import { Container, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
+import TrackingProductPrice from "../components/UserStats/TrackingProductPrice/TrackingProductPrice";
 function Landing_and_Registration() {
 
 const { user } = useSelector((state) => state.auth);
