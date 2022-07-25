@@ -13,13 +13,13 @@ import Products_page from './pages/Products_page';
 //Components
 import SingleShoppinngList from './components/ShoppingLists/SingleShoppingList/SingleShoppingList';
 import SingleReceiptList from './components/ReceiptLists/SingleRecieptList/SingleReceiptList';
-
+//Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <>
       <Router>
-        <Container>
           <Header />
           <Routes>
             {/*Landing/home page & sign up*/}
@@ -48,9 +48,7 @@ function App() {
 
             {/*Products Stats Page*/}
             <Route path="/products" element={<Products_page />} />
-
           </Routes>
-        </Container>
       </Router>
       <ToastContainer />
     </>

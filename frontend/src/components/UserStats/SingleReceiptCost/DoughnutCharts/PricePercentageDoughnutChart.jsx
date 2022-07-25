@@ -28,7 +28,7 @@ const PricePercentageDoughnutChart = ({roundedPercentage, finalCost, costNumberA
   labels: nameArray,
   datasets: [
     {
-      label: '# of Votes',
+      label: '% of Total Cost',
       data: percentageArray,
       backgroundColor: [...backgroundColourArray],
       borderColor: [...borderColourArray],

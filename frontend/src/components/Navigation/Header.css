@@ -1,0 +1,48 @@
+/*google font for title*/
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
+#navbar_title{
+  font-family: 'Oleo Script', cursive;
+  font-size: 25px;
+  color: rgb(19, 19, 19);
+  margin-left: 1%;
+}
+/*navbar colour*/
+.navbar_container{
+  background: linear-gradient(30deg, #ff6d00, #ff7900, #ff8500, #ff9100, #ff9e00, #ffaa00, #ffb600);
+}
+
+/*Text inside the links*/
+.navbar_links{
+  font-weight: bolder;
+  width: 120px;
+  text-align: center;
+  margin-left: 12px;
+  text-decoration: none;
+  color: rgb(19, 19, 19);
+  font-size: 16px;
+  transition: .2s;
+}
+@media screen and (max-width: 991.83px){
+  .navbar_links{
+    text-align: left;
+  }  
+}
+.navbar_links:hover, #navbar_logout_button:hover{
+  color: #005dc7;
+  transition: .2s;
+}
+
+/*button*/
+#navbar_logout_button{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+  transition: .2s;
+}
+#nav_links_container{
+  margin-top: 5px;
+}
+
+
+

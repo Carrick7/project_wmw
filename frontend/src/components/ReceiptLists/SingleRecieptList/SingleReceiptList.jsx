@@ -47,7 +47,7 @@ const SingleReceiptList = () => {
   // useEffect to run the getSingleList when the counter is increased. The counter is then set back to 0
   useEffect(() => {
     getSingleList();
-    dispatch(reset_c());
+   dispatch(reset_c());
   }, [count]);
 
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
@@ -67,8 +67,6 @@ const SingleReceiptList = () => {
       navigate('/receipt_lists');
     }
   }
-
-
 
   if(loading) {
     return (

@@ -22,7 +22,7 @@ const Products_page = () => {
   const [productData, setProductData] = useState([]);
 
   // Get the receipt lists state from the redux store
-  const {products, isLoading_p, isError_p, message_p} = useSelector((state) => state.products);
+  const { isLoading_p, isError_p, message_p} = useSelector((state) => state.products);
 
   //useEffect for getting all products
   useEffect(() => {
@@ -37,7 +37,6 @@ const Products_page = () => {
       json => {
         setProductData(json.payload)
         setSearchResults(json.payload)
-        console.log(json.payload)
       }
     );
   }, [dispatch]);

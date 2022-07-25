@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 //Redux/Slice
 import { useSelector } from "react-redux";
-//Toast Errors
-import { toast } from 'react-toastify';
 //CSS
 import { Container, Row, Col } from 'react-bootstrap';
 import './AllReceiptsCost.css';
@@ -11,20 +9,13 @@ const AllReceiptsCost = () => {
   //show button content 
   const [showMe, setShowMe] = useState(false);
 
-  //setting the state for total cost of each item array
-  const [totalCost, setTotalCost] = useState([]);
+  //empty array
   const costArray = [];
 
   // Get the receipt lists state from the redux store
   const { receipt_lists } = useSelector((state) => state.receipt_lists);
   // receipt_lists[0].list_nasmded;
   
-  //useEffect testing
-  useEffect(() => {
-    console.log(receipt_lists);
-    console.log(costArray);
-  }, []);
-
   return (
     <>
       <h1>Test</h1>

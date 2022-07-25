@@ -54,7 +54,7 @@ const SingleReceiptCost = ({ receiptListData }) => {
 
   //onClick function to show the stats
   const showStatsClick = () => {
-    dispatch(increment());
+    dispatch(increment()); 
     setShowStats(!showStats);
   }
 

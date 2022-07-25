@@ -38,7 +38,7 @@ export const options = {
 };
 
 const TrackingProductPrice = ({prices}) => {
-  console.log(prices)
+  
   //useState for the chart data
   const [dateArray, setDateArray] = useState();
   const [priceArray, setPriceArray] = useState();
