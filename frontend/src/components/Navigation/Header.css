@@ -2,8 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
 #navbar_title{
   font-family: 'Oleo Script', cursive;
-  font-size: 25px;
+  font-size: 28px;
   color: rgb(19, 19, 19);
+  text-decoration: none;
+}
+#navbar_title_col{
   margin-left: 1%;
 }
 /*navbar colour*/
@@ -14,13 +17,14 @@
 /*Text inside the links*/
 .navbar_links{
   font-weight: bolder;
-  width: 120px;
+  width: 135px;
   text-align: center;
   margin-left: 12px;
   text-decoration: none;
   color: rgb(19, 19, 19);
   font-size: 16px;
-  transition: .2s;
+  transition: .7s;
+  margin-bottom: 1.7px;
 }
 @media screen and (max-width: 991.83px){
   .navbar_links{
@@ -28,21 +32,51 @@
   }  
 }
 .navbar_links:hover, #navbar_logout_button:hover{
-  color: #005dc7;
-  transition: .2s;
+  color: #3145f5;
+  transition: .7s;
+  margin-top: 10px;
 }
-
+.navbar-nav a.active{
+ color: #3145f5;
+ margin-top: 10px;
+}
+/*navbar icons*/
+.navbar_icons{
+  margin-bottom: 1.7px;
+}
 /*button*/
 #navbar_logout_button{
   background: none;
-	color: inherit;
+	color: rgb(19, 19, 19);
 	border: none;
 	padding: 0;
-  transition: .2s;
+  height: 24px;
 }
 #nav_links_container{
   margin-top: 5px;
 }
-
-
+/*navbar toggle button*/
+#navbar_toggle{
+  color: rgb(19, 19, 19);
+  background: none;
+  border: transparent solid 2px;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 22px;
+  transition: .3s;
+  margin-right: 7px;
+}
+#navbar_toggle:hover{
+  transition: .3s;
+  border: rgb(19, 19, 19) solid 2px;
+  border-radius: 50%;
+  padding: 5px;
+}
+#navbar_toggle:focus{
+  box-shadow: none;
+}
+#navbar_toggle:active{
+  transform: rotateY(180deg);
+  transition: .175s;
+}
 

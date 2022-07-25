@@ -1,13 +1,13 @@
 //Router Dom
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 //Redux/Slice
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, reset } from '../../features/auth/authSlice';
 //CSS
-import { Container, Navbar, Nav, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWallet } from '@fortawesome/free-solid-svg-icons'
+import { faWallet, faHouseChimney, faBasketShopping, faReceipt, faPersonRunning, faLemon, faBurger, faUser } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
   //Initialising dispatch & navigate
@@ -23,34 +23,35 @@ function Header() {
     dispatch(reset());
     navigate('/');
   }
-
+  
   return (
       <Navbar expand="lg" className='navbar_container'>
-        
-          <Navbar.Brand id='navbar_title'><FontAwesomeIcon icon={faWallet}/> Watch My Wallet </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          {/* If user is signed in */}
-          {user ? (
-          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-            <Nav id='nav_links_container'>
-             <Link to='/' className='navbar_links'> Home </Link>
-             <Link to='/shopping_lists' className='navbar_links'> Shopping Lists </Link>          
-             <Link to='/products' className='navbar_links'> Products </Link>                       
-             <Link to='/receipt_lists' className='navbar_links'> Receipt Lists </Link>     
-             <button id="navbar_logout_button" className='navbar_links' onClick={onLogout}>Logout</button>
-            </Nav>
-          </Navbar.Collapse>
-        ):
+       <Navbar.Brand id='navbar_title_col'>
+        <Link to='/' id='navbar_title'><FontAwesomeIcon icon={faWallet}/> Watch My Wallet </Link>
+        </Navbar.Brand>
+       <Navbar.Toggle aria-controls="basic-navbar-nav" id='navbar_toggle'>
+        <FontAwesomeIcon icon={faBurger} size="lg" className='navbar_icons' id='navbar_burger'/>
+       </Navbar.Toggle>
+       {/* If user is signed in */}
+       {user ? (
+       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+         <Nav id='nav_links_container'>
+          <NavLink to='/' className='navbar_links'><FontAwesomeIcon icon={faHouseChimney} className='navbar_icons' /> Home </NavLink>
+          <NavLink to='/shopping_lists' className='navbar_links'><FontAwesomeIcon icon={faBasketShopping} className='navbar_icons'/> Shopping Lists </NavLink>          
+          <NavLink to='/products' className='navbar_links'><FontAwesomeIcon icon={faLemon} className='navbar_icons'/> Products </NavLink>                       
+          <NavLink to='/receipt_lists' className='navbar_links'><FontAwesomeIcon icon={faReceipt} className='navbar_icons'/> Receipt Lists </NavLink>     
+          <button id="navbar_logout_button" className='navbar_links' onClick={onLogout}><FontAwesomeIcon icon={faPersonRunning} className='navbar_icons'/> Logout </button>
+         </Nav>
+       </Navbar.Collapse>
+     ):(
+       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
         {/* If user is not signed in */}
-        (
-          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-            <Nav className="justify-content-end" id='nav_links_container'>
-             <Link to='/' className='navbar_links'> Home </Link>  
-             <Link to='/login' className='navbar_links'> Login </Link>
-            </Nav>
-          </Navbar.Collapse>
-        )}
-      
+         <Nav className="justify-content-end" id='nav_links_container'>
+          <NavLink to='/' className='navbar_links'><FontAwesomeIcon icon={faHouseChimney} className='navbar_icons'/> Home </NavLink>
+          <NavLink to='/login' className='navbar_links'><FontAwesomeIcon icon={faUser} className='navbar_icons'/> Login </NavLink>
+         </Nav>
+       </Navbar.Collapse>
+     )}
     </Navbar>
   )
 }
