@@ -8,6 +8,9 @@ import Spinner from '../components/Spinner/Spinner';
 import UserStats from '../components/UserStats/UserStats';
 // Slice/Redux import
 import { useSelector, useDispatch } from 'react-redux';
+import { reset_sl } from '../features/shopping_lists/shopping_listSlice';
+import { reset_rl } from '../features/receipt_lists/receipt_listSlice';
+import { reset_p } from '../features/products/productSlice';
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS
@@ -31,6 +34,13 @@ const ReceiptListPage = () => {
       navigate('/login');
     }
   }, [user, navigate, isError, message, dispatch ]);
+
+  //resetting states when changing pages to avoid crashing when a user inputs an error
+  useEffect (() => {
+    dispatch(reset_sl());
+    dispatch(reset_rl());
+    dispatch(reset_p());
+  }, []);
 
   // Loading spinner
   if (isLoading) {

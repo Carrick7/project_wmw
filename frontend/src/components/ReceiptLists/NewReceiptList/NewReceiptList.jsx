@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 //Slice/Redux import
 import { createReceiptList } from '../../../features/receipt_lists/receipt_listSlice';
 import { useDispatch, useSelector } from "react-redux";
-//Components
-import Spinner from '../../Spinner/Spinner';
 //CSS
 import { Container, Row, Col } from 'react-bootstrap';
 //Toast Errors
@@ -17,7 +15,7 @@ const NewReceiptList = () => {
   const dispatch = useDispatch();
 
   // Get the receipt lists state from the redux store
-  const { isError_rl, message_rl, isSuccess_rl, isLoading_rl } = useSelector((state) => state.receipt_lists);
+  const { isError_rl, message_rl } = useSelector((state) => state.receipt_lists);
 
   // Submit input for form
   const onSubmit = (e) => {
@@ -31,15 +29,10 @@ const NewReceiptList = () => {
     set_list_name(e.target.value);
   }
 
-  //Send error and load spinner
   useEffect(() => {
     //if there is an error, display it
     if(isError_rl) {
       toast.error(message_rl + ' Please try again.');
-    }
-    //Spinner
-    if(isLoading_rl) {
-      return <Spinner />;
     }
   }, [isError_rl, message_rl, dispatch]);
 

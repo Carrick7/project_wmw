@@ -3,6 +3,9 @@ import { NavLink, useNavigate, Link } from 'react-router-dom';
 //Redux/Slice
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, reset } from '../../features/auth/authSlice';
+import { reset_sl } from '../../features/shopping_lists/shopping_listSlice';
+import { reset_rl } from '../../features/receipt_lists/receipt_listSlice';
+import { reset_p } from '../../features/products/productSlice';
 //CSS
 import './Footer.css';
 import { Container, Row, Col, Navbar } from 'react-bootstrap';
@@ -24,29 +27,36 @@ const Footer = () => {
     navigate('/');
   }
 
+  //resetting states when changing pages to avoid crashing
+  const onReset = () => {
+    dispatch(reset_sl());
+    dispatch(reset_rl());
+    dispatch(reset_p());
+  }
+
   return (  
     <Container fluid className="main-footer">
       <Col className='footer_title_col'>
-        <Link to='/' id='footer_title'><FontAwesomeIcon icon={faWallet}/> Watch My Wallet </Link>
+        <Link to='/' id='footer_title' onClick={onReset}><FontAwesomeIcon icon={faWallet}/> Watch My Wallet </Link>
       </Col>
       {user ? (
       <Container className="footer_links_container">
         <Row className='row_footer_links'>
           <Col sm={4} className="footer_links_col">
-            <NavLink to='/shopping_lists' className='footer_links'>
+            <NavLink to='/shopping_lists' className='footer_links' onClick={onReset}>
              <FontAwesomeIcon icon={faBasketShopping} className='footer_icons'/> Shopping Lists 
             </NavLink>
             <div />
-            <NavLink to='/' className='footer_links'>
+            <NavLink to='/' className='footer_links' onClick={onReset}>
               <FontAwesomeIcon icon={faHouseChimney} className='footer_icons' /> Home 
             </NavLink>
           </Col>
-          <Col sm={4} className="footer_links_col">
+          <Col sm={4} className="footer_links_col" onClick={onReset}>
             <NavLink to='/products' className='footer_links'>
               <FontAwesomeIcon icon={faLemon} className='footer_icons'/> Products 
             </NavLink>
             <div />
-            <NavLink to='/receipt_lists' className='footer_links'>
+            <NavLink to='/receipt_lists' className='footer_links' onClick={onReset}>
               <FontAwesomeIcon icon={faReceipt} className='footer_icons'/> Receipts 
             </NavLink>
           </Col> 

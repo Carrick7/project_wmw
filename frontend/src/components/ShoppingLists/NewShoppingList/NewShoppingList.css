@@ -1,0 +1,33 @@
+.sl_form_input:last-child {
+  margin-top: 20px;
+  text-align: center;
+}
+#sl_title_input{
+  font-weight: bold;
+  border: #3145f5 solid 1px;
+  border-radius: 8px;
+  max-width: 100%;
+}
+#sl_title_input:focus{
+  border: #3145f5 solid 1px;
+  box-shadow: #3145f5 0px 0px 0px 2px;
+  text-decoration: double;
+}
+#create_slist_button{
+  color: #fff;
+  padding: 3.5px;
+  background-color: #3145f5;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  transition: .25s;
+  width: 50%;
+  margin-top: 20px;
+}
+#create_slist_button:hover{
+  box-shadow: #ff9100 0px 0px 0px 3px;
+  transition: .25s;
+}
+.restricting_size_of_create_sl{
+  max-width: 85%;
+}

@@ -4,32 +4,26 @@ import { Link } from "react-router-dom";
 //Slice/Reducx
 import { deleteReceiptList, getAllReceiptLists } from "../../../features/receipt_lists/receipt_listSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { reset_c } from '../../../features/counter/counterSlice';
 //Component 
 import Spinner from "../../Spinner/Spinner";
 //CSS
 import { Container, Row, Col } from "react-bootstrap";
-//Toast Errors
-import { toast } from 'react-toastify';
 
 const AllReceiptLists = () => {
   //Initialising dispatch & navigate
   const dispatch = useDispatch();
 
   // Get the receipt lists state from the redux store
-  const {receipt_lists, isLoading_rl, isError_rl, message_rl} = useSelector((state) => state.receipt_lists);
+  const {receipt_lists } = useSelector((state) => state.receipt_lists);
+
+  //get the state for the counter ***Redux was used to solve the infinite loop to dynamically show the addition/deletion of items for the list**
+  const count = useSelector((state) => state.counter.value);
   
   useEffect(() => {
-    //send error and load spinner
-    if(isError_rl) {
-    toast.error(message_rl + ' Please try again.');
-    }
-    //send spinner
-    if(isLoading_rl) {
-      return <Spinner />;
-    }
-    // executing the getAllShoppingLists action
     dispatch(getAllReceiptLists());
-  }, [ dispatch ]);
+    dispatch(reset_c());
+  }, [ count ]);
   
   return (
     <>

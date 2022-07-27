@@ -9,8 +9,6 @@ import './UpdateShoppingList.css';
 import { Container, Row, Col } from 'react-bootstrap';
 //Axios
 import axios from 'axios';
-import SingleShoppingList from '../SingleShoppingList/SingleShoppingList';
-
 
 function AddItemShoppingList( {shoppingListData } ) {
 
