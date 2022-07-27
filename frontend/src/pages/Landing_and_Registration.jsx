@@ -30,9 +30,9 @@ const { user } = useSelector((state) => state.auth);
             </span> 
           </Col>
           <Row className="scroll_down_buttons_row">
-            <Col><button className="scroll_down_buttons"> About Us </button></Col>
-            <Col><button className="scroll_down_buttons"> Features </button></Col>
-            <Col><button className="scroll_down_buttons"> Sign Up </button></Col>
+            <Col><button className="scroll_down_buttons"><a href="#about_us_target"> About Us</a></button></Col>
+            <Col><button className="scroll_down_buttons"><a href="#features_target"> Features </a></button></Col>
+            <Col><button className="scroll_down_buttons"><a href="#sign_up_target"> Register </a></button></Col>
           </Row>
         </Col>
         {/*Structure of Image*/}
@@ -48,7 +48,7 @@ const { user } = useSelector((state) => state.auth);
               overlay={
                 <Popover id={`popover-positioned-bottom`}>
                   <Popover.Body>
-                  <a href='https://www.freepik.com/vectors/supermarket' target={"_blank"}>Supermarket vector created by pch.vector - www.freepik.com</a>
+                  <a href='https://www.freepik.com/vectors/supermarket' target={"_blank"} rel="noreferrer">Supermarket vector created by pch.vector - www.freepik.com</a>
                   </Popover.Body>
                 </Popover>
               }>
@@ -64,6 +64,7 @@ const { user } = useSelector((state) => state.auth);
       <Container fluid id="about_us_container">
         <Row >
           <Col xxl={9}>
+            <div id="about_us_target"/>
             <h1 id="about_us_title">About Us</h1>
             <Col className="about_us_text">
              <span>
@@ -94,7 +95,7 @@ const { user } = useSelector((state) => state.auth);
                overlay={
                  <Popover id={`popover-positioned-bottom`}>
                    <Popover.Body>
-                   <a href='https://www.freepik.com/vectors/about-page' target={"_blank"}>About page vector created by pikisuperstar - www.freepik.com</a>
+                   <a href='https://www.freepik.com/vectors/about-page' target={"_blank"} rel="noreferrer">About page vector created by pikisuperstar - www.freepik.com</a>
                    </Popover.Body>
                  </Popover>
                }>
@@ -107,6 +108,7 @@ const { user } = useSelector((state) => state.auth);
       </Container>
 
       {/*Features*/}
+      <div id="features_target"/>
       <Container fluid id="featues_container">
         <Row>
           <Home_Page_Features />
@@ -118,6 +120,7 @@ const { user } = useSelector((state) => state.auth);
          <></> 
       ):(
          <> 
+          <div id="sign_up_target"/>
           <Container fluid id="sign_up_container">
            <Registration />
           </Container>

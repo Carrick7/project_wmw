@@ -10,9 +10,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../Spinner/Spinner';
 //CSS
 import './Login.css';
-import { Container, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUnlockKeyhole, faKey } from '@fortawesome/free-solid-svg-icons';
+import { Container, Row, Col, OverlayTrigger, Popover } from 'react-bootstrap';
+//images
+import img3 from '../../images/img3.png'; 
 
 function Login() {
   // useState for the form data
@@ -65,41 +65,55 @@ function Login() {
 
   return (
     <>
-    <Container fluid id='login_container'>
-      <Row>
-        <Col md={4} className="form_login">
-      {/* login Form Title */}
-      <section>
-        <Col>
-          <h1 className='formTitle_footer'>Login</h1>
+      <Container fluid id='login_container'>
+        <Row>
+          <Col md={4} className="form_login">
+        {/* login Form Title */}
+        <section>
+          <Col>
+            <h1 className='formTitle_footer'>Login</h1>
+          </Col>
+        </section>
+        {/* login Form Body */}
+        <section className='formBody'>
+          <form onSubmit={onSubmit}>
+            {/* email */}
+            <Col className='login_form_input'>
+            <span>Username</span>
+            <input type="email" className="form-control" id='email_login' name='email' value={email} placeholder='email@example.com' onChange={onChange}/>          
+            </Col>
+            {/* password */}
+            <Col className='login_form_input'>
+            <span>Password</span>
+            <input type="password" className="form-control" id='password_login' name='password' value={password} placeholder='Password' onChange={onChange}/>           
+            </Col>          
+            {/* submit button */}
+            <Col className='login_form_input'>
+              <button type='submit' id='login_button'> Login </button>
+            </Col>
+          </form>
+        </section>
         </Col>
-      </section>
-      {/* login Form Body */}
-      <section className='formBody'>
-        <form onSubmit={onSubmit}>
-          {/* email */}
-          <Col className='login_form_input'>
-           <input type="email" className="form-control" id='email_login' name='email' value={email} placeholder='email@example.com' onChange={onChange}/>          
+        <Col md={8} className='image_container_login'>
+          <img src={img3} alt="login_image" className='login_image'/>
+          <Col className='image_source_col'>  
+            <OverlayTrigger
+              trigger="click"
+              key="bottom"
+              placement="bottom"
+              overlay={
+                <Popover id={`popover-positioned-bottom`}>
+                  <Popover.Body>
+                  <a href="https://storyset.com/user" target={"_blank"} rel="noreferrer">User illustrations by Storyset</a>
+                  </Popover.Body>
+                </Popover>
+              }>
+              <button className='image_source_login'>Image Source</button>
+            </OverlayTrigger>
           </Col>
-          {/* password */}
-          <Col className='login_form_input'>
-           <input type="password" className="form-control" id='password_login' name='password' value={password} placeholder='Password' onChange={onChange}/>           
-          </Col>          
-          {/* submit button */}
-          <Col className='login_form_input'>
-            <button type='submit' id='login_button'> Login </button>
-          </Col>
-        </form>
-      </section>
-      </Col>
-      <Col md={8} className='lockNKey'>
-        <span className='fa-layers fa-fw fa-lg'>
-          <FontAwesomeIcon className="unlock_icon" icon={faUnlockKeyhole} shake/>
-          <FontAwesomeIcon className="key_icon" icon={faKey} transform={"shrink-6"} shake/>
-        </span>
-      </Col>
-      </Row>
-    </Container> 
+         </Col>        
+       </Row>
+      </Container> 
     </>
   )
 }

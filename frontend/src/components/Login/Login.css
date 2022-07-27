@@ -1,6 +1,7 @@
 /*Form Input*/
 .login_form_input{
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 #email_login, #password_login{
   font-weight: bold;
@@ -8,6 +9,24 @@
 }
 #email_login:focus, #password_login:focus{
   box-shadow: #3145f5 0px 0px 0px 2px;
+}
+.login_form_input span, .image_source_login{
+  font-size: 15px;
+  color: #3145f5;
+  font-weight: bold;
+}
+.image_source_login{
+  font-size: 12px;
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+.image_source_col{
+  text-align: center;
+}
+.image_source_login:focus{
+  outline: none;
+  box-shadow: none;
 }
 #login_container{
   padding-left: 8%;
@@ -19,6 +38,7 @@
 .form_login{
   border-radius: 25px;
 }
+
 .formTitle_footer{
   font-size: 50px;
   margin-top: 20px;
@@ -36,6 +56,7 @@
   font-size: 16px;
   transition: .25s;
   width: 50%;
+  margin-top: 20px;
 }
 #login_button:hover{
   box-shadow: #ff9100 0px 0px 0px 3px;
@@ -44,19 +65,35 @@
 .login_form_input:last-child{
   text-align: center;
 }
-.unlock_icon{
-  color: #3145f5;
-  font-size: 250px;
-}
-.key_icon{
-  color: #ff9100;
-  font-size: 250px;
-  padding-left: 40px;
-  padding-bottom: 30px;
- 
-}
-.lockNKey{
+.image_container_login{
   text-align: center;
-  padding-top: 120px;
-  --fa-animation-duration: 8s;
+  padding-top: 50px;
+}
+.login_image{
+  max-width: 600px;
+  left: 50px;
+}
+@media screen and (max-width: 1670px){
+  #login_container{
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+@media screen and (max-width: 611px){
+  .login_image{
+    max-width: 400px;
+    left: 50px;
+  }
+  .image_container_login{
+    padding-top: 25px;
+  }
+}
+@media screen and (max-width: 420px){
+  .login_image{
+    max-width: 200px;
+    left: 50px;
+  }
+  .image_container_login{
+    padding-top: 60px;
+  }
 }

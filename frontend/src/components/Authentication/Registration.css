@@ -26,6 +26,8 @@
   transition: .25s;
   font-weight: bold;
   width: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 #register_button:hover{
 box-shadow: #fff 0px 0px 0px 2px;
@@ -47,7 +49,7 @@ box-shadow: #fff 0px 0px 0px 2px;
   font-weight: bold;
 }
 #email:focus, #user_name:focus, #password:focus, #confirmPassword:focus{
-  box-shadow: none;
+  box-shadow: #ff9100 0px 0px 0px 2px;
   border: #ff9100 solid 1px;
 }
 @media screen and (max-width: 770px){

@@ -8,7 +8,7 @@ import { register, reset } from '../../features/auth/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 //CSS
 import './Registration.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 //Toastify

@@ -65,11 +65,19 @@
   color: #fff;
   font-size: 16px;
   transition: .25s;
-  font-weight: 300;
+}
+.scroll_down_buttons a{
+  border: 1px solid #3145f5;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
 }
 .scroll_down_buttons:focus, .scroll_down_buttons:hover{
   box-shadow: #ff9100 0px 0px 0px 2px;
   transition: .25s;
+}
+.scroll_down_buttons a:focus, .scroll_down_buttons a:hover{
+  color: #fff;
 }
 
 /********About Us********/

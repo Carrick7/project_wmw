@@ -13,8 +13,10 @@ import Products_page from './pages/Products_page';
 import SingleShoppinngList from './components/ShoppingLists/SingleShoppingList/SingleShoppingList';
 import SingleReceiptList from './components/ReceiptLists/SingleRecieptList/SingleReceiptList';
 import Footer from './components/Footer/Footer';
+import BackToTopButton from './components/BackToTopButton/BackToTopButton';
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
+//CSS
 import './App.css';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
       <Router>
         <div className="page-container">
           <div className="content-wrap">
+            <div id='back_to_top'/>
             <Header />
             <Routes>
               {/*Landing/home page & sign up*/}
@@ -53,6 +56,7 @@ function App() {
               <Route path="/products" element={<Products_page />} />
             </Routes>
           </div>
+            <BackToTopButton />
             <Footer />
         </div>
       </Router>
