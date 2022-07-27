@@ -1,0 +1,72 @@
+.main-footer {
+  background: linear-gradient(30deg, #ff6d00, #ff7900, #ff8500, #ff9100, #ff9e00, #ffaa00, #ffb600);
+  border-bottom: 1.5px solid rgb(19, 19, 19);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding-left: 8%;
+  padding-right: 8%;
+  margin-top: 5%;
+  border-top: 1.5px solid rgb(19, 19, 19);
+}
+/*google font for title*/
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
+#footer_title{
+  font-family: 'Oleo Script', cursive;
+  font-size: 28px;
+  color: rgb(19, 19, 19);
+  text-decoration: none;
+  padding-left: 10px;
+}
+.footer_title_col{
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.row_footer_links{
+  padding-bottom: 20px;
+}
+.footer_copyright{
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(19, 19, 19);
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1.5px solid rgb(19, 19, 19);
+  max-width: 65%;
+}
+.footer_links{
+  font-weight: bolder;
+  width: 135px;
+  text-align: center;
+  margin-left: 12px;
+  text-decoration: none;
+  color: rgb(19, 19, 19);
+  font-size: 16px;
+  margin-bottom: 1.7px;
+  transition: .25s;
+}
+#footer_logout_button{
+  background: none;
+	color: rgb(19, 19, 19);
+	border: none;
+	padding: 0;
+  height: 24px;
+}
+.footer_icons{
+  padding-top: 10px;
+}
+.footer_links:hover, #footer_logout_button:hover{
+  color: #3145f5;
+  transition: .25s;
+}
+.footer-nav a.active{
+  color: #3145f5;
+  margin-top: 10px;
+  border-bottom: #3145f5 solid 1.5px;
+ }
+ .footer_links_container{
+  text-align: center;
+  max-width: 40%;
+ }

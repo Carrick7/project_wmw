@@ -11,6 +11,8 @@ import Spinner from '../Spinner/Spinner';
 //CSS
 import './Login.css';
 import { Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUnlockKeyhole, faKey } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
   // useState for the form data
@@ -62,11 +64,14 @@ function Login() {
   }
 
   return (
-    <Container className='formHeader'>
+    <>
+    <Container fluid id='login_container'>
+      <Row>
+        <Col md={4} className="form_login">
       {/* login Form Title */}
       <section>
         <Col>
-          <h1 className='formTitle'>Login</h1>
+          <h1 className='formTitle_footer'>Login</h1>
         </Col>
       </section>
       {/* login Form Body */}
@@ -74,19 +79,28 @@ function Login() {
         <form onSubmit={onSubmit}>
           {/* email */}
           <Col className='login_form_input'>
-           <input type="email" className="form-control" id='email' name='email' value={email} placeholder='email@example.com' onChange={onChange}/>          
+           <input type="email" className="form-control" id='email_login' name='email' value={email} placeholder='email@example.com' onChange={onChange}/>          
           </Col>
           {/* password */}
           <Col className='login_form_input'>
-           <input type="password" className="form-control" id='password' name='password' value={password} placeholder='Password' onChange={onChange}/>           
+           <input type="password" className="form-control" id='password_login' name='password' value={password} placeholder='Password' onChange={onChange}/>           
           </Col>          
           {/* submit button */}
           <Col className='login_form_input'>
-            <button type='submit' className='btn btn-primary'>Submit</button>
+            <button type='submit' id='login_button'> Login </button>
           </Col>
         </form>
       </section>
+      </Col>
+      <Col md={8} className='lockNKey'>
+        <span className='fa-layers fa-fw fa-lg'>
+          <FontAwesomeIcon className="unlock_icon" icon={faUnlockKeyhole} shake/>
+          <FontAwesomeIcon className="key_icon" icon={faKey} transform={"shrink-6"} shake/>
+        </span>
+      </Col>
+      </Row>
     </Container> 
+    </>
   )
 }
 

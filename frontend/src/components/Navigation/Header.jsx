@@ -39,7 +39,7 @@ function Header() {
           <NavLink to='/' className='navbar_links'><FontAwesomeIcon icon={faHouseChimney} className='navbar_icons' /> Home </NavLink>
           <NavLink to='/shopping_lists' className='navbar_links'><FontAwesomeIcon icon={faBasketShopping} className='navbar_icons'/> Shopping Lists </NavLink>          
           <NavLink to='/products' className='navbar_links'><FontAwesomeIcon icon={faLemon} className='navbar_icons'/> Products </NavLink>                       
-          <NavLink to='/receipt_lists' className='navbar_links'><FontAwesomeIcon icon={faReceipt} className='navbar_icons'/> Receipt Lists </NavLink>     
+          <NavLink to='/receipt_lists' className='navbar_links'><FontAwesomeIcon icon={faReceipt} className='navbar_icons'/> Receipts </NavLink>     
           <button id="navbar_logout_button" className='navbar_links' onClick={onLogout}><FontAwesomeIcon icon={faPersonRunning} className='navbar_icons'/> Logout </button>
          </Nav>
        </Navbar.Collapse>

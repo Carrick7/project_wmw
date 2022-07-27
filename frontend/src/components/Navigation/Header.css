@@ -12,6 +12,7 @@
 /*navbar colour*/
 .navbar_container{
   background: linear-gradient(30deg, #ff6d00, #ff7900, #ff8500, #ff9100, #ff9e00, #ffaa00, #ffb600);
+  border-bottom: 1.5px solid rgb(19, 19, 19);
 }
 
 /*Text inside the links*/
@@ -39,6 +40,7 @@
 .navbar-nav a.active{
  color: #3145f5;
  margin-top: 10px;
+ border-bottom: #3145f5 solid 1.5px;
 }
 /*navbar icons*/
 .navbar_icons{

@@ -1,0 +1,34 @@
+.feature_cards{
+  border: rgb(19, 19, 19) solid 1px;
+}
+#home_feature_title{
+  font-size: 50px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #3145f5;
+  color: #ff9100;
+  font-weight: bolder;
+}
+.feature_titles_and_text{
+  margin-bottom: 25px;
+}
+.feature_titles_and_text h2{
+  text-align: center;
+}
+.feature_titles_and_text span{
+  font-weight: bold;
+}
+#row_features{
+  border-bottom: #3145f5 solid 1px;
+}
+@media screen and (max-width: 769px){
+  .feature_titles_and_text{
+    border-bottom: #3145f5 solid 1px;
+    padding-bottom: 20px;
+  }
+  #row_features{
+    border-bottom: none;
+  }
+  .feature_titles_and_text h2{
+    text-align: left;
+  }
+}
