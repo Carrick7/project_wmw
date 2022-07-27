@@ -12,7 +12,7 @@ const createReceiptList = async (receipt_listData, token) => {
     }
   }
   const response = await axios.post(API_URL, receipt_listData, config);
-  return response.data;
+   return response.data;
 }
 
 // getAllReceiptLists
@@ -24,7 +24,9 @@ const getAllReceiptLists = async (token) => {
     }
   }
   const response = await axios.get(API_URL, config);
-  return response.data;
+
+      return response.data
+
 }
 
 // Delete a shopping list
@@ -36,7 +38,7 @@ const deleteReceiptList = async (receipt_list_id, token) => {
     }
   }
   const response = await axios.delete(API_URL + receipt_list_id, config);
-  return response.data;
+   return response.data;
 }
 
 const receipt_listService = {

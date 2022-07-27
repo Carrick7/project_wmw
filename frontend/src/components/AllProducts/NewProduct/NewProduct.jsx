@@ -45,7 +45,8 @@ const NewProduct = () => {
     if(isError_p){
       toast.error(message_p + ' Please try again.');
     }
-    if(isSuccess_p){
+    // undefined fixes a bug of the toast message showing when no product has been registered to the database
+    if(isSuccess_p && official_name !== undefined){
       toast.success(official_name + ' has been added');
       clearFormData();
     }

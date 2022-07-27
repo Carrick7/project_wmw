@@ -3,12 +3,15 @@ import { useEffect,useState } from "react"
 import { useLocation, useNavigate } from 'react-router-dom';
 //axios
 import axios from 'axios';
+//redux/slices
+import { useSelector, useDispatch } from 'react-redux';
+import { reset_c } from '../../../features/counter/counterSlice';
 //Components
 import RemoveItemReceiptList from "../UpdateReceiptList/RemoveItemReceiptList";
 import GetSingleProduct from "../../AllProducts/GetSingleProduct/GetSingleProduct";
 import NewProduct from "../../AllProducts/NewProduct/NewProduct";
-//Slices/Redux
-import {  useSelector } from "react-redux";
+import SingleReceiptCost from "../../UserStats/SingleReceiptCost/SingleReceiptCost";
+import AddItemReceiptListViaFindProduct from "../UpdateReceiptList/AddItemReceiptListViaFindProduct";
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS
@@ -16,6 +19,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './SingleReceiptList.css';
 
 const SingleReceiptList = () => {
+
+  //get the state for the counter ***Redux was used to solve the infinite loop to dynamically show the addition/deletion of items for the list**
+  const count = useSelector((state) => state.counter.value);
+
+  //initialise dispatch
+  const dispatch = useDispatch();
 
   //useState for shopping list data
   const [receiptListData, setReceiptListData] = useState({});
@@ -35,6 +44,11 @@ const SingleReceiptList = () => {
       Authorization: `Bearer ${token}`,
     }
   }
+  // useEffect to run the getSingleList when the counter is increased. The counter is then set back to 0
+  useEffect(() => {
+    getSingleList();
+   dispatch(reset_c());
+  }, [count]);
 
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
   const item_info = receiptListData.item_info;
@@ -53,11 +67,6 @@ const SingleReceiptList = () => {
       navigate('/receipt_lists');
     }
   }
-
-  // useEffect to run the getSingleList function whnever the path name & item_info changes
-  useEffect(() => {
-    getSingleList();
-  }, [path, item_info]);
 
   if(loading) {
     return (
@@ -84,16 +93,19 @@ const SingleReceiptList = () => {
             )
           })}
         </Row>
-
-
-
+     
         {/*Get Single Product*/}
-        <GetSingleProduct />
+        <GetSingleProduct/>
           <br />
           <hr />
           <br />
           {/*Get Single Product, this will be a tab that can be open up*/}
           <NewProduct />
+          <br />
+          <hr />
+          <br />
+          {/* Single Receipt Cost */}
+          <SingleReceiptCost receiptListData={receiptListData}/>
       </>
     )
   }

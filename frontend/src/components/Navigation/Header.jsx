@@ -1,13 +1,13 @@
 //Router Dom
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 //Redux/Slice
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, reset } from '../../features/auth/authSlice';
-import { reset_rl, getAllReceiptLists } from '../../features/receipt_lists/receipt_listSlice';
-//Components
-
 //CSS
-import { Container, Navbar, Nav, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
+import './Header.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWallet, faHouseChimney, faBasketShopping, faReceipt, faPersonRunning, faLemon, faBurger, faUser } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
   //Initialising dispatch & navigate
@@ -23,34 +23,36 @@ function Header() {
     dispatch(reset());
     navigate('/');
   }
-
+  
   return (
-  <>
-   <Navbar bg="dark" variant="dark">
-    <Container>
-     <Nav className="me-auto">
-      <Row>
-       <Col>
-        {/*What they user sees whether they're logged in*/}
-        {user ? (
-           <Col>
-            <button className="btn btn-outline-light" onClick={onLogout}>Logout</button>
-            <Link to='/shopping_lists'> Shopping List </Link> || 
-            <Link to='/'> Home </Link> || 
-            <Link to='/receipt_lists'> Receipt List </Link>
-           </Col>  
-            ):(
-             <> 
-              <Link to='/'>Home</Link> || <Link to='/login'>Login</Link> 
-             </>
-            )
-        }
-       </Col>
-      </Row>
-     </Nav>
-    </Container>
-   </Navbar>
-  </>
+      <Navbar expand="lg" className='navbar_container'>
+       <Navbar.Brand id='navbar_title_col'>
+        <Link to='/' id='navbar_title'><FontAwesomeIcon icon={faWallet}/> Watch My Wallet </Link>
+        </Navbar.Brand>
+       <Navbar.Toggle aria-controls="basic-navbar-nav" id='navbar_toggle'>
+        <FontAwesomeIcon icon={faBurger} size="lg" className='navbar_icons' id='navbar_burger'/>
+       </Navbar.Toggle>
+       {/* If user is signed in */}
+       {user ? (
+       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+         <Nav id='nav_links_container'>
+          <NavLink to='/' className='navbar_links'><FontAwesomeIcon icon={faHouseChimney} className='navbar_icons' /> Home </NavLink>
+          <NavLink to='/shopping_lists' className='navbar_links'><FontAwesomeIcon icon={faBasketShopping} className='navbar_icons'/> Shopping Lists </NavLink>          
+          <NavLink to='/products' className='navbar_links'><FontAwesomeIcon icon={faLemon} className='navbar_icons'/> Products </NavLink>                       
+          <NavLink to='/receipt_lists' className='navbar_links'><FontAwesomeIcon icon={faReceipt} className='navbar_icons'/> Receipts </NavLink>     
+          <button id="navbar_logout_button" className='navbar_links' onClick={onLogout}><FontAwesomeIcon icon={faPersonRunning} className='navbar_icons'/> Logout </button>
+         </Nav>
+       </Navbar.Collapse>
+     ):(
+       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+        {/* If user is not signed in */}
+         <Nav className="justify-content-end" id='nav_links_container'>
+          <NavLink to='/' className='navbar_links'><FontAwesomeIcon icon={faHouseChimney} className='navbar_icons'/> Home </NavLink>
+          <NavLink to='/login' className='navbar_links'><FontAwesomeIcon icon={faUser} className='navbar_icons'/> Login </NavLink>
+         </Nav>
+       </Navbar.Collapse>
+     )}
+    </Navbar>
   )
 }
 

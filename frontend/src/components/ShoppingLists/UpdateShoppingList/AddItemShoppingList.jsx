@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 //Redux/Slice
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../../../features/counter/counterSlice';
 //Toastify
 import { toast } from 'react-toastify';
 //CSS
@@ -8,9 +9,13 @@ import './UpdateShoppingList.css';
 import { Container, Row, Col } from 'react-bootstrap';
 //Axios
 import axios from 'axios';
+import SingleShoppingList from '../SingleShoppingList/SingleShoppingList';
 
 
-function AddItemShoppingList( {shoppingListData} ) {
+function AddItemShoppingList( {shoppingListData } ) {
+
+  //initialise dispatch
+  const dispatch = useDispatch();
 
   //fething user data (profile) & setting up header
   const { user } = useSelector((state) => state.auth);
@@ -52,6 +57,7 @@ function AddItemShoppingList( {shoppingListData} ) {
   //Submit Button
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(increment());    
     addProductItem();
   }
 
@@ -74,7 +80,7 @@ function AddItemShoppingList( {shoppingListData} ) {
           <Col className='registration_form_input'>
            <input type='number' className="form-control" id='quantity' ref={updated_quantity} placeholder='23'/>          
           </Col>
-          {/* submit button */}
+          {/* submit button*/}
           <Col className='registration_form_input'>
             <button type='submit' className='btn btn-primary'>Submit</button>
           </Col>

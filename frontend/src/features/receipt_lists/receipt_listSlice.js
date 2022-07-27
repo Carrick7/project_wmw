@@ -1,8 +1,11 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import receipt_listService from './receipt_listService';
 
+// Storing All Receipt Lists in the localStorage
+const receipt_lists = JSON.parse(localStorage.getItem('receipt_lists'));
+
 const initialState = {
-    receipt_lists: [],
+    receipt_lists: receipt_lists ? receipt_lists : [],
     isError_rl: false,
     isLoading_rl: false,
     isSuccess_rl: false,
@@ -15,11 +18,11 @@ export const createReceiptList = createAsyncThunk(
     try{
       // getting the token from the auth state
       const token = thunkAPI.getState().auth.user.token;
-      return await receipt_listService.createReceiptList(receipt_listData, token);
+        return await receipt_listService.createReceiptList(receipt_listData, token);
     }
     catch(error) {
       const message_rl = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-      return thunkAPI.rejectWithValue(message_rl);
+       return thunkAPI.rejectWithValue(message_rl);
       }
     }
 );
@@ -30,11 +33,11 @@ export const getAllReceiptLists = createAsyncThunk(
   try{
     // getting the token from the auth state
     const token = thunkAPI.getState().auth.user.token;
-    return await receipt_listService.getAllReceiptLists(token);
+     return await receipt_listService.getAllReceiptLists(token);
   }
   catch(error) {
     const message_rl = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-    return thunkAPI.rejectWithValue(message_rl);
+     return thunkAPI.rejectWithValue(message_rl);
     }
   }
 );
@@ -42,14 +45,14 @@ export const getAllReceiptLists = createAsyncThunk(
 // Delete Receipt List
 export const deleteReceiptList = createAsyncThunk(
   'receipt_list/delete', async (id, thunkAPI) => {
-  try{
-    // getting the token from the auth state
-    const token = thunkAPI.getState().auth.user.token;
-    return await receipt_listService.deleteReceiptList(id, token);
-  }
-  catch(error) {
-    const message_rl = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-    return thunkAPI.rejectWithValue(message_rl);
+    try{
+     // getting the token from the auth state
+      const token = thunkAPI.getState().auth.user.token;
+      return await receipt_listService.deleteReceiptList(id, token);
+    }
+    catch(error) {
+     const message_rl = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+     return thunkAPI.rejectWithValue(message_rl);
     }
   }
 );
@@ -91,6 +94,7 @@ export const receipt_listSlice = createSlice({
         state.isLoading_rl = false;
         state.isError_rl = true;
         state.message_rl = action.payload;
+        state.receipt_lists = [];
       })
 
       // Delete a receipt list

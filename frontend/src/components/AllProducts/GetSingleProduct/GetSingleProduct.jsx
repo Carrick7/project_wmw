@@ -44,7 +44,7 @@ const GetSingleProduct = () => {
       setProductData(result);
       setProductNames(result.product_names[0]);      
       //getting latest price
-      const latestPrice = result.historical_prices[result.historical_prices.length - 1];
+      const latestPrice = result.historical_prices[result.historical_prices.length - 1]; //gets latest price
       setHistoricalPrices(latestPrice);
     }
     catch (error) {
@@ -52,7 +52,7 @@ const GetSingleProduct = () => {
         toast.error('No barcode entered. Please try again.');
       }
       else{
-      toast.error(error.response.data.message + ' Please try again.');
+        toast.error(error.response.data.message + ' Please try again.');
       }
      }
   }
@@ -63,14 +63,6 @@ const GetSingleProduct = () => {
     getProduct(); 
   } 
   
-  //testing purposes to view product data
-  useEffect(() => {
-    console.log(productData);
-    console.log(productNames);
-    console.log(historicalPrices);
-
-    }, [productData]);
-
   return (
     <Container>
       {/* Find Product Title */}
@@ -109,7 +101,12 @@ const GetSingleProduct = () => {
       </section>
       <hr />
       {/* Adding Product to the receipt list form */}
-      <AddItemReceiptListViaFindProduct productData={productData} productNames={productNames} historicalPrices={historicalPrices}/>
+      <span> If all the information below is correct, enter the quantity and click on Submit</span>
+      <AddItemReceiptListViaFindProduct 
+        productData={productData} 
+        productNames={productNames} 
+        historicalPrices={historicalPrices}
+      />
       <hr />
       {/* Update Product Price */}
       <UpdateProductPrice productData={productData} productNames={productNames}/>

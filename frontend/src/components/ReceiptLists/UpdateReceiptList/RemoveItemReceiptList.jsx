@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 //Slice/Redux import
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../../../features/counter/counterSlice';
 //React Router Dom import
 import { useLocation, Link } from "react-router-dom"
 import { toast } from 'react-toastify';
@@ -10,6 +11,10 @@ import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const RemoveItemReceiptList = ({item, receipt_list_id, receipt_list_name}) => {
+
+  //initialise dispatch
+  const dispatch = useDispatch();
+
   //fething user data (profile) & setting up header
   const { user } = useSelector((state) => state.auth);
   const token = user.token;
@@ -49,10 +54,13 @@ const RemoveItemReceiptList = ({item, receipt_list_id, receipt_list_name}) => {
     }
   }
 
+  // onClick to delete the product and update the state of counter
   const onSubmit = (e) => {
   e.preventDefault();
+  dispatch(increment());
   deleteProduct();
   }
+
   //The Button can be a div so user can click anywhere on the div and then the delete button can be clicked
   return (
     <>

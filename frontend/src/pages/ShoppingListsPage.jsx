@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Slice/Redux import
-import { getAllShoppingLists, reset } from '../features/shopping_lists/shopping_listSlice';
 import { useSelector, useDispatch } from 'react-redux';
 // Components imports
 import AllShoppingLists from '../components/ShoppingLists/AllShoppingLists/AllShoppingLists';
@@ -11,7 +10,7 @@ import Spinner from '../components/Spinner/Spinner';
 import { Container, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
-function Shopping_Lists_page() {
+function ShoppingListsPage() {
   //Initialising dispatch & navigate
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -52,4 +51,4 @@ function Shopping_Lists_page() {
   )
 }
 
-export default Shopping_Lists_page
+export default ShoppingListsPage

@@ -1,4 +1,66 @@
+/*form title*/
+.formTitle{
+  font-size: 50px;
+  font-weight: bolder;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #ff9100;
+}
 /*Form Input*/
 .registration_form_input{
   margin-bottom: 20px;
 }
+.registration_form_input:first-child{
+  margin-top: 20px;
+}
+.registration_form_input:last-child{
+  text-align: center;
+}
+#register_button{
+  padding: 3.5px;
+  background-color: #ff9100;
+  border-radius: 20px;
+  border: none;
+  color: rgb(19, 19, 19);
+  font-size: 16px;
+  transition: .25s;
+  font-weight: bold;
+  width: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#register_button:hover{
+box-shadow: #fff 0px 0px 0px 2px;
+  transition: .25s;
+}
+.id_and_text{
+  padding-top: 85px;
+  text-align: center;
+}
+.id_card{
+  font-size: 250px;
+  --fa-animation-duration: 8s;
+}
+.text_sign_up_card{
+  font-size: 22px;
+  margin-top: 20px;
+}
+#email, #user_name, #password, #confirmPassword{
+  font-weight: bold;
+}
+#email:focus, #user_name:focus, #password:focus, #confirmPassword:focus{
+  box-shadow: #ff9100 0px 0px 0px 2px;
+  border: #ff9100 solid 1px;
+}
+@media screen and (max-width: 770px){
+  .id_and_text{
+  padding-left: 0;
+  padding-top: 20px;
+  }  
+}
+@media screen and (max-width: 340px){
+  .id_card{
+    font-size: 200px;
+  } 
+}
+

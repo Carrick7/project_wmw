@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-//Slice/Redux import
-import { useSelector } from 'react-redux';
+//redux/slices
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../../../features/counter/counterSlice';
 //React Router Dom import
 import { useLocation, Link } from "react-router-dom"
 import { toast } from 'react-toastify';
@@ -11,6 +12,9 @@ import './UpdateShoppingList.css';
 import { Container, Row, Col } from 'react-bootstrap';
 
 function RemoveItemShoppingList( {product, shopping_list_id, shopping_list_name} ) {
+
+//initialise dispatch
+const dispatch = useDispatch();
 
 //fething user data (profile) & setting up header
   const { user } = useSelector((state) => state.auth);
@@ -51,15 +55,16 @@ function RemoveItemShoppingList( {product, shopping_list_id, shopping_list_name}
   }
  }
 
- const onSubmit = (e) => {
+ const deleteMe = (e) => {
   e.preventDefault();
+  dispatch(increment());
   deleteProduct();
 }
 //The Button can be a div so user can click anywhere on the div and then the delete button can be clicked
   return (
     <>
       <Link to={{pathname:`/shopping_lists/${shopping_list_id}/product/${product._id}`}}><button> Select {product.product_name}</button></Link> ||
-      <button onClick={onSubmit}>Delete {product.product_name}</button> 
+      <button onClick={deleteMe}>Delete {product.product_name}</button> 
     </>
   )
 }

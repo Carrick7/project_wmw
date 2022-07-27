@@ -15,11 +15,11 @@ export const createShoppingList = createAsyncThunk(
     try{
       // getting the token from the auth state
       const token = thunkAPI.getState().auth.user.token;
-      return await shopping_listService.createShoppingList(shopping_listData, token);
+        return await shopping_listService.createShoppingList(shopping_listData, token);
     }
     catch(error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-      return thunkAPI.rejectWithValue(message);
+        return thunkAPI.rejectWithValue(message);
       }
     }
 );
@@ -30,11 +30,11 @@ export const getAllShoppingLists = createAsyncThunk(
     try{
       // getting the token from the auth state
       const token = thunkAPI.getState().auth.user.token;
-      return await shopping_listService.getAllShoppingLists(token);
+        return await shopping_listService.getAllShoppingLists(token);
     }
     catch(error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-      return thunkAPI.rejectWithValue(message);
+        return thunkAPI.rejectWithValue(message);
       }
     }
 );
@@ -45,11 +45,11 @@ export const deleteShoppingList = createAsyncThunk(
   try{
     // getting the token from the auth state
     const token = thunkAPI.getState().auth.user.token;
-    return await shopping_listService.deleteShoppingList(id, token);
+     return await shopping_listService.deleteShoppingList(id, token);
   }
   catch(error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-    return thunkAPI.rejectWithValue(message);
+     return thunkAPI.rejectWithValue(message);
     }
   }
 );

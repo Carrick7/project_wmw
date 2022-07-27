@@ -8,7 +8,9 @@ import { register, reset } from '../../features/auth/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 //CSS
 import './Registration.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 //Toastify
 import { toast } from 'react-toastify';
 
@@ -71,40 +73,53 @@ function Registration() {
   }
 
   return (
-    <Container className='formHeader'>
-      {/* Registration Form Title */}
-      <section>
-        <Col>
-          <h1 className='formTitle'>Sign Up</h1>
-          <span>Fill out the fields below to create an account</span>
+    <>
+      <Row>
+        <Col md={6} className='formBody'>
+          {/* Registration Form Title */}
+          <section>
+            <Col className='sign_up_title_col'>
+              <h1 className='formTitle'>Sign Up</h1>
+              <span>Fill out the fields below to create an account</span>
+            </Col>
+          </section>
+        {/* Registration Form Body */}
+          <form onSubmit={onSubmit}>
+            {/* user_name */}
+            <Col className='registration_form_input'>
+              <span>Username</span>      
+              <input type="text" className="form-control" id='user_name' name='user_name' value={user_name} placeholder='Lawrenz 09' onChange={onChange}/>
+            </Col>          
+            {/* email */}
+            <span>Email Address</span>
+            <Col className='registration_form_input'>
+            <input type="email" className="form-control" id='email' name='email' value={email} placeholder='email@example.com' onChange={onChange}/>          
+            </Col>
+            {/* password */}
+            <span>Password</span>
+            <Col className='registration_form_input'>
+            <input type="password" className="form-control" id='password' name='password' value={password} placeholder='Password' onChange={onChange}/>           
+            </Col>          
+            {/* confirmPassword */}
+            <span>Confirm Password</span>
+            <Col className='registration_form_input'>
+              <input type="password" className="form-control" id='confirmPassword' name='confirmPassword' value={confirmPassword} placeholder='Confirm Password' onChange={onChange}/>          
+            </Col >
+            {/* submit button */}
+            <Col className='registration_form_input'>
+              <button type='submit' id='register_button'> Register </button>
+            </Col>
+          </form>
+        </Col>    
+      {/* Image or graphic */}
+       <Col md={6}>
+        <Col className='id_and_text'>
+          <FontAwesomeIcon className="id_card" icon={faIdCard} flip/>
+           <Col className='text_sign_up_card'><span> Create an account to access the full features of Watch My Wallet </span></Col>
         </Col>
-      </section>
-      {/* Registration Form Body */}
-      <section className='formBody'>
-        <form onSubmit={onSubmit}>
-          {/* user_name */}
-          <Col className='registration_form_input'>      
-            <input type="text" className="form-control" id='user_name' name='user_name' value={user_name} placeholder='Lawrenz 09' onChange={onChange}/>
-          </Col>          
-          {/* email */}
-          <Col className='registration_form_input'>
-           <input type="email" className="form-control" id='email' name='email' value={email} placeholder='email@example.com' onChange={onChange}/>          
-          </Col>
-          {/* password */}
-          <Col className='registration_form_input'>
-           <input type="password" className="form-control" id='password' name='password' value={password} placeholder='Password' onChange={onChange}/>           
-          </Col>          
-          {/* confirmPassword */}
-          <Col className='registration_form_input'>
-            <input type="password" className="form-control" id='confirmPassword' name='confirmPassword' value={confirmPassword} placeholder='Confirm Password' onChange={onChange}/>          
-          </Col >
-          {/* submit button */}
-          <Col className='registration_form_input'>
-            <button type='submit' className='btn btn-primary'>Submit</button>
-          </Col>
-        </form>
-      </section>
-    </Container> 
+       </Col>
+    </Row>
+    </>
   )
 }
 

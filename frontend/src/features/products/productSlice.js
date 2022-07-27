@@ -63,7 +63,7 @@ export const productSlice = createSlice({
         state.message_p = action.payload;
       })
 
-      // Get all receipt lists
+      // Get all products
       .addCase(getAllProducts.pending, (state) => {
         state.isLoading_p = true;
         state.isSuccess_p = false;

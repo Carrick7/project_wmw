@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 // Slice/Redux import
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { reset_c } from '../../../features/counter/counterSlice';
 //Router Dom import
 import { useNavigate, useLocation, Link } from "react-router-dom"
 // Components imports
@@ -14,6 +15,12 @@ import { toast } from 'react-toastify';
 import { Container, Row, Col } from "react-bootstrap";
 
 const SingleShoppingList = () => {
+
+  //get the state for the counter ***Redux was used to solve the infinite loop to dynamically show the addition/deletion of items for the list**
+  const count = useSelector((state) => state.counter.value);
+
+  //initialise dispatch
+  const dispatch = useDispatch();  
 
   //useState for shopping list data
   const [shoppingListData, setShoppingListData] = useState({});
@@ -34,6 +41,12 @@ const SingleShoppingList = () => {
     }
   }
 
+  // useEffect to run the getSingleList when the counter is increased. The counter is then set back to 0
+  useEffect(() => {
+    getSingleList();
+    dispatch(reset_c());
+  }, [count]);
+
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
   const product_info = shoppingListData.product_info;
   const shopping_list_id = shoppingListData._id;
@@ -51,11 +64,6 @@ const SingleShoppingList = () => {
       navigate('/shopping_lists');
     }
   }
-
-  // useEffect to run the getSingleList function whnever the path name & product_info changes
-  useEffect(() => {
-    getSingleList();
-  }, [path, product_info]);
 
   if(loading) {
     return (

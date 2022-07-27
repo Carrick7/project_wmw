@@ -2,7 +2,7 @@ import { useEffect } from "react";
 //Router Dom
 import { Link } from "react-router-dom";
 //Slice/Reducx
-import { deleteReceiptList, getAllReceiptLists, reset_rl } from "../../../features/receipt_lists/receipt_listSlice";
+import { deleteReceiptList, getAllReceiptLists } from "../../../features/receipt_lists/receipt_listSlice";
 import { useDispatch, useSelector } from "react-redux";
 //Component 
 import Spinner from "../../Spinner/Spinner";

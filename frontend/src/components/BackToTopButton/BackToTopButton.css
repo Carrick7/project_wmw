@@ -1,0 +1,11 @@
+.back_to_top_button_container{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+.back_to_top_button{
+  font-size: 30px;
+  color: rgb(19, 19, 19);
+  --fa-animation-duration: 8s;
+}

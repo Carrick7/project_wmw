@@ -12,7 +12,7 @@ const createShoppingList = async (shopping_listData, token) => {
     }
   }
   const response = await axios.post(API_URL, shopping_listData, config);
-  return response.data;
+    return response.data;
 }
 
 // getAllShoppingLists
@@ -24,7 +24,8 @@ const getAllShoppingLists = async (token) => {
     }
   }
   const response = await axios.get(API_URL, config);
-  return response.data;
+    return response.data
+
 }
 
 // Delete a shopping list
@@ -36,7 +37,7 @@ const deleteShoppingList = async (shopping_list_id, token) => {
     }
   }
   const response = await axios.delete(API_URL + shopping_list_id, config);
-  return response.data;
+    return response.data;
 }
 
 const shopping_listService = {

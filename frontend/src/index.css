@@ -1,0 +1,13 @@
+/*google font the whole web app*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+* {
+  font-family: 'Inter', sans-serif;
+}
+html{
+  height: 100%;
+}
+body{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}

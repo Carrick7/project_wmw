@@ -1,0 +1,244 @@
+/********banner, title & scroll buttons********/
+#home_banner_container{
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+/*google font for title*/
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
+/*Title*/
+#banner_title{
+  font-family: 'Oleo Script', cursive;
+  font-size: 60px;
+  color: #ff9100;
+  margin-top: 45%;
+  border-bottom: solid 1px #3145f5;
+  text-align: center; 
+}
+.banner_text{
+  font-weight: bold;
+}
+.highlight{
+  color: #ff9100;
+}
+#home_banner_container{
+  background-color: #fff;
+}
+/*image*/
+#home_image{
+  width: 62vw;
+  height: 75vh;
+}
+#card_banner{
+  border: none;
+}
+.image_source_button{
+  padding: 0;
+  background: none;
+  border: none;
+  color: #3145f5;
+  font-size: 12px;
+  font-weight: bolder;
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
+  left: 12%;
+}
+.image_source_button:focus{
+  outline: none;
+  box-shadow: none;
+}
+.banner_text_col{
+  text-align: left;
+} 
+/*scroll down buttons*/
+.scroll_down_buttons_row{
+  text-align: center;
+}
+.scroll_down_buttons{
+  margin-top: 15%;
+  padding: 5px;
+  background: none;
+  background-color: #3145f5;
+  border: 1px solid #3145f5;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 16px;
+  transition: .25s;
+}
+.scroll_down_buttons a{
+  border: 1px solid #3145f5;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+.scroll_down_buttons:focus, .scroll_down_buttons:hover{
+  box-shadow: #ff9100 0px 0px 0px 2px;
+  transition: .25s;
+}
+.scroll_down_buttons a:focus, .scroll_down_buttons a:hover{
+  color: #fff;
+}
+
+/********About Us********/
+#about_us_container{
+  padding-left: 8%;
+  padding-right: 8%;
+  margin-top: 8%;
+  background-color: #3145f5;
+  color: #fff;
+  font-weight: lighter;
+}
+#about_us_title{
+  font-size: 50px;
+  font-weight: bolder;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #ff9100;
+}
+.about_us_text{
+  margin-bottom: 40px;
+}
+#about_us_card{
+  border: none;
+  margin-top: 20px;
+  background-color: #3145f5;
+  margin-left: 50px;
+}
+#img2_source{
+  color: #fff;
+  left: 42%;
+  top: 95%;
+}
+#about_us_image{
+  width: 18vw;
+  height: 37vh;
+}
+
+/********Features********/
+#featues_container{
+  padding-left: 8%;
+  padding-right: 8%;
+  margin-top: 5%;
+}
+
+/********Sign Up Form ********/
+#sign_up_container{
+  padding-left: 8%;
+  padding-right: 8%;
+  margin-top: 5%;
+  background-color: #3145f5;
+  color: #fff;
+  font-weight: lighter;
+}
+
+/********media screen to ensure image quality************/
+@media screen and (max-width: 1670px){
+  #about_us_image{
+    width: 20vw;
+    height: 35vh;
+  }  
+  #home_banner_container, #about_us_container, #featues_container, #sign_up_container{
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+@media screen and (max-width: 1399px){
+  #home_image{
+    width: 60vw;
+    height: 60vh;
+  }
+  #about_us_image{
+    width: 15vw;
+    height: 25vh;
+    margin-left: 40%;
+  }
+  .about_us_text{
+    margin-bottom: 0;
+  }
+  #img2_source{
+    left: 45%;
+    top: 90%;
+  } 
+}
+@media screen and (max-width: 1100px){
+  #home_image{
+    width: 64vw;
+    height: 45vh;
+  }
+  #home_banner_container{
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  #about_us_image{
+    width: 20vw;
+    height: 25vh;
+  } 
+}
+@media screen and (max-width: 992px){
+  #home_image{
+    width: 90vw;
+    height: 45vh;
+    padding-left: 10%;
+  }
+  #banner_title{
+    margin-top: 5%;
+  }
+  #about_us_image{
+    width: 25vw;
+    height: 25vh;
+    margin-left: 35%;
+  }
+  .banner_text_col{
+    text-align: center;
+  } 
+}
+@media screen and (max-width: 700px){
+  #home_image{
+    width: 95vw;
+    height: 35vh;
+    padding-left: 0%;
+  }
+  #about_us_image{
+    width: 32vw;
+    height: 25vh;
+    margin-left: 28%;
+  }
+  #img2_source{
+    left: 40%;
+  }   
+}
+@media screen and (max-width: 623px){
+  #home_image{
+    width: 95vw;
+    height: 35vh;
+  }
+  #about_us_image{
+    width: 30vw;
+    height: 20vh;
+    margin-left: 25%;
+  }  
+}
+@media screen and (max-width: 500px){
+  #home_image{
+    width: 90vw;
+    height: 20vh;
+    margin-top: 15px;
+    padding-left: 0%;
+  }
+  #about_us_image{
+    width: 70vw;
+    height: 35vh;
+    margin-left: 0;
+  }
+  #centre_me{
+    padding: 0;
+    text-align: center;
+  }
+  #img2_source{
+    left: 32%;
+  }   
+  #banner_title{
+    font-size: 50px; 
+  }
+}
