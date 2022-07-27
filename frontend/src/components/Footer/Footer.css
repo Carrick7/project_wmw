@@ -65,8 +65,15 @@
   color: #3145f5;
   margin-top: 10px;
   border-bottom: #3145f5 solid 1.5px;
+  text-align: center;
  }
  .footer_links_container{
   text-align: center;
   max-width: 40%;
  }
+ @media screen and (max-width: 463px){
+  .footer_links, .footer_links_col, #footer_logout_button{
+    margin-left: 0;
+    width: 65px;
+  }
+}

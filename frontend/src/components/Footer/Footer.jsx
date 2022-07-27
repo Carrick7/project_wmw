@@ -32,18 +32,28 @@ const Footer = () => {
       {user ? (
       <Container className="footer_links_container">
         <Row className='row_footer_links'>
-          <Col sm={4}><NavLink to='/shopping_lists' className='footer_links'>
-            <FontAwesomeIcon icon={faBasketShopping} className='footer_icons'/> Shopping Lists </NavLink>
-            <br />
-            <NavLink to='/' className='footer_links'><FontAwesomeIcon icon={faHouseChimney} className='footer_icons' /> Home </NavLink>
+          <Col sm={4} className="footer_links_col">
+            <NavLink to='/shopping_lists' className='footer_links'>
+             <FontAwesomeIcon icon={faBasketShopping} className='footer_icons'/> Shopping Lists 
+            </NavLink>
+            <div />
+            <NavLink to='/' className='footer_links'>
+              <FontAwesomeIcon icon={faHouseChimney} className='footer_icons' /> Home 
+            </NavLink>
           </Col>
-          <Col sm={4}>
-            <NavLink to='/products' className='footer_links'><FontAwesomeIcon icon={faLemon} className='footer_icons'/> Products </NavLink>
-            <br />
-            <NavLink to='/receipt_lists' className='footer_links'><FontAwesomeIcon icon={faReceipt} className='footer_icons'/> Receipts </NavLink>
+          <Col sm={4} className="footer_links_col">
+            <NavLink to='/products' className='footer_links'>
+              <FontAwesomeIcon icon={faLemon} className='footer_icons'/> Products 
+            </NavLink>
+            <div />
+            <NavLink to='/receipt_lists' className='footer_links'>
+              <FontAwesomeIcon icon={faReceipt} className='footer_icons'/> Receipts 
+            </NavLink>
           </Col> 
-          <Col sm={4} >
-            <button id="footer_logout_button" className='footer_links' onClick={onLogout}><FontAwesomeIcon icon={faPersonRunning} className='footer_icons'/> Logout </button>
+          <Col sm={4} className="footer_links_col">
+            <button id="footer_logout_button" className='footer_links' onClick={onLogout}>
+              <FontAwesomeIcon icon={faPersonRunning} className='footer_icons'/> Logout 
+            </button>
           </Col>
         </Row>
       </Container>
