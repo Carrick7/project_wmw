@@ -4,11 +4,11 @@ import Header from './components/Navigation/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //Pages
-import Landing_and_Registration from './pages/Landing_and_Registration';
-import Login from './pages/Login_page';
-import Shopping_Lists_page from './pages/Shopping_Lists_page';
-import Receipt_List_page from './pages/Receipt_List_page';
-import Products_page from './pages/Products_page';
+import LandingAndRegistration from './pages/LandingAndRegistration';
+import Login from './pages/LoginPage';
+import ShoppingListsPage from './pages/ShoppingListsPage';
+import ReceiptListPage from './pages/ReceiptListPage';
+import ProductsPage from './pages/ProductsPage';
 //Components
 import SingleShoppinngList from './components/ShoppingLists/SingleShoppingList/SingleShoppingList';
 import SingleReceiptList from './components/ReceiptLists/SingleRecieptList/SingleReceiptList';
@@ -29,13 +29,13 @@ function App() {
             <Header />
             <Routes>
               {/*Landing/home page & sign up*/}
-              <Route path="/" element={<Landing_and_Registration />} />
+              <Route path="/" element={<LandingAndRegistration />} />
 
               {/*Login*/}
               <Route path="/login" element={<Login />} />
 
               {/*To get all Shopping List*/}
-              <Route path="/shopping_lists" element={<Shopping_Lists_page />} />
+              <Route path="/shopping_lists" element={<ShoppingListsPage />} />
 
               {/*To get a Shopping List*/}
               <Route path="/shopping_lists/:id" element={<SingleShoppinngList />} />
@@ -44,7 +44,7 @@ function App() {
               <Route path="/shopping_lists/:id/product/:id" element={<SingleShoppinngList />} />
 
               {/*To get all Receipt List*/}
-              <Route path="/receipt_lists" element={<Receipt_List_page />} />
+              <Route path="/receipt_lists" element={<ReceiptListPage />} />
 
               {/*To get a Receipt List*/}
               <Route path="/receipt_lists/:id" element={<SingleReceiptList />} />
@@ -53,7 +53,7 @@ function App() {
               <Route path="/receipt_lists/:id/product/:id" element={<SingleReceiptList />} />
 
               {/*Products Stats Page*/}
-              <Route path="/products" element={<Products_page />} />
+              <Route path="/products" element={<ProductsPage />} />
             </Routes>
           </div>
             <BackToTopButton />

@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import ListingAllProducts from "../components/SearchBar/ListingAllProducts/ListingAllProducts";
 
 
-const Products_page = () => {
+const ProductsPage = () => {
   //Initialising dispatch & navigate
   const dispatch = useDispatch();
   
@@ -51,4 +51,4 @@ const Products_page = () => {
   )
 }
 
-export default Products_page
+export default ProductsPage

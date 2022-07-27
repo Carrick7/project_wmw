@@ -1,6 +1,6 @@
 import { Container, Col, Row } from "react-bootstrap";
 import Login from "../components/Login/Login"
-function Login_page() {
+function LoginPage() {
   return (
         <>
           <Login />
@@ -8,4 +8,4 @@ function Login_page() {
   )
 }
 
-export default Login_page
+export default LoginPage

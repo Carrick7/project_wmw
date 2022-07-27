@@ -1,6 +1,6 @@
 //Components
 import Registration from "../components/Authentication/Registration";
-import Home_Page_Features from "../components/Animations/homepage/Home_Page_Features";
+import HomePageFeatures from "../components/HopePageFeatures/Home_Page_Features";
 //Redux/Slice
 import { useSelector } from 'react-redux';
 //CSS
@@ -12,7 +12,7 @@ import { faWallet } from '@fortawesome/free-solid-svg-icons';
 import img1 from "../images/img1.jpg";
 import img2 from "../images/img2.png";
 
-function Landing_and_Registration() {
+function LandingAndRegistration() {
 
 //fetching state from redux
 const { user } = useSelector((state) => state.auth);
@@ -111,7 +111,7 @@ const { user } = useSelector((state) => state.auth);
       <div id="features_target"/>
       <Container fluid id="featues_container">
         <Row>
-          <Home_Page_Features />
+          <HomePageFeatures />
         </Row>
       </Container>
 
@@ -130,4 +130,4 @@ const { user } = useSelector((state) => state.auth);
   )
 }
 
-export default Landing_and_Registration
+export default LandingAndRegistration

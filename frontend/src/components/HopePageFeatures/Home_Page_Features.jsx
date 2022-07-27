@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBasketShopping, faReceipt, faChartLine } from '@fortawesome/free-solid-svg-icons';
 
-const Home_Page_Features = () => {
+const HomePageFeatures = () => {
   return (
     <>
       <h1 id='home_feature_title'> Features </h1>
@@ -42,4 +42,4 @@ const Home_Page_Features = () => {
   )
 }
 
-export default Home_Page_Features
+export default HomePageFeatures

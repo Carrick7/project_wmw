@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 //CSS
 import { Container, Row, Col } from 'react-bootstrap';
 
-const Receipt_List_page = () => {
+const ReceiptListPage = () => {
   //Initialising dispatch & navigate
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,4 +62,4 @@ const Receipt_List_page = () => {
   )
 }
 
-export default Receipt_List_page
+export default ReceiptListPage
