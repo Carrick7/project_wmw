@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { deleteShoppingList, getAllShoppingLists } from "../../../features/shopping_lists/shopping_listSlice";
 import { reset_c } from '../../../features/counter/counterSlice';
 import { useDispatch, useSelector } from "react-redux";
-//componenets
-import DateConverting from "../../DateConverting/DateConverting";
 //CSS
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import './AllShoppingLists.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
   function AllShoppingLists() {  
   // initializing the dispatch function
@@ -28,28 +28,30 @@ import './AllShoppingLists.css';
 
     return (
       <>
-       <Row>
+       <Row className="all_sLists">
          {shopping_lists.map((shopping_list) => {
            return (
-             <Col key={shopping_list._id} md={4}>
-                <Card className='card_shopping_list'>
-                  <Card.Header>
-                    <Row>
-                     <Col> {shopping_list.title} </Col>
-                     <Col><button onClick={() => dispatch(deleteShoppingList(shopping_list._id))}> X </button></Col>
-                    </Row>
-                  </Card.Header>
-                  <Card.Body>
-                    <Card.Text>
-                      Created on <DateConverting date={shopping_list.createdAt} />
-                    </Card.Text>
-                    <Link to={{pathname:`/shopping_lists/${shopping_list._id}`}}> Edit {shopping_list.title}</Link>
-                  </Card.Body>
-                </Card>
+             <Col key={shopping_list._id} xxl={4}>
+              <Col className="main_col_slists">
+                <Row className="all_lists_row">
+                  {/* bar for list */}
+                  <Col xs={10} className='all_slists_action_cols'>
+                   <Link id="list_name" to={{pathname:`/shopping_lists/${shopping_list._id}`}}> 
+                      <button className="edit_slist">{shopping_list.title}</button>
+                    </Link>
+                  </Col>
+                  {/* delete button */}
+                  <Col xs={2} className='all_slists_action_cols'>
+                  <button className='delete_slist_button' onClick={() => dispatch(deleteShoppingList(shopping_list._id))}>
+                    <FontAwesomeIcon icon={faTrashCan}/>
+                  </button>
+                  </Col>
+                </Row>
+              </Col>
              </Col> 
-           )
-         })}        
-     </Row>
+            )
+          })}        
+        </Row>
       </>
     )
   }

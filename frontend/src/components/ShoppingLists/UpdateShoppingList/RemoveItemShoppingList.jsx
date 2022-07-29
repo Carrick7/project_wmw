@@ -9,7 +9,9 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 //CSS
 import './UpdateShoppingList.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 function RemoveItemShoppingList( {product, shopping_list_id, shopping_list_name} ) {
 
@@ -60,11 +62,42 @@ const dispatch = useDispatch();
   dispatch(increment());
   deleteProduct();
 }
+
+  //Bootstrap Modal
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 //The Button can be a div so user can click anywhere on the div and then the delete button can be clicked
   return (
     <>
-      <Link to={{pathname:`/shopping_lists/${shopping_list_id}/product/${product._id}`}}><button> Select {product.product_name}</button></Link> ||
-      <button onClick={deleteMe}>Delete {product.product_name}</button> 
+      <Link to={{pathname:`/shopping_lists/${shopping_list_id}/product/${product._id}`}}>
+        <button onClick={handleShow} className='delete_items_sslists'> <FontAwesomeIcon icon={faX} className="icon_x"/> </button>
+      </Link> 
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title><span className='capatilise_modal'> Delete {product.product_name} </span></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <span className='capatilise_modal'>
+            This will permanently delete  {product.product_name} from {shopping_list_name} 
+          </span>
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={deleteMe} className='delete_items_sslists' id='delete_for_good'>
+            <span className='capatilise_modal'> 
+              Delete  {product.product_name}
+            </span>
+          </button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

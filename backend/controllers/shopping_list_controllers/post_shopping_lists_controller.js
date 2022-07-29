@@ -1,7 +1,6 @@
 const asyncHandler = require('express-async-handler');
 //Models Needed for this controller
 const Shopping_list = require('../../model/shopping_list_model');
-const User = require('../../model/user_model');
 
 //Description: Post Shopping Lists
 //Route: Post /api/shopping_lists
@@ -14,9 +13,9 @@ const postShoppingLists = asyncHandler(async (req, res) => {
      return res.status(400).send(
       {message: 'Title is Required'});
   }
-  if (title.length > 50) {
+  if (title.length > 17) {
      return res.status(400).send(
-      {message: 'Title cannot exceed 50 characters'});
+      {message: 'Title cannot exceed 17 characters. '});
   }
   
   const shopping_list = await Shopping_list.create(

@@ -28,16 +28,24 @@ function Header() {
   }
 
   //resetting states when changing pages to avoid crashing
-  const onReset = () => {
+  const onResetHome = () => {
     dispatch(reset_sl());
     dispatch(reset_rl());
+    dispatch(reset_p());
+  }
+  const onResetSL = () => {
+    dispatch(reset_rl());
+    dispatch(reset_p());
+  }
+  const onResetRL = () => {
+    dispatch(reset_sl());
     dispatch(reset_p());
   }
   
   return (
       <Navbar expand="lg" className='navbar_container'>
        <Navbar.Brand id='navbar_title_col'>
-        <Link to='/' id='navbar_title' onClick={onReset}><FontAwesomeIcon icon={faWallet}/> Watch My Wallet </Link>
+        <Link to='/' id='navbar_title' onClick={onResetHome}><FontAwesomeIcon icon={faWallet}/> Watch My Wallet </Link>
         </Navbar.Brand>
        <Navbar.Toggle aria-controls="basic-navbar-nav" id='navbar_toggle'>
         <FontAwesomeIcon icon={faBurger} size="lg" className='navbar_icons' id='navbar_burger'/>
@@ -46,16 +54,16 @@ function Header() {
        {user ? (
        <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
          <Nav id='nav_links_container'>
-          <NavLink to='/' className='navbar_links' onClick={onReset}>
+          <NavLink to='/' className='navbar_links' onClick={onResetHome}>
             <FontAwesomeIcon icon={faHouseChimney} className='navbar_icons' /> Home 
           </NavLink>
-          <NavLink to='/shopping_lists' className='navbar_links' onClick={onReset}>
+          <NavLink to='/shopping_lists' className='navbar_links' onClick={onResetSL}>
             <FontAwesomeIcon icon={faBasketShopping} className='navbar_icons'/> Shopping Lists 
           </NavLink>          
-          <NavLink to='/products' className='navbar_links' onClick={onReset}>
+          <NavLink to='/products' className='navbar_links' onClick={onResetHome}>
             <FontAwesomeIcon icon={faLemon} className='navbar_icons'/> Products 
           </NavLink>                       
-          <NavLink to='/receipt_lists' className='navbar_links' onClick={onReset}>
+          <NavLink to='/receipt_lists' className='navbar_links' onClick={onResetRL}>
             <FontAwesomeIcon icon={faReceipt} className='navbar_icons'/> Receipts 
           </NavLink>     
           <button id="navbar_logout_button" className='navbar_links' onClick={onLogout}>

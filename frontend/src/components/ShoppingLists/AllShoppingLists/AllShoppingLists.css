@@ -1,3 +1,69 @@
-.card_shopping_list{
+/*customising bar for each list*/
+.main_col_slists{
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: #3145f5; 
+  margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: .4s;
+}
+.main_col_slists:hover{
+  border: 1px solid #ff9100;
+  box-shadow: #ff9100 0px 0px 0px 2px;
+  transition: .4s;
+}
+.delete_slist_button{
+  background: none;
+  border: none;
+  border-radius: 35px;
+  color: #ff9100;
+  font-size: 18px;
+  text-decoration: none;
+  transition: .2s;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+}
+.delete_slist_button:hover{
+  background-color: #fff;
+  color: #3145f5;
+  transition: .2s;
+}
+.edit_slist{
+  text-align: left;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+.all_slists_action_cols:last-child{
+  text-align: center;
+  padding-left: 0;
+}
+#list_name{
+  text-decoration: none;
+  color: #fff;
+  padding-left: 5px;
+}
+.all_slists_action_cols:first-child{
+  padding-top: 3.5px;
+}
+.space_for_title{
+  padding-left: 5px;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 513px){
+  .slists_title:last-child{
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 275px){
+  .edit_slist{
+    font-size: 14px;
+  }
 }

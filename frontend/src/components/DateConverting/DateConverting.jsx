@@ -7,7 +7,6 @@ function DateConverting ({date}){
   useEffect(() => {
     const newDate = format(new Date (date), "dd-MM-yy");
     setFormattedDate(newDate);
-    console.log(formattedDate);
   }, [date]);
   return (
     <>{formattedDate}</>

@@ -29,7 +29,7 @@ const { user } = useSelector((state) => state.auth);
     dispatch(reset_sl());
     dispatch(reset_rl());
     dispatch(reset_p());
-  }, []);
+  }, [dispatch]);
 
   return (
     <> 
@@ -51,7 +51,7 @@ const { user } = useSelector((state) => state.auth);
               <></> 
             ):(
               <> 
-                <Col><button className="scroll_down_buttons"><a href="#sign_up_target"> Register </a></button></Col>
+               <Col><button className="scroll_down_buttons"><a href="#sign_up_target"> Register </a></button></Col>
               </>
              )}
           </Row>

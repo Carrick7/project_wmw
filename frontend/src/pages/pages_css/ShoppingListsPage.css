@@ -1,7 +1,7 @@
 #all_slists_container{
   padding-left: 8%;
   padding-right: 8%;
-  margin-top: 8%;
+  margin-top: 6%;
 }
 #slists_welcome_title{
   font-size: 45px;
@@ -28,4 +28,10 @@
 }
 #create_slist_title{
   margin-bottom: 20px;
+}
+@media screen and (max-width: 1670px){
+  #all_slists_container{
+    padding-left: 3%;
+    padding-right: 3%;
+  }
 }

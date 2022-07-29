@@ -38,7 +38,7 @@ function ShoppingListsPage() {
     dispatch(reset_sl());
     dispatch(reset_rl());
     dispatch(reset_p());
-  }, []);
+  }, [dispatch]);
 
   // Loading spinner
   if (isLoading) {
@@ -78,9 +78,6 @@ function ShoppingListsPage() {
            <AllShoppingLists />
         </Col>       
       </Row>
-      
-      
-      
     </Container>
   )
 }

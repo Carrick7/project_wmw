@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { reset_c } from '../../../features/counter/counterSlice';
 //Router Dom import
-import { useNavigate, useLocation, Link } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 // Components imports
 import AddItemShoppingList from "../UpdateShoppingList/AddItemShoppingList";
 import RemoveItemShoppingList from "../UpdateShoppingList/RemoveItemShoppingList";
@@ -12,7 +12,12 @@ import axios from "axios";
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS import
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Col, Tabs, Tab, Row } from "react-bootstrap";
+import './SingleShoppingList.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+//helper function to check if the item is checked off
+import {checkedOffList} from '../../../helpers/helperFunctions';
 
 const SingleShoppingList = () => {
 
@@ -67,31 +72,53 @@ const SingleShoppingList = () => {
 
   if(loading) {
     return (
-      <Container>
-        <Row>
-          <Col>
-           <h1>{shoppingListData.title}</h1>
-
-        {/* Product Listings */}
-        {product_info.map((product) => {
-          return (
-            <Col key={product._id}>
-              { product.product_name } - { product.quantity } - 
-              <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id} shopping_list_name={shopping_list_name}/>
-            </Col>
-            
-          )
-        })}
-          </Col>
-
-          {/* Add Products */}
-          <AddItemShoppingList shoppingListData={shoppingListData}/>
-          
-
-
-        </Row>
+      <Container fluid id='sslist_container'>
+        <Col>
+          <h1 id="sslist_title" className="capatilise_sslist">{shoppingListData.title}</h1>
+        </Col>
+        
+        <Tabs defaultActiveKey="add_products" id="testing" className="mb-3" justify>
+          <Tab eventKey="add_products" title="Add Item">
+            {/* Add Products */}
+            <AddItemShoppingList shoppingListData={shoppingListData}/>
+          </Tab>
+         <Tab eventKey="products" title="Items">
+            {/* Product Listings */}
+            <h1 id='viewing_items_title'> 
+              Items in 
+              <span className="capatilise_sslist"> {shoppingListData.title} </span>
+              <span> <FontAwesomeIcon icon={faCartShopping} className="cart"/> </span>  
+            </h1>
+              {product_info.map((product) => {
+                return (
+                  <Col 
+                    key={product._id} 
+                    onClick={checkedOffList}
+                    id={`${product._id}`}
+                    className="items_in_list"
+                    >
+                      <Row>
+                        <Col xs={8}>
+                          <span className="capatilise_sslist">
+                          { product.product_name }
+                          </span>
+                        </Col>
+                        <Col xs={2} className='centre_me_items'>
+                        { product.quantity } 
+                        </Col>
+                        <Col xs={2} className='centre_me_items'> 
+                        <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id} shopping_list_name={shopping_list_name}/>
+                        </Col>
+                      </Row>
+                  <hr /> 
+                  </Col>  
+                )
+              })}
+          </Tab> 
+        </Tabs>
       </Container>
     )
   }
 }  
 export default SingleShoppingList
+// className={`items_in_list${product._id}`

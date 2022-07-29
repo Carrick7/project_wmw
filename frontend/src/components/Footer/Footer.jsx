@@ -8,7 +8,7 @@ import { reset_rl } from '../../features/receipt_lists/receipt_listSlice';
 import { reset_p } from '../../features/products/productSlice';
 //CSS
 import './Footer.css';
-import { Container, Row, Col, Navbar } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet, faHouseChimney, faBasketShopping, faLemon, faReceipt, faPersonRunning, faUser  } from '@fortawesome/free-solid-svg-icons';
 

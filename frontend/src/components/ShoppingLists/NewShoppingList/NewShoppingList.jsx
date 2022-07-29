@@ -4,7 +4,7 @@ import { createShoppingList } from '../../../features/shopping_lists/shopping_li
 import { useDispatch, useSelector } from "react-redux";
 //CSS
 import './NewShoppingList.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 //Toast Errors
 import { toast } from 'react-toastify';
 
@@ -41,8 +41,8 @@ function NewShoppingList() {
   return (
     <>
       {/* Registration Form Body */}
-      <section className='sl_formBody'>
-        <form onSubmit={onSubmit}>
+      <section >
+        <form onSubmit={onSubmit}className='sl_formBody'>
           <Col className='restricting_size_of_create_sl'>
             {/* title */}
             <Col className='sl_form_input'>    
@@ -50,7 +50,6 @@ function NewShoppingList() {
               <br />
               <input type="text" className="form-control" id='sl_title_input' name='title' value={title} placeholder='Shopping List Name' onChange={onChange}/>
             </Col>
-
             {/* Submit Button */}     
             <Col className='sl_form_input'>
               <button type='submit' id='create_slist_button'> Create </button>

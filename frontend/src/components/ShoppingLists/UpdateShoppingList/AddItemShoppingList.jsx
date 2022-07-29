@@ -6,12 +6,14 @@ import { increment } from '../../../features/counter/counterSlice';
 import { toast } from 'react-toastify';
 //CSS
 import './UpdateShoppingList.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCarrot } from '@fortawesome/free-solid-svg-icons';
 //Axios
 import axios from 'axios';
 
 function AddItemShoppingList( {shoppingListData } ) {
-
+  
   //initialise dispatch
   const dispatch = useDispatch();
 
@@ -52,11 +54,20 @@ function AddItemShoppingList( {shoppingListData } ) {
     }
   }
 
+  //resetting input fields
+  const [ clearInput , setClearInput ] = useState(false);
+  const resetInputs = () => {
+    updated_product_name.current.value = '';
+    updated_quantity.current.value = '';
+    setClearInput(true);
+  }
+
   //Submit Button
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(increment());    
     addProductItem();
+    resetInputs();
   }
 
   return (
@@ -64,7 +75,11 @@ function AddItemShoppingList( {shoppingListData } ) {
       {/* Registration Form Title */}
       <section>
         <Col>
-          <h1 className='formTitle'>Add Items</h1>
+          <h1 id='add_to_sslist'>
+            Add Items to 
+            <span className="capatilise_sslist"> {shoppingListData.title} </span>
+            <span><FontAwesomeIcon icon={faCarrot} className="carrot"/></span>
+          </h1>
         </Col>  
       </section>
       {/* Registration Form Body */}
@@ -72,15 +87,15 @@ function AddItemShoppingList( {shoppingListData } ) {
         <form onSubmit={onSubmit}>
           {/* product_name */}
           <Col className='registration_form_input'>      
-            <input type='text' className="form-control" id='product_name' ref={updated_product_name} placeholder='eggs'/>
+            <input type='text' className="form-control" id='product_name_sslist' ref={updated_product_name} placeholder='eggs'/>
           </Col>          
           {/* quantity */}
           <Col className='registration_form_input'>
-           <input type='number' className="form-control" id='quantity' ref={updated_quantity} placeholder='23'/>          
+           <input type='number' className="form-control" id='quantity_sslist' ref={updated_quantity} placeholder='23'/>          
           </Col>
           {/* submit button*/}
           <Col className='registration_form_input'>
-            <button type='submit' className='btn btn-primary'>Submit</button>
+            <button type='submit' id='add_product_to_slist'>Submit</button>
           </Col>
         </form>
       </section>
