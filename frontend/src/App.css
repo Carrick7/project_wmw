@@ -113,7 +113,6 @@
     font-size: 14px;
   }
 }
-
 /*Shared CSS for main shopping and receipt list pages*/
 /*main container*/
 .main_container{
@@ -155,7 +154,6 @@
     margin-top: 40px;
   }
 }
-
 /*Single List Pages*/
 .single_page_title{
   font-size: 50px;
@@ -181,8 +179,8 @@
 }
 .centre_me_items{
   text-align: center;
+  text-transform: capitalize;
 }
-
 /* items in list (single page) DELETE button and modal*/
 .icon_x{
   color: #ff0000;
@@ -200,4 +198,34 @@
 /*icon ornage*/
 .icon_orange{
   color: #ff6d00;
+}
+
+/*Images for login and create product*/
+.login_image{
+  max-width: 600px;
+  left: 50px;
+}
+@media screen and (max-width: 1670px){
+  #login_container{
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+@media screen and (max-width: 611px){
+  .login_image{
+    max-width: 400px;
+    left: 50px;
+  }
+  .image_container_login{
+    padding-top: 25px;
+  }
+}
+@media screen and (max-width: 420px){
+  .login_image{
+    max-width: 200px;
+    left: 50px;
+  }
+  .image_container_login{
+    padding-top: 60px;
+  }
 }

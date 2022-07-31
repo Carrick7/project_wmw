@@ -7,7 +7,10 @@ import Spinner from '../../Spinner/Spinner';
 //helpers
 import { shops, categories, onSale } from '../../../helpers/helpers';
 //CSS
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Col, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShrimp } from '@fortawesome/free-solid-svg-icons';
+import './NewProduct.css';
 //Toast Errors
 import { toast } from 'react-toastify';
 
@@ -50,6 +53,7 @@ const NewProduct = () => {
       toast.success(official_name + ' has been added');
       clearFormData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess_p, isError_p, dispatch]);
 
   // onChange function for the form data
@@ -99,83 +103,124 @@ const NewProduct = () => {
   }
 
   return (
-    <>
-      {/* Registration Form Title */}
-      <section>
-        <Col>
-          <h1 className='formTitle'>Add Product</h1>
-          <h3>Fill out the fields below to add a product to the database</h3>
-        </Col>
-      </section>
-      {/* Add Item Receipt List Title */}
-      <section className='formBody'>
-        <form onSubmit={onSubmit}>         
-          {/* barcode */}
-          <Col className='p_form_input'>
-           <input type="number" id='barcode_p' name='barcode' value={barcode || ''} placeholder='123456789101' onChange={onChange}/>          
-          </Col>
-          {/* official_name */}
-          <Col className='p_form_input'>
-           <input type="text" id='official_name_p' name='official_name' value={official_name || ''} placeholder='Ivorian Bananas' onChange={onChange}/>          
-          </Col>
-          {/* generic_name */}
-          <Col className='p_form_input'>
-           <input type="text" id='generic_name_p' name='generic_name' value={generic_name || ''} placeholder='Bananas' onChange={onChange}/>          
-          </Col>
-          {/* category enum*/}
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label >Choose Category</Form.Label>
-              <Form.Select id='category_p' name='category' value={category || ''} onChange={onChange}>
-                {categories.map((category, index) => {
-                  return(  
-                  <option key={index}>
-                    {category.type}
-                  </option>                    
-                  )})}
-              </Form.Select>
-            </Form.Group>
-          </Col>          
-          {/* shop */}
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label >Choose Shop</Form.Label>
-              <Form.Select id='shop_p' name='shop' value={shop || ''} onChange={onChange}>
-                {shops.map((shop, index) => {
-                  return(
-                  <option key={index}>
-                    {shop.name}
-                  </option>                    
-                  )})}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-          {/* price_per_unit */}
-          <Col className='p_form_input'>
-            <input type="number" step={0.01} id='price_per_unit_p' name='price_per_unit' value={price_per_unit || ''} placeholder='price_per_unit' onChange={onChange}/>          
-          </Col >
-          {/* sale */}
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label >On Sale?</Form.Label>
-              <Form.Select id='sale_p' name='sale' value={sale || ''} onChange={onChange}>
-                {onSale.map((sales, index) => {
-                  return(
-                  <option key={index}>
-                    {sales.status}
-                  </option>                    
-                  )})}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-          {/* submit button */}
-          <Col className='p_form_input'>
-            <button type='submit' className='btn btn-primary'>Submit</button>
-          </Col>
-        </form>
-      </section>     
-    </>
-  )
-}
+          <>
+            {/* Registration Form Title */}
+            <Col className='margin_bottom_title'>
+             <h1 className='viewing_items_title'> Create Product
+               <span> <FontAwesomeIcon icon={faShrimp} className="icon_orange"/> </span>
+             </h1>
+               <span className='main_text'>Fill out the fields below to add a product to the database</span>
+            </Col>
+
+            {/* Add Item Receipt List Title */}
+            <section className='formBody'>
+              <form onSubmit={onSubmit}> 
+
+                {/* official_name */}
+                <Col className='space_between_inputs'>
+                  <span className='moving_input_titles'> Official Product Name </span>
+                  <input type="text"
+                    id='official_name_p'
+                    name='official_name'
+                    value={official_name || ''}
+                    placeholder='Pringles Original Crisps 165G'
+                    className="form-control" 
+                    onChange={onChange}/>          
+                </Col>          
+                
+                {/* generic_name */}
+                <Col className='space_between_inputs'>
+                  <span className='moving_input_titles'> Generic Product Name </span>
+                  <input 
+                    type="text" 
+                    id='generic_name_p' 
+                    name='generic_name' 
+                    value={generic_name || ''} 
+                    placeholder='Crisps'
+                    className="form-control"  
+                    onChange={onChange}/>          
+                </Col>
+
+                {/* barcode */}
+                <Col className='space_between_inputs'>
+                  <span className='moving_input_titles'> Barcode </span>
+                  <input 
+                    type="number" 
+                    id='barcode_p'
+                    className="form-control" 
+                    name='barcode' 
+                    value={barcode || ''} 
+                    placeholder='123456789101' 
+                    onChange={onChange}/>          
+                </Col>
+
+                {/* shop */}
+                <Col className='space_between_inputs'>
+                  <Form.Group className="mb-3">
+                    <Form.Label id='create_product_shop_details'><span className='moving_input_titles'> Shop </span></Form.Label>
+                    <Form.Select id='shop_create_product' name='shop' value={shop || ''} onChange={onChange} className="form-control">
+                      {shops.map((shop, index) => {
+                        return(
+                        <option key={index}>
+                          {shop.name}
+                        </option>                    
+                        )})}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+
+                {/* category enum*/}
+                <Col className='space_between_inputs'>
+                  <Form.Group className="mb-3">
+                    <Form.Label id='create_product_cat_details'><span className='moving_input_titles'> Choose Category </span></Form.Label>
+                    <Form.Select id='cat_create_product' name='category' value={category || ''} onChange={onChange} className="form-control">
+                      {categories.map((category, index) => {
+                        return(  
+                        <option key={index}>
+                          {category.type}
+                        </option>                    
+                        )})}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>  
+
+                {/* price_per_unit */}
+                <Col className='space_between_inputs'>
+                  <span className='moving_input_titles'> Price Per Unit </span>
+                  <input 
+                  type="number" 
+                  step={0.01} 
+                  id='price_per_unit_p' 
+                  name='price_per_unit' 
+                  value={price_per_unit || ''} 
+                  placeholder='€2.50'
+                  className="form-control"  
+                  onChange={onChange}/>          
+                </Col >
+
+                {/* sale */}
+                <Col className='space_between_inputs'>
+                  <Form.Group className="mb-3">
+                    <Form.Label id='create_product_sale_details' ><span className='moving_input_titles'> Sale </span></Form.Label>
+                    <Form.Select id='sale_create_product' name='sale' value={sale || ''} onChange={onChange} className="form-control">
+                      {onSale.map((sales, index) => {
+                        return(
+                        <option key={index}>
+                          {sales.status}
+                        </option>                    
+                        )})}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+
+                {/* submit button */}
+                <Col className='space_between_inputs' id='create_button_position'>
+                  <button type='submit' className='white_bg_submit' id='create_product_button'> Create Product </button>
+                </Col>
+              </form>
+            </section>     
+          </>
+        );  
+  }
 
 export default NewProduct

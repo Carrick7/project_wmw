@@ -1,7 +1,7 @@
 //shop options
 export const shops = [
   {name: 'no shop selected'}, {name: 'aldi'}, {name: 'centra '}, {name: 'costcutter '}, {name: 'daybreak '}, {name: 'donnybrook fair'},
-, {name: 'dunnes '}, {name: "eurospar"}, {name: 'fresh '},
+  {name: 'dunnes '}, {name: "eurospar"}, {name: 'fresh '},
   {name: 'gala '}, {name: 'iceland '}, {name: "joyce's"}, {name: 'lidl '}, {name: 'londis'},
   {name: 'mace'}, {name: 'marks & spencer'}, {name: 'spar'}, {name: 'supervalu '}, {name: 'tesco'},
   {name: 'waitrose'},  {name: 'other'}];
@@ -11,7 +11,7 @@ export const categories = [
   {type: 'no category selected'},{type: 'dairy'}, {type: 'drinks'}, {type: 'fish/seafood'}, 
   {type: 'fruit'}, {type: 'grains'}, {type: 'home essentials'}, 
   {type: 'meat'}, {type: 'sweets/biscuits'}, {type: 'toiletries'}, 
-  {type: 'vegtable'}, {type: 'other'}];
+  {type: 'vegetable'}, {type: 'other'}];
 
 //sale options
 export const onSale = [{status: 'no'}, {status: 'yes'}];

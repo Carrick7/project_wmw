@@ -87,7 +87,7 @@ const dispatch = useDispatch();
         </Modal.Header>
         <Modal.Body>
           <span className='capatilise_modal'>
-            This will permanently delete  {product.product_name} from {shopping_list_name} 
+            This will permanently delete {product.product_name} from {shopping_list_name} 
           </span>
         </Modal.Body>
         <Modal.Footer>

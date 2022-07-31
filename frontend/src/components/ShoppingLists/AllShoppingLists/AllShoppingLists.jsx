@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 //Router Dom
 import { Link } from "react-router-dom";
+//componenets
+import NotFound from "../../Spinner/NotFound/NotFound";
 //Slice/Reducx
 import { deleteShoppingList, getAllShoppingLists } from "../../../features/shopping_lists/shopping_listSlice";
 import { reset_c } from '../../../features/counter/counterSlice';
@@ -18,17 +20,28 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
   // Get the shopping lists state from the redux store
   const { shopping_lists } = useSelector((state) => state.shopping_lists);
 
+  //showMe
+  const [ showMe, setShowMe ] = useState(false);
+
   //get the state for the counter ***Redux was used to solve the infinite loop to dynamically show the addition/deletion of items for the list**
   const count = useSelector((state) => state.counter.value);
 
   useEffect(() => {
     dispatch(getAllShoppingLists());
     dispatch(reset_c());
-  }, [ count ]);
+    if(shopping_lists.length > 0){
+      setShowMe(true);
+    }
+    else{
+      setShowMe(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ count, shopping_lists.length ]);
 
     return (
       <>
        <Row className="all_sLists">
+         {showMe ? <>
          {shopping_lists.map((shopping_list) => {
            return (
              <Col key={shopping_list._id} xxl={4}>
@@ -50,7 +63,9 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
               </Col>
              </Col> 
             )
-          })}        
+          })}
+                            </>
+                  : <NotFound /> }         
         </Row>
       </>
     )

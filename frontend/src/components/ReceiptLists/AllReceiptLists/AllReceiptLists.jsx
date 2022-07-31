@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 //Router Dom
 import { Link } from "react-router-dom";
+//componenets
+import NotFound from "../../Spinner/NotFound/NotFound";
 //Slice/Reducx
 import { deleteReceiptList, getAllReceiptLists } from "../../../features/receipt_lists/receipt_listSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,17 +20,29 @@ const AllReceiptLists = () => {
   // Get the receipt lists state from the redux store
   const {receipt_lists } = useSelector((state) => state.receipt_lists);
 
+  //showMe
+  const [ showMe, setShowMe ] = useState(false);
+
   //get the state for the counter ***Redux was used to solve the infinite loop to dynamically show the addition/deletion of items for the list**
   const count = useSelector((state) => state.counter.value);
   
   useEffect(() => {
     dispatch(getAllReceiptLists());
     dispatch(reset_c());
-  }, [ count ]);
+
+    if(receipt_lists.length > 0){
+      setShowMe(true);
+    }
+    else{
+      setShowMe(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ count, receipt_lists.length ]);
   
   return (
     <>
       <Row className="all_receipts">
+      {showMe ? <>        
        {receipt_lists.map((receipt_list) => {
          return (
            <Col key={receipt_list._id} xxl={4}>
@@ -50,7 +64,8 @@ const AllReceiptLists = () => {
             </Col>
            </Col> 
           )
-        })}        
+        })}
+        </>: <NotFound /> }                
       </Row> 
     </>
   )

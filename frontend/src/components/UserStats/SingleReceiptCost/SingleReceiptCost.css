@@ -2,3 +2,18 @@
 .hide_array_index {
     display: none;
 }
+.make_bold{
+ font-weight: bold;
+ margin-bottom: 20px;
+}
+#margin_bottom_donut{
+  margin-bottom: 20px;
+}
+.capatilise_me{
+ text-transform: capitalize;
+}
+@media screen and (max-width: 576px){
+  .margin_bottom_index {
+   margin-bottom: 20px;
+  }
+}

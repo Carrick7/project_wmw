@@ -30,21 +30,32 @@
   text-decoration: underline solid 1px;
   font-weight: bold;    
 }
-
+.centre_new_product_image{
+  text-align: center;
+  margin-top: 20px;
+}
+#create_product_image{
+  margin-top: 50px;
+}
+@media screen and (max-width: 865px){
+  #delete_button_position_receipt{
+   text-align: right;
+  }
+}
 @media screen and (max-width: 705px){
-    #single_receipt_tabs-tab-add_product_receipt,
-    #single_receipt_tabs-tab-all_products_receipt,
-    #single_receipt_tabs-tab-create_new_product,
-    #single_receipt_tabs-tab-receipt_stats {
-       height: 70px;
-    }
+  #single_receipt_tabs-tab-add_product_receipt,
+  #single_receipt_tabs-tab-all_products_receipt,
+  #single_receipt_tabs-tab-create_new_product,
+  #single_receipt_tabs-tab-receipt_stats {
+   height: 70px;
+  }
 }
 @media screen and (max-width: 450px){
-    #single_receipt_tabs-tab-add_product_receipt,
-    #single_receipt_tabs-tab-all_products_receipt,
-    #single_receipt_tabs-tab-create_new_product,
-    #single_receipt_tabs-tab-receipt_stats {
-     margin-right: 115px;
-     height: auto;
-    }
+  #single_receipt_tabs-tab-add_product_receipt,
+  #single_receipt_tabs-tab-all_products_receipt,
+  #single_receipt_tabs-tab-create_new_product,
+  #single_receipt_tabs-tab-receipt_stats {
+   margin-right: 120px;
+   height: auto;
+  }
 }

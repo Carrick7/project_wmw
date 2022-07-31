@@ -105,7 +105,6 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
     e.preventDefault();
     dispatch(increment());
     addItemToReceipt();
-    console.log(item_info);
   }    
 
   return (

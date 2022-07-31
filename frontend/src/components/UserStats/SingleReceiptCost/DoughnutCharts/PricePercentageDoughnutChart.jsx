@@ -22,7 +22,7 @@ const PricePercentageDoughnutChart = ({roundedPercentage, finalCost, costNumberA
   useEffect(() => {
     setNameArray(productNameArray);
     setPercentageArray(roundedPercentage);   
-  }, [ finalCost, count, roundedPercentage, finalCost, costNumberArray, productNameArray]);
+  }, [ finalCost, count, roundedPercentage, costNumberArray, productNameArray]);
 
   const data = {
   labels: nameArray,
@@ -37,9 +37,9 @@ const PricePercentageDoughnutChart = ({roundedPercentage, finalCost, costNumberA
   ],
 };
   return (
-    <div>
+    <>
       <Doughnut data={data} />
-    </div>
+    </>
   )
 }
 

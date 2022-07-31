@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 // Components imports
 import AddItemShoppingList from "../UpdateShoppingList/AddItemShoppingList";
 import RemoveItemShoppingList from "../UpdateShoppingList/RemoveItemShoppingList";
+import NotFound from "../../Spinner/NotFound/NotFound";
 //Axios
 import axios from "axios";
 //Toast Errors
@@ -50,6 +51,7 @@ const SingleShoppingList = () => {
   useEffect(() => {
     getSingleList();
     dispatch(reset_c());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
@@ -63,15 +65,19 @@ const SingleShoppingList = () => {
       const response = await axios.get(`/api/shopping_lists/${path}`, config);
       const res = response.data
       setShoppingListData(res);
-      setLoading(true);
+      if(res.product_info.length > 0){
+        setLoading(true);
+      }
+      else{
+        setLoading(false);
+      }
     } catch (error) {
       toast.error(error.response.data.message + ' Please try again.');
       navigate('/shopping_lists');
     }
   }
 
-  if(loading) {
-    return (
+  return (
       <Container fluid className='main_container'>
         <Col>
           <h1 className="single_page_title">{shoppingListData.title}</h1>
@@ -91,37 +97,38 @@ const SingleShoppingList = () => {
               <span className="user_name_capitalise"> {shoppingListData.title} </span>
               <span> <FontAwesomeIcon icon={faCartShopping} className="icon_orange"/> </span>  
             </h1>
-              {product_info.map((product) => {
-                return (
-                  <Col 
-                    key={product._id} 
-                    onClick={checkedOffList}
-                    id={`${product._id}`}
-                    className="items_in_list"
-                    >
-                      <Row>
-                        <Col xs={8}>
-                          <span className="user_name_capitalise">
-                          { product.product_name }
-                          </span>
-                        </Col>
-                        <Col xs={2} className='centre_me_items'>
-                        { product.quantity } 
-                        </Col>
-                        <Col xs={2} className='centre_me_items'> 
-                        <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id} shopping_list_name={shopping_list_name}/>
-                        </Col>
-                      </Row>
-                  <hr /> 
-                  </Col>  
-                )
-              })}
+            {loading ?  <>
+             {product_info.map((product) => {
+               return (
+                 <Col 
+                   key={product._id} 
+                   onClick={checkedOffList}
+                   id={`${product._id}`}
+                   className="items_in_list"
+                   >
+                     <Row>
+                       <Col xs={8}>
+                         <span className="user_name_capitalise">
+                         { product.product_name }
+                         </span>
+                       </Col>
+                       <Col xs={2} className='centre_me_items'>
+                       { product.quantity }
+                       </Col>
+                       <Col xs={2} className='centre_me_items'>
+                       <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id} shopping_list_name={shopping_list_name}/>
+                       </Col>
+                     </Row>
+                      <hr /> 
+                 </Col>  
+               )
+             })}
+            </>
+             :<NotFound /> }
           </Tab> 
           
         </Tabs>
       </Container>
-    )
-  }
-}  
+    );
+ }  
 export default SingleShoppingList
-// className={`items_in_list${product._id}`

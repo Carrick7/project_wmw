@@ -68,31 +68,3 @@
   text-align: center;
   padding-top: 50px;
 }
-.login_image{
-  max-width: 600px;
-  left: 50px;
-}
-@media screen and (max-width: 1670px){
-  #login_container{
-    padding-left: 3%;
-    padding-right: 3%;
-  }
-}
-@media screen and (max-width: 611px){
-  .login_image{
-    max-width: 400px;
-    left: 50px;
-  }
-  .image_container_login{
-    padding-top: 25px;
-  }
-}
-@media screen and (max-width: 420px){
-  .login_image{
-    max-width: 200px;
-    left: 50px;
-  }
-  .image_container_login{
-    padding-top: 60px;
-  }
-}
