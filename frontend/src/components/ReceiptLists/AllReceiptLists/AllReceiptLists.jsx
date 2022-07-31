@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import { deleteReceiptList, getAllReceiptLists } from "../../../features/receipt_lists/receipt_listSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { reset_c } from '../../../features/counter/counterSlice';
-//Component 
-import Spinner from "../../Spinner/Spinner";
 //CSS
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import './AllReceiptLists.css';
 
 const AllReceiptLists = () => {
   //Initialising dispatch & navigate
@@ -27,17 +28,30 @@ const AllReceiptLists = () => {
   
   return (
     <>
-     <Col>
+      <Row className="all_receipts">
        {receipt_lists.map((receipt_list) => {
          return (
-           <Col key={receipt_list._id}>
-             {receipt_list.list_name} ||
-             <button onClick={() => {dispatch(deleteReceiptList(receipt_list._id))}}> X </button> || 
-              <Link to={{pathname:`/receipt_lists/${receipt_list._id}`}}> View {receipt_list.title}</Link>
-           </Col>
-         )
-       })}        
-     </Col> 
+           <Col key={receipt_list._id} xxl={4}>
+            <Col className="main_col">
+              <Row className="all_receipts_row">
+                {/* bar for each receipt */}
+                <Col xs={10} className='bar_for_each_list'>
+                 <Link id="list_name" to={{pathname:`/receipt_lists/${receipt_list._id}`}}> 
+                    <button className="navigate_to_list">{receipt_list.list_name}</button>
+                  </Link>
+                </Col>
+                {/* delete button */}
+                <Col xs={2} className='bar_for_each_list'>
+                <button className='delete_button_bin' onClick={() => dispatch(deleteReceiptList(receipt_list._id))}>
+                  <FontAwesomeIcon icon={faTrashCan}/>
+                </button>
+                </Col>
+              </Row>
+            </Col>
+           </Col> 
+          )
+        })}        
+      </Row> 
     </>
   )
 }

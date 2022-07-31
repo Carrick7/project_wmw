@@ -32,17 +32,17 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
          {shopping_lists.map((shopping_list) => {
            return (
              <Col key={shopping_list._id} xxl={4}>
-              <Col className="main_col_slists">
+              <Col className="main_col">
                 <Row className="all_lists_row">
                   {/* bar for list */}
-                  <Col xs={10} className='all_slists_action_cols'>
-                   <Link id="list_name" to={{pathname:`/shopping_lists/${shopping_list._id}`}}> 
-                      <button className="edit_slist">{shopping_list.title}</button>
+                  <Col xs={10} className='bar_for_each_list'>
+                   <Link className="list_name" to={{pathname:`/shopping_lists/${shopping_list._id}`}}> 
+                      <button className="navigate_to_list">{shopping_list.title}</button>
                     </Link>
                   </Col>
                   {/* delete button */}
-                  <Col xs={2} className='all_slists_action_cols'>
-                  <button className='delete_slist_button' onClick={() => dispatch(deleteShoppingList(shopping_list._id))}>
+                  <Col xs={2} className='bar_for_each_list'>
+                  <button className='delete_button_bin' onClick={() => dispatch(deleteShoppingList(shopping_list._id))}>
                     <FontAwesomeIcon icon={faTrashCan}/>
                   </button>
                   </Col>

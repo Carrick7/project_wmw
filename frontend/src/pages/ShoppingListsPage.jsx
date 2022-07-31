@@ -12,7 +12,6 @@ import Spinner from '../components/Spinner/Spinner';
 //CSS import
 import { Container, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import './pages_css/ShoppingListsPage.css'
 
 function ShoppingListsPage() {
   //Initialising dispatch & navigate
@@ -46,24 +45,24 @@ function ShoppingListsPage() {
   }
 
   return (
-    <Container fluid id="all_slists_container">
+    <Container fluid className="main_container">
       <Row> 
        <Col>
-         <h1 className='slists_title'>Your Shopping Lists</h1>
-         <Col className='slists_text'>
+         <h1 className='main_title'>Your Shopping Lists</h1>
+         <Col className='main_text'>
           <span> 
-            Welcome <span className='slist_username'>{user.user_name}</span> to your shopping list hub. On this page you can create, 
+            Welcome <span className='user_name_capitalise'>{user.user_name}</span> to your shopping list hub. On this page you can create, 
             view and delete your shopping lists. 
           </span>
          </Col>
-          <Col className='slists_text'>
+          <Col className='main_text'>
           <span>
-            Create a new shopping list by filling by naming it below. On this page, you can also view and navigate  
-            to all of your shopping lists.
+            Create a new shopping list by naming it below. You can also view and navigate  
+            to the rest of your shopping lists.
           </span>
          </Col>
-         <Col className='create_slist_col'>
-           <h2 id='create_slist_title'> Create Shopping List </h2>
+         <Col className='main_create_col'>
+           <h2 className='margin_bottom_title'> Create Shopping List </h2>
            <NewShoppingList />
          </Col>
        </Col>
@@ -71,8 +70,8 @@ function ShoppingListsPage() {
         {/* All Shopping Lists */}
         <Col >
           <Col >
-            <h1 className="slists_title">
-              <span className='slist_username'>{user.user_name}</span>'s Shopping Lists
+            <h1 className="main_title">
+              <span className='user_name_capitalise'>{user.user_name}</span>'s Shopping Lists
             </h1>
           </Col >
            <AllShoppingLists />

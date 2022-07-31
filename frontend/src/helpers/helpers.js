@@ -1,19 +1,20 @@
 //shop options
 export const shops = [
-  {name: 'aldi'}, {name: 'lidl'}, {name: 'spar'}, {name: 'tesco'}, {name: 'eurospar'},
-  {name: 'donnybrook fair'}, {name: 'fresh'}, {name: "joyce's"}, {name: 'supervalu'}, {name: 'dunnes'},
-  {name: 'waitrose'}, {name: 'iceland'}, {name: 'marks & spencer'}, {name: 'centra'}, {name: 'londis'},
-  {name: 'mace'}, {name: 'gala'}, {name: 'daybreak'}, {name: 'costcutter'}, {name: 'other'}]
+  {name: 'no shop selected'}, {name: 'aldi'}, {name: 'centra '}, {name: 'costcutter '}, {name: 'daybreak '}, {name: 'donnybrook fair'},
+, {name: 'dunnes '}, {name: "eurospar"}, {name: 'fresh '},
+  {name: 'gala '}, {name: 'iceland '}, {name: "joyce's"}, {name: 'lidl '}, {name: 'londis'},
+  {name: 'mace'}, {name: 'marks & spencer'}, {name: 'spar'}, {name: 'supervalu '}, {name: 'tesco'},
+  {name: 'waitrose'},  {name: 'other'}];
 
 //category options
 export const categories = [
-  {type: 'fruit'}, {type: 'vegetable'}, {type: 'dairy'}, 
-  {type: 'meat'}, {type: 'fish/seafood'}, {type: 'grains'}, 
-  {type: 'drinks'}, {type: 'sweets/biscuits'}, {type: 'toiletries'}, 
-  {type: 'home essentials'}, {type: 'other'}]
+  {type: 'no category selected'},{type: 'dairy'}, {type: 'drinks'}, {type: 'fish/seafood'}, 
+  {type: 'fruit'}, {type: 'grains'}, {type: 'home essentials'}, 
+  {type: 'meat'}, {type: 'sweets/biscuits'}, {type: 'toiletries'}, 
+  {type: 'vegtable'}, {type: 'other'}];
 
 //sale options
-export const onSale = [{status: 'yes'}, {status: 'no'}]
+export const onSale = [{status: 'no'}, {status: 'yes'}];
 
 //background colours for doughnut charts
 export const backgroundColourArray = [        

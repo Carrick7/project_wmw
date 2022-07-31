@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 //CSS
 import './UpdateShoppingList.css';
-import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons';
 
@@ -73,7 +73,7 @@ const dispatch = useDispatch();
   return (
     <>
       <Link to={{pathname:`/shopping_lists/${shopping_list_id}/product/${product._id}`}}>
-        <button onClick={handleShow} className='delete_items_sslists'> <FontAwesomeIcon icon={faX} className="icon_x"/> </button>
+        <button onClick={handleShow} className='delete_items_single_lists'> <FontAwesomeIcon icon={faX} className="icon_x"/> </button>
       </Link> 
 
       <Modal
@@ -91,9 +91,9 @@ const dispatch = useDispatch();
           </span>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={deleteMe} className='delete_items_sslists' id='delete_for_good'>
+          <button onClick={deleteMe} className='delete_items_single_lists' id='delete_for_good'>
             <span className='capatilise_modal'> 
-              Delete  {product.product_name}
+              Delete {product.product_name}
             </span>
           </button>
         </Modal.Footer>

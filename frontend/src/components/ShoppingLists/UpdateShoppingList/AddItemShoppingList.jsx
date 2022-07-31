@@ -75,10 +75,10 @@ function AddItemShoppingList( {shoppingListData } ) {
       {/* Registration Form Title */}
       <section>
         <Col>
-          <h1 id='add_to_sslist'>
+          <h1 className='viewing_items_title'>
             Add Items to 
-            <span className="capatilise_sslist"> {shoppingListData.title} </span>
-            <span><FontAwesomeIcon icon={faCarrot} className="carrot"/></span>
+            <span className="user_name_capitalise"> {shoppingListData.title} </span>
+            <span><FontAwesomeIcon icon={faCarrot} className="icon_orange"/></span>
           </h1>
         </Col>  
       </section>
@@ -86,16 +86,18 @@ function AddItemShoppingList( {shoppingListData } ) {
       <section className='formBody'>
         <form onSubmit={onSubmit}>
           {/* product_name */}
-          <Col className='registration_form_input'>      
+          <Col className='registration_form_input'>
+            <span className='moving_input_titles'> Name </span>      
             <input type='text' className="form-control" id='product_name_sslist' ref={updated_product_name} placeholder='eggs'/>
           </Col>          
           {/* quantity */}
+          <span className='moving_input_titles'> Quantity </span>   
           <Col className='registration_form_input'>
            <input type='number' className="form-control" id='quantity_sslist' ref={updated_quantity} placeholder='23'/>          
           </Col>
           {/* submit button*/}
           <Col className='registration_form_input'>
-            <button type='submit' id='add_product_to_slist'>Submit</button>
+            <button type='submit' id='add_product_to_slist' className='white_bg_submit'> Add </button>
           </Col>
         </form>
       </section>

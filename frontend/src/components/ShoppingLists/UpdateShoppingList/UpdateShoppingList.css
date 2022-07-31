@@ -1,53 +1,10 @@
 /*Covers Adding and Removing Items*/
-#add_to_sslist{
-  font-size: 40px;
-  margin-bottom: 20px;
-  margin-top: 50px;
-  border-bottom: solid 1px #ff9100;
-  color: rgb(19, 19, 19);
-}
-#product_name_sslist, #quantity_sslist{
-  font-weight: bolder;
-  color: rgb(19, 19, 19);
-  border: #3145f5 solid 1px;
-  border-radius: 8px;
-  max-width: 100%;
-}
-#product_name_sslist:focus, #quantity_sslist:focus{
-  border: #3145f5 solid 1px;
-  box-shadow: #3145f5 0px 0px 0px 2px;
-  text-decoration: double;
-}
 .carrot{
   color: #ff6d00;
 }
-.icon_x{
-  color: #ff0000;
-}
 #add_product_to_slist{
-  color: #fff;
   padding: 3.5px;
-  background-color: #3145f5;
-  border-radius: 20px;
-  border: none;
-  font-size: 16px;
-  transition: .25s;
   width: 25%;
-  margin-top: 20px;
-}
-.delete_items_sslists{
-  border: none;
-  background: none;
-  box-shadow: none;
-  font-size: 18px;
-}
-#add_product_to_slist:hover{
-  box-shadow: #ff9100 0px 0px 0px 3px;
-  transition: .25s;
-}
-.capatilise_modal{
-  text-transform: capitalize;
-  font-weight: bold;
 }
 #delete_for_good{
   background-color: #ff0000;

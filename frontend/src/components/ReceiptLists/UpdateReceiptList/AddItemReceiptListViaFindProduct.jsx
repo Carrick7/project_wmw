@@ -9,7 +9,10 @@ import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment } from '../../../features/counter/counterSlice';
 //CSS
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Col, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faScroll } from '@fortawesome/free-solid-svg-icons';
+import './UpdateReceiptList.css';
 //Toastify
 import { toast } from 'react-toastify';
 
@@ -45,7 +48,7 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
         barcode: '',
         official_name: '',
         category: '',
-        shop: '', // productData.shop
+        shop: '', 
         price_per_unit: '',
         quantity:'',
         sale: ''
@@ -61,15 +64,15 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
     const sale = historicalPrices.sale;
 
     // onChange function for the form data
-  const onChange = (e) => {
-    setQuantityInput(e.target.value);
-    setUpdatedResult((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-      }));
-    }      
+    const onChange = (e) => {
+      setQuantityInput(e.target.value);
+      setUpdatedResult((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value
+        }));
+      }      
      
-    //useEffect for troubleshooting
+    //useEffect 
     useEffect(() => {
       setItemInfo({
         item_info: [{
@@ -107,75 +110,127 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
 
   return (
     <>
-      {/* Add Item Receipt List Title useState*/}
+        <section>
+          <Col>
+            <h1 className='viewing_items_title'>
+              Product Details
+              <span> <FontAwesomeIcon icon={faScroll} className="icon_orange"/> </span>
+            </h1>
+          </Col>
 
-      {/* Registration Form Body */}
-      <section className='formBody'>
-        <form onSubmit={onSubmit}>
-          {/* barcode */}
-          <Col className='rl_form_input'>      
-            <input type="number" id='barcode' name='barcode' value={productData.barcode || ''} placeholder='Barcode' onChange={onChange} disabled/>
-          </Col>          
-          {/* official_name */}
-          <Col className='rl_form_input'>
-           <input type="text" id='official_name' name='official_name' value={productNames.official_name || ''} placeholder='Product Official Name' onChange={onChange} disabled/>          
-          </Col>
-          {/* category enum*/}
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label >Category</Form.Label>
-              <Form.Select id='category' name='category' value={productData.category || ''} onChange={onChange} disabled>
-                {categories.map((category, index) => {
-                  return(
-                  <option key={index}>
-                    {category.type}
-                  </option>                    
-                  )})}
-              </Form.Select>
-            </Form.Group>
-          </Col>          
-          {/* shop */}
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label >Shop</Form.Label>
-              <Form.Select id='shop' name='shop' value={productData.shop || ''} onChange={onChange} disabled>
-                {shops.map((shop, index) => {
-                  return(
-                  <option key={index}>
-                    {shop.name}
-                  </option>                    
-                  )})}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-          {/* price_per_unit */}
-          <Col className='rl_form_input'>
-            <input type="number" step={0.01} id='price_per_unit' name='price_per_unit' value={historicalPrices.price_per_unit || ''} placeholder='Price per Unit' onChange={onChange} disabled/>          
-          </Col >
-          {/* quantity */}
-          <Col className='rl_form_input'>
-            <input type="number" id='quantity' name='quantity' pattern="[0-9]+" value={quantity_input || ''} placeholder='Quantity' onChange={onChange}/>          
-          </Col >
-          {/* sale */}
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label >On Sale?</Form.Label>
-              <Form.Select id='sale' name='sale' value={historicalPrices.sale || ''} onChange={onChange} disabled>
-                {onSale.map((sales, index) => {
-                  return(
-                  <option key={index}>
-                    {sales.status}
-                  </option>                    
-                  )})}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-          {/* submit button */}
-          <Col className='rl_form_input'>
-            <button type='submit' className='btn btn-primary'>Submit</button>
-          </Col>
-        </form>
-      </section>
+          <section className='formBody'>
+            <form onSubmit={onSubmit}>
+              
+               {/* official name */}
+              <Col className='space_between_inputs'>
+                <span className='moving_input_titles'> Product Name </span>
+                <input 
+                  type="text" 
+                  id='official_name'
+                  className="form-control" 
+                  name='official_name' 
+                  value={productNames.official_name || ''} 
+                  placeholder='No Name' 
+                  onChange={onChange} 
+                  disabled/>          
+              </Col>
+
+               {/* barcode */}
+              <Col className='space_between_inputs'>
+              <span className='moving_input_titles'> Barcode </span>
+                <input 
+                  type="number" 
+                  id='barcode' 
+                  name='barcode'
+                  className="form-control"  
+                  value={productData.barcode || ''} 
+                  placeholder='No Barcode' 
+                  onChange={onChange} 
+                  disabled/>
+              </Col>
+
+               {/* shop */}
+              <Col className='space_between_inputs'> 
+                <Form.Group>
+                  <Form.Label id='choice_product_details'><span className='moving_input_titles'> Shop </span></Form.Label>
+                  <Form.Select id='product_details_shop' className="form-control" name='shop' value={productData.shop || ''} onChange={onChange} disabled>
+                    {shops.map((shop, index) => {
+                      return(
+                      <option key={index}>
+                        {shop.name}
+                      </option>                    
+                      )})}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+
+               {/* category */}
+              <Col className='space_between_inputs'>
+                <Form.Group>
+                  <Form.Label id='choice_product_details2'><span className='moving_input_titles'> Category </span></Form.Label>
+                  <Form.Select id='product_details_list_choices1' className="form-control" name='category' value={productData.category || ''} onChange={onChange} disabled>
+                    {categories.map((category, index) => {
+                      return(
+                      <option key={index}>
+                        {category.type}
+                      </option>                    
+                      )})}
+                  </Form.Select>
+                </Form.Group>                
+              </Col>
+
+               {/* on sale */}
+              <Col className='space_between_inputs'>
+                <Form.Group>
+                  <Form.Label id='choice_product_details3'><span className='moving_input_titles'> Sale </span></Form.Label>
+                  <Form.Select name='sale' value={historicalPrices.sale || ''} onChange={onChange} disabled id='product_details_list_choices2' className="form-control">
+                    {onSale.map((sales, index) => {
+                      return(
+                      <option key={index}>
+                        {sales.status}
+                      </option>                    
+                      )})}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+
+               {/* price per unit */}
+              <Col className='space_between_inputs'>
+                <span className='moving_input_titles'> Price Per Unit </span>
+                <input 
+                  type="number" 
+                  step={0.01} 
+                  id='price_per_unit' 
+                  name='price_per_unit' 
+                  value={historicalPrices.price_per_unit || ''} 
+                  placeholder='No Price'
+                  className="form-control"   
+                  onChange={onChange} 
+                  disabled/>          
+              </Col>
+
+               {/* quantity */}
+              <Col className='space_between_inputs'>
+               <span className='moving_input_titles'> Quantity </span>
+               <input 
+                type="number" 
+                id='quantity' 
+                name='quantity' 
+                pattern="[0-9]+"
+                className="form-control" 
+                value={quantity_input || ''} 
+                placeholder='Enter Quantity' 
+                onChange={onChange}/>
+              </Col>
+
+              {/* submit button */}
+              <Col className='space_between_inputs' id='add_product_button_position'>
+                <button type='submit' className='white_bg_submit' id='add_product_button'> Add Product </button>
+              </Col>
+              
+            </form>
+          </section> 
+        </section>
     </>
   )
 }

@@ -1,0 +1,15 @@
+/*Find Product Section*/
+#form_list_choices{
+  text-transform: capitalize;
+}
+#choice_remove_margin_bottom {
+  margin-bottom: 0;
+}
+#find_product_button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 120px;
+}
+#find_product_button_position{
+  text-align: center;
+}

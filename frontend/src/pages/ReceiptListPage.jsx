@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import AllReceiptLists from '../components/ReceiptLists/AllReceiptLists/AllReceiptLists';
 import NewReceiptList from '../components/ReceiptLists/NewReceiptList/NewReceiptList';
 import Spinner from '../components/Spinner/Spinner';
-import UserStats from '../components/UserStats/UserStats';
+import AllReceiptsCost from '../components/UserStats/AllReceiptsCost/AllReceiptsCost';
 // Slice/Redux import
 import { useSelector, useDispatch } from 'react-redux';
 import { reset_sl } from '../features/shopping_lists/shopping_listSlice';
@@ -23,7 +23,7 @@ const ReceiptListPage = () => {
 
   //fething user data (profile)
   const { user, isLoading, isError, message } = useSelector((state) => state.auth);
-
+  
   useEffect(() => {
     // using toast to display error message from backend
     if(isError){
@@ -46,27 +46,42 @@ const ReceiptListPage = () => {
   if (isLoading) {
     return <Spinner />;
   }
-  
+
+
   return (
-    <Container>
+    <Container fluid className="main_container">
       <Row>
         <Col>
-          <h1>Receipt_List_page</h1>
+          <h1 className='main_title' id='your_receipts_title'> Your Receipts </h1>
+          <Col className='main_text'>
+            <span>
+              In the Receipt section of the application, you can create a new receipts, view all your existing receipts, 
+              and add or remove items from receipts. You will also be able to view your statistics about your receipts.
+            </span>
+          </Col>
+          <Col className='main_text'>
+          <span>
+            Create a new receipt by naming it below.
+          </span>
+         </Col>
+         <Col className='main_create_col'>
+           <h2 id='margin_bottom_title'> Create New Receipt </h2>
+           <NewReceiptList />
+         </Col>         
         </Col>
-      </Row>
-      <Row>
-        {/*Create New List*/}
-        <Col>
-          <NewReceiptList />
-        </Col>
-        <hr />
+
         {/*All Receipt Lists*/}
-        <Col>
+        <Col >
+          <Col >
+            <h1 className="main_title">
+              <Row>
+                <Col xl={8}><span className='user_name_capitalise'>{user.user_name}'s Receipts</span></Col> 
+                <AllReceiptsCost/>
+              </Row>
+            </h1>
+          </Col >
           <AllReceiptLists />
-        </Col>
-        <hr />
-        {/*All Receipt Cost*/}
-        <UserStats />
+        </Col>           
       </Row>
     </Container>
   )

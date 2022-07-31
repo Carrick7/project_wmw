@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react"
+import { useEffect, useState } from "react"
 //Router Dom
 import { useLocation, useNavigate } from 'react-router-dom';
 //axios
@@ -11,11 +11,12 @@ import RemoveItemReceiptList from "../UpdateReceiptList/RemoveItemReceiptList";
 import GetSingleProduct from "../../AllProducts/GetSingleProduct/GetSingleProduct";
 import NewProduct from "../../AllProducts/NewProduct/NewProduct";
 import SingleReceiptCost from "../../UserStats/SingleReceiptCost/SingleReceiptCost";
-import AddItemReceiptListViaFindProduct from "../UpdateReceiptList/AddItemReceiptListViaFindProduct";
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Col, Tabs, Tab, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './SingleReceiptList.css';
 
 const SingleReceiptList = () => {
@@ -71,41 +72,63 @@ const SingleReceiptList = () => {
   if(loading) {
     return (
       <>
-        {/*Title & Delete button*/}
-        <h1>{receiptListData.list_name}</h1>
-
-        <Row>
-          {item_info.map((item) => {
-            return (
-            <Col key={item._id}>
-              <Col>
-                Name: {item.official_name} ||
-                Category: {item.category} ||
-                Shop: {item.shop} ||
-                Price: {item.price_per_unit} ||
-                Quantity: {item.quantity} ||
-                Barcode: {item.barcode} ||
-                Sale: {item.sale}
-              </Col>
-              {/* Delete Item */}
-              <RemoveItemReceiptList item={item} receipt_list_id={receipt_list_id} receipt_list_name={receipt_list_name}/>
+          <Container fluid className='main_container' xxl={12}>
+            <Col>
+              <h1 className="single_page_title">{receiptListData.list_name}</h1>
             </Col>
-            )
-          })}
-        </Row>
-     
-        {/*Get Single Product*/}
-        <GetSingleProduct/>
-          <br />
-          <hr />
-          <br />
-          {/*Get Single Product, this will be a tab that can be open up*/}
-          <NewProduct />
-          <br />
-          <hr />
-          <br />
-          {/* Single Receipt Cost */}
-          <SingleReceiptCost receiptListData={receiptListData}/>
+
+            {/* Tabs */}
+            <Tabs
+              defaultActiveKey="all_products_receipt"
+              id="single_receipt_tabs"
+              className="mb-1"
+              justify
+            >
+              {/*Get Single Product And Add*/}
+              <Tab eventKey="add_product_receipt" title=" Add Product" className="adsasda">   
+                <GetSingleProduct/>
+              </Tab>
+
+              {/* Showing Each Item in the receipt list */}
+              <Tab eventKey="all_products_receipt" title="Logged Products">
+                <h1 className='viewing_items_title'> 
+                  Products in 
+                  <span className="capatilise_sReceipt"> {receiptListData.list_name} </span>
+                  <span> <FontAwesomeIcon icon={faCartShopping} className="cart"/> </span>  
+                </h1>
+                {item_info.map((item) => {
+                  return (
+                  <Col key={item._id}>
+                    <Col>
+                      Name: {item.official_name} ||
+                      Category: {item.category} ||
+                      Shop: {item.shop} ||
+                      Price: {item.price_per_unit} ||
+                      Quantity: {item.quantity} ||
+                      Barcode: {item.barcode} ||
+                      Sale: {item.sale}
+                    </Col>
+                    {/* Delete Item */}
+                    <RemoveItemReceiptList item={item} receipt_list_id={receipt_list_id} receipt_list_name={receipt_list_name}/>
+                  </Col>
+                  )
+                })}
+              </Tab>
+
+              {/* Creating a new product to be added to database*/}
+              <Tab eventKey="create_new_product" title=" Create Product ">
+                <NewProduct />
+              </Tab>
+
+              {/* Getting the single user stats */}
+              <Tab eventKey="receipt_stats" title=" Receipt Info ">
+                <SingleReceiptCost receiptListData={receiptListData}/>
+              </Tab>
+            </Tabs>
+
+
+
+          </Container>
       </>
     )
   }

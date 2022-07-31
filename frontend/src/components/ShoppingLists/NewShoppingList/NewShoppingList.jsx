@@ -43,16 +43,16 @@ function NewShoppingList() {
       {/* Registration Form Body */}
       <section >
         <form onSubmit={onSubmit}className='sl_formBody'>
-          <Col className='restricting_size_of_create_sl'>
+          <Col className='restricting_size'>
             {/* title */}
             <Col className='sl_form_input'>    
-              <span> Shopping Name List </span>
+              <span className='moving_input_titles'> Name </span>
               <br />
               <input type="text" className="form-control" id='sl_title_input' name='title' value={title} placeholder='Shopping List Name' onChange={onChange}/>
             </Col>
             {/* Submit Button */}     
-            <Col className='sl_form_input'>
-              <button type='submit' id='create_slist_button'> Create </button>
+            <Col className='white_bg_submit_position'>
+              <button type='submit' className='white_bg_submit'> Create </button>
             </Col>    
           </Col>   
         </form>

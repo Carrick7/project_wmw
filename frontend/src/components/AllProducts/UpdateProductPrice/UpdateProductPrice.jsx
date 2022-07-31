@@ -6,10 +6,12 @@ import { toast } from 'react-toastify';
 //Axios
 import axios from 'axios';
 //helpers
-import { shops, onSale } from '../../../helpers/helpers';
+import { onSale } from '../../../helpers/helpers';
 //CSS
 import './UpdateProductPrice.css';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Col, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 
 const UpdateProductPrice = ({productData, productNames}) => {
 
@@ -67,21 +69,25 @@ const UpdateProductPrice = ({productData, productNames}) => {
             {/* Title - Update Price */}
             <section>
               <Col>
-                <h1>Add New Price Point</h1>
+                <h1 className='viewing_items_title'> Add New Price Point <FontAwesomeIcon icon={faChartLine} className="icon_orange"/></h1>
+                <h3 className='capatilise_underline'> {productNames.official_name} </h3>
               </Col>  
             </section>
             {/* Registration Form Body */}
             <section>
               <form onSubmit={onSubmit}>
+
                 {/* price per unit */}
                 <Col>      
-                  <input type='number' step={0.01} ref={updated_price_per_unit} placeholder='Price Per Unit'/>
-                </Col>          
+                  <span className='moving_input_titles'> Price Per Unit </span>
+                  <input type='number' step={0.01} ref={updated_price_per_unit} placeholder='€€€€' className="form-control"/>
+                </Col>
+
                 {/* sale */}
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label >On Sale?</Form.Label>
-                    <Form.Select ref={updated_sale}>
+                <Col className='space_between_inputs'>
+                  <Form.Group>
+                    <Form.Label id='sale_remove_margin'><span className='moving_input_titles'> Sale </span></Form.Label>
+                    <Form.Select ref={updated_sale} id='sale_list_choices' className="form-control">
                       {onSale.map((sales, index) => {
                         return(
                         <option key={index}>
@@ -92,8 +98,8 @@ const UpdateProductPrice = ({productData, productNames}) => {
                   </Form.Group>
                 </Col>
                 {/* submit button */}
-                <Col>
-                  <button type='submit'>Submit</button>
+                <Col className='space_between_inputs' id='add_price_button_position'>
+                  <button type='submit' className='white_bg_submit' id='add_price_button'> Add Price </button>
                 </Col>
               </form>
             </section>

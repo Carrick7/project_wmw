@@ -72,22 +72,24 @@ const SingleShoppingList = () => {
 
   if(loading) {
     return (
-      <Container fluid id='sslist_container'>
+      <Container fluid className='main_container'>
         <Col>
-          <h1 id="sslist_title" className="capatilise_sslist">{shoppingListData.title}</h1>
+          <h1 className="single_page_title">{shoppingListData.title}</h1>
         </Col>
         
-        <Tabs defaultActiveKey="add_products" id="testing" className="mb-3" justify>
+        <Tabs defaultActiveKey="add_products" id="testing" className="mb-3" justify>     
+        
+          {/* Add Products */}
           <Tab eventKey="add_products" title="Add Item">
-            {/* Add Products */}
             <AddItemShoppingList shoppingListData={shoppingListData}/>
           </Tab>
+
+         {/* View Product Listing */}
          <Tab eventKey="products" title="Items">
-            {/* Product Listings */}
-            <h1 id='viewing_items_title'> 
+            <h1 className='viewing_items_title'> 
               Items in 
-              <span className="capatilise_sslist"> {shoppingListData.title} </span>
-              <span> <FontAwesomeIcon icon={faCartShopping} className="cart"/> </span>  
+              <span className="user_name_capitalise"> {shoppingListData.title} </span>
+              <span> <FontAwesomeIcon icon={faCartShopping} className="icon_orange"/> </span>  
             </h1>
               {product_info.map((product) => {
                 return (
@@ -99,7 +101,7 @@ const SingleShoppingList = () => {
                     >
                       <Row>
                         <Col xs={8}>
-                          <span className="capatilise_sslist">
+                          <span className="user_name_capitalise">
                           { product.product_name }
                           </span>
                         </Col>
@@ -115,6 +117,7 @@ const SingleShoppingList = () => {
                 )
               })}
           </Tab> 
+          
         </Tabs>
       </Container>
     )

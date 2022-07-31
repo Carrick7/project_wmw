@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { createReceiptList } from '../../../features/receipt_lists/receipt_listSlice';
 import { useDispatch, useSelector } from "react-redux";
 //CSS
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 //Toast Errors
 import { toast } from 'react-toastify';
+import './NewReceiptList.css';
 
 const NewReceiptList = () => {
   //useState 
@@ -38,22 +39,21 @@ const NewReceiptList = () => {
 
   return (
     <>
-      {/* Title */}
-      <section>
-        <Col>
-          <h2>Name Your Receipt List </h2>
-        </Col>
-      </section>
       {/* Registration Form Body */}
-      <section className='rl_formBody'>
-        <form onSubmit={onSubmit}>
+      <section>
+        <form onSubmit={onSubmit} className='receipt_formBody'>
+          <Col className='restricting_size'>
+            {/* receipt name*/}
+          </Col>
           {/* list_name */}
-          <Col className='rl_form_input'>      
-            <input type="text" className="sl_form-control" id='list_name' name='list_name' value={list_name} placeholder='Receipt List Name' onChange={onChange}/>
+          <Col className='receipt_form_input' id='restrict_size_input'>    
+            <span className='moving_input_titles'> Name </span>
+            <br />
+            <input type="text" className="form-control" id='list_name_input' name='list_name' value={list_name} placeholder='Receipt List Name' onChange={onChange}/>
           </Col>
           {/* Submit Button */}     
-          <Col className='rl_form_input'>
-            <button type='submit' className='btn btn-primary'>Submit</button>
+          <Col className='white_bg_submit_position' id='centre_me_receipt_submit'>
+            <button type='submit' className='white_bg_submit'> Create </button>
           </Col>       
         </form>
       </section> 

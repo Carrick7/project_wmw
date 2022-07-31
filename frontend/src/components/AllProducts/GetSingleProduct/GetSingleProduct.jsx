@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 //axios
 import axios from 'axios'
 //helpers
@@ -7,12 +7,14 @@ import { shops } from '../../../helpers/helpers';
 import { useSelector } from 'react-redux'
 //Components 
 import AddItemReceiptListViaFindProduct from "../../ReceiptLists/UpdateReceiptList/AddItemReceiptListViaFindProduct";
+import UpdateProductPrice from '../UpdateProductPrice/UpdateProductPrice';
 //Toast 
 import { toast } from 'react-toastify';
 //CSS
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import './GetSingleProduct.css';
-import UpdateProductPrice from '../UpdateProductPrice/UpdateProductPrice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const GetSingleProduct = () => {
 
@@ -64,26 +66,30 @@ const GetSingleProduct = () => {
   } 
   
   return (
-    <Container>
+    <>
+     <Row>
       {/* Find Product Title */}
-      <section>
-        <Col>
-          <h1>Find &amp; Add Products to your Receipt List</h1>
-          <span>Enter the barcode and shop to fetch the product</span>
+      <Col sm={6}>
+        <Col className='text_in_find_product'>
+          <h1 className='viewing_items_title'> Find Product <FontAwesomeIcon icon={faMagnifyingGlass} className="icon_orange"/></h1>
+          <span className='main_text' > 
+            Enter the barcode and shop to fetch your product from the database. 
+          </span>
         </Col>
-      </section>
+      
       {/* Input Fields (form) */}
-      <section>
         <form onSubmit={onSubmit}>
           {/* barcode */}
-          <Col className='rl_form_input'>      
-            <input type="number" id='barcode' name='barcode' ref={find_barcode} placeholder='123456789101'/>
+          <Col className='space_between_inputs'>      
+            <span className='moving_input_titles'> Barcode </span>
+            <input type="number" ref={find_barcode} placeholder='123456789101' className="form-control" />
           </Col>
+
           {/* shop */}
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label >Choose Shop</Form.Label>
-              <Form.Select id='shop' name='shop' ref={find_shop}>
+          <Col className='space_between_inputs'>
+            <Form.Group>
+              <Form.Label id='choice_remove_margin_bottom'><span className='moving_input_titles'> Choose Shop </span></Form.Label>
+              <Form.Select name='shop' ref={find_shop} id='form_list_choices' className="form-control">
                 {shops.map((shop, index) => {
                   return(
                   <option key={index}>
@@ -93,24 +99,43 @@ const GetSingleProduct = () => {
               </Form.Select>
             </Form.Group>
           </Col>
+          
           {/* submit button */}
-          <Col>
-            <button onClick={onSubmit} className='btn btn-primary'>Find</button>
+          <Col className='space_between_inputs' id='find_product_button_position'>
+            <button onClick={onSubmit} className='white_bg_submit' id='find_product_button'>Find</button>
           </Col>                               
         </form>
-      </section>
-      <hr />
+
+        {/* Find Product instructions */}
+        <Col className='text_in_find_product'>
+          <span className='main_text' > 
+            If the item exists, the product details will be displayed in the Product Details section. 
+            Check the information to ensure that everything is correct. 
+            <br /><br />
+            If all the information is correct, enter the quantity and click on the Add Product button.
+            <br /><br />
+            If the item does not exist, you can click on the Create Product tab where you can register any product to the database.
+            <br /><br />
+            if the item's price does not match what you payed for, you can update the price in the Update Product Price tab.
+          </span>
+        </Col>
+      </Col>
+     
       {/* Adding Product to the receipt list form */}
-      <span> If all the information below is correct, enter the quantity and click on Submit</span>
-      <AddItemReceiptListViaFindProduct 
-        productData={productData} 
-        productNames={productNames} 
-        historicalPrices={historicalPrices}
+      <Col sm={6}>
+        <AddItemReceiptListViaFindProduct 
+          productData={productData} 
+          productNames={productNames} 
+          historicalPrices={historicalPrices}
       />
-      <hr />
-      {/* Update Product Price */}
+       </Col>
+     </Row> 
+     
+     {/* Update Product Price */}
+     <Col lg={6}>
       <UpdateProductPrice productData={productData} productNames={productNames}/>
-    </Container>
+     </Col>
+    </>
   )
 }
 

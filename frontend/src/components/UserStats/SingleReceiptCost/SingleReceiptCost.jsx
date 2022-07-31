@@ -18,13 +18,11 @@ const SingleReceiptCost = ({ receiptListData }) => {
   const [ showStats, setShowStats ] = useState(false);
   const [ finalCost, setFinalCost ] = useState(0);
   const [roundedPercentage, setRoundedPercentage] = useState([]);
-  //setting up the total cost arrays for pricing
+
+  //setting up the total cost arrays for pricing and array for the product names. ALL EMPTY ARRAYS
   const costStringArray = [];
   const costNumberArray = [];
-
-  //Empty array for the product names
-  const productNameArray = [];  
-  
+  const productNameArray = [];
   // empty arrays for calulating the percentage cost of each product
   const costPercentArray = [];
   const roundedArray = [];
@@ -39,7 +37,6 @@ const SingleReceiptCost = ({ receiptListData }) => {
       //Adding the numbers in the number array
       const total = costNumberArray.reduce((result, number) => result + number);
       setFinalCost(total.toFixed(2));
-    
     //converting to % of total cost
     costPercentArray.forEach(string => {
       roundedArray.push(parseFloat(string).toFixed(2));
@@ -83,9 +80,12 @@ const SingleReceiptCost = ({ receiptListData }) => {
             )})}
           </Col>
           {/* End of Mapping */}
+
           <hr />
+
           {/* Total List Cost*/}
           <Col>Total Cost for {receiptListData.list_name}: €{finalCost}</Col>
+
           {/* DonutChart for percentage cost of each item*/}
           <Col>
           <h2>PERCENTAGE %</h2>

@@ -10,9 +10,9 @@ const createReceiptList = asyncHandler(async (req, res) => {
      return res.status(400).send(
       {message: 'List Name is Required'});
   }
-  if (list_name.length > 50) {
+  if (list_name.length > 17) {
      return res.status(400).send(
-      {message: 'List Name cannot exceed 50 characters'});
+      {message: 'List Name cannot exceed 17 characters'});
   }
   
   const receipt_list = await Receipt_lists.create(
