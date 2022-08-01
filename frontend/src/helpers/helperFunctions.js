@@ -9,3 +9,8 @@ export const checkedOffList = (e) => {
   }
   e.currentTarget.classList.toggle('my-class-1', 'my-class-2');
 };
+
+//Capitalize first letter of each word
+export const capitaliseMe = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

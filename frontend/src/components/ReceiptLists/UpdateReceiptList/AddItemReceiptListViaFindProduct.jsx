@@ -15,6 +15,8 @@ import { faScroll } from '@fortawesome/free-solid-svg-icons';
 import './UpdateReceiptList.css';
 //Toastify
 import { toast } from 'react-toastify';
+//helpers
+import { capitaliseMe } from "../../../helpers/helperFunctions";
 
 const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) => {
   
@@ -85,6 +87,7 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
           sale: sale
         }] 
       })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [quantity_input, barcode, official_name, category, shop, price_per_unit, sale]);   
 
     // Add Item to Receipt List useState
@@ -93,7 +96,7 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
         const res = await axios.put(`/api/receipt_lists/` + path + '/', item_info, config);
         const result = { data: res.data };
         setUpdatedResult(formatData(result));
-        toast.success(`${productNames.official_name} Added`);
+        toast.success(`${capitaliseMe(productNames.official_name)} Added`);
       }
       catch (error) {
         toast.error(error.response.data.message + ' Please try again.');

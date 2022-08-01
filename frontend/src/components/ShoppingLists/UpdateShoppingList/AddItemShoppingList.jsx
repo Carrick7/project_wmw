@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCarrot } from '@fortawesome/free-solid-svg-icons';
 //Axios
 import axios from 'axios';
+//helpers
+import { capitaliseMe } from '../../../helpers/helperFunctions';
 
 function AddItemShoppingList( {shoppingListData } ) {
   
@@ -31,7 +33,7 @@ function AddItemShoppingList( {shoppingListData } ) {
   const updated_quantity = useRef(null);
   //set up for useState
   const [ updateResult , setUpdatedResult ] = useState(null);
-  
+
   // formatting user input to JSON
   const formatData = (res) => { return JSON.stringify(res, null, 2); }
 
@@ -43,11 +45,12 @@ function AddItemShoppingList( {shoppingListData } ) {
         quantity: updated_quantity.current.value,
       }]
   }
+  //setName(JSON.stringify(add_product.product_info.product_name, null, 2));
     try{
       const res = await axios.put(`/api/shopping_lists/${shoppingListData._id}`, add_product, config);
       const result = { data: res.data };
       setUpdatedResult(formatData(result));
-      toast.success(`${updated_product_name.current.value} added to ${shoppingListData.title}`);
+      toast.success(`${(capitaliseMe(result.data.product_info.slice(-1)[0].product_name))} added to ${capitaliseMe(shoppingListData.title)}`);
     }
     catch(error){
       toast.error(error.response.data.message + ' Please try again.');

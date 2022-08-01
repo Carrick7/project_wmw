@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 //axios
 import axios from 'axios'
 //helpers
 import { shops } from '../../../helpers/helpers';
 //redux
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllProducts } from "../../../features/products/productSlice";
 //Components 
 import AddItemReceiptListViaFindProduct from "../../ReceiptLists/UpdateReceiptList/AddItemReceiptListViaFindProduct";
 import UpdateProductPrice from '../UpdateProductPrice/UpdateProductPrice';
@@ -17,6 +18,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const GetSingleProduct = () => {
+
+  //Search Bar for Barcode
+  //initialise dispatch
+  const dispatch = useDispatch();
+  //useState for barcode
+  const [ digits, setDigits ] = useState([]);
+  const [ suggestions, setSuggestions ] = useState([]);
+
+  //redux store
+  const { products } = useSelector((state) => state.products);  
+
+  //useEffect for getting all products
+  useEffect(() => {   
+    dispatch(getAllProducts());
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, products.length]);
+
+  const suggestionHandler = (digits) => {
+    setDigits(digits);
+    setSuggestions([]);
+  }
+
+  const onChange = (digits) => { 
+    let allBarcodes = [];
+    if(digits.length > 0) {
+      allBarcodes = products.filter(product => {
+        const regex = new RegExp(`${digits}`);
+         return product.barcode.match(regex);
+      })
+    }
+    setSuggestions(allBarcodes);
+    setDigits(digits);
+  }
 
   //fething user data (profile) & setting up header
   const { user } = useSelector((state) => state.auth);
@@ -70,7 +104,7 @@ const GetSingleProduct = () => {
      <Row>
       {/* Find Product Title */}
       <Col sm={6}>
-        <Col className='text_in_find_product'>
+        <Col className='text_in_find_product' >
           <h1 className='viewing_items_title'> Find Product <FontAwesomeIcon icon={faMagnifyingGlass} className="icon_orange"/></h1>
           <span className='main_text' > 
             Enter the barcode and shop to fetch your product from the database. 
@@ -80,10 +114,24 @@ const GetSingleProduct = () => {
       {/* Input Fields (form) */}
         <form onSubmit={onSubmit}>
           {/* barcode */}
-          <Col className='space_between_inputs'>      
-            <span className='moving_input_titles'> Barcode </span>
-            <input type="number" ref={find_barcode} placeholder='123456789101' className="form-control" />
-          </Col>
+           <Col className='space_between_inputs'>      
+              <span className='moving_input_titles'> Barcode </span>
+              <input
+                type="text"
+                ref={find_barcode} 
+                placeholder='123456789101' 
+                className="form-control" 
+                onChange={e=>onChange(e.target.value)}
+                value={digits}
+                />
+                <Col className='suggestion_col_main'>
+                  {suggestions && suggestions.map((suggestion) => 
+                    <Col key={suggestion._id} className='suggestion_col'>
+                      <Col className='moving_suggestion_cols' onClick={() => {suggestionHandler(suggestion.barcode)}}>{suggestion.barcode}</Col>
+                    </Col>
+                  )}
+                </Col>  
+           </Col> 
 
           {/* shop */}
           <Col className='space_between_inputs'>

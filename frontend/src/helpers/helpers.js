@@ -14,7 +14,7 @@ export const categories = [
   {type: 'vegetable'}, {type: 'other'}];
 
 //sale options
-export const onSale = [{status: 'no'}, {status: 'yes'}];
+export const onSale = [{status: 'no option selected'}, {status: 'no'}, {status: 'yes'}];
 
 //background colours for doughnut charts
 export const backgroundColourArray = [        

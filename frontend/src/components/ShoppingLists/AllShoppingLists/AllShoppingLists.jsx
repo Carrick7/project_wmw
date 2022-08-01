@@ -64,8 +64,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
              </Col> 
             )
           })}
-                            </>
-                  : <NotFound /> }         
+          </>: <NotFound /> }         
         </Row>
       </>
     )

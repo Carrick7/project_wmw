@@ -6,6 +6,8 @@ import Spinner from "../components/Spinner/Spinner";
 //Slice/Reducx
 import { getAllProducts, reset_p } from "../features/products/productSlice";
 import { useDispatch, useSelector } from "react-redux";
+//DOM
+import { useLocation } from "react-router-dom";
 //CSS
 import { Container, Row, Col } from "react-bootstrap";
 //Toast Errors
@@ -21,16 +23,13 @@ const ProductsPage = () => {
   const [searchResults, setSearchResults] = useState([])
   const [productData, setProductData] = useState([]);
 
-  // Get the receipt lists state from the redux store
-  const { isLoading_p, isError_p, message_p} = useSelector((state) => state.products);
+  // Get the products state from the redux store
+  const { products, isLoading_p, isError_p, message_p} = useSelector((state) => state.products);
 
   //useEffect for getting all products
   useEffect(() => {
     if(isError_p) {
       toast.error(message_p + ' Please try again.');
-    }
-    if(isLoading_p) {
-      return <Spinner />;
     }
     // executing the getAllShoppingLists action
     dispatch(getAllProducts()).then(

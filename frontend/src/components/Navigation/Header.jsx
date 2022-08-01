@@ -29,9 +29,9 @@ function Header() {
 
   //resetting states when changing pages to avoid crashing
   const onResetHome = () => {
+    dispatch(reset_p());    
     dispatch(reset_sl());
     dispatch(reset_rl());
-    dispatch(reset_p());
   }
   const onResetSL = () => {
     dispatch(reset_rl());

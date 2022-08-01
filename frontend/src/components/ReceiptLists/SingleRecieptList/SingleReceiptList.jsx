@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 //redux/slices
 import { useSelector, useDispatch } from 'react-redux';
+import { getAllProducts } from "../../../features/products/productSlice";
 import { reset_c } from '../../../features/counter/counterSlice';
 //Components
 import RemoveItemReceiptList from "../UpdateReceiptList/RemoveItemReceiptList";
@@ -80,7 +81,7 @@ const SingleReceiptList = () => {
    dispatch(reset_c());
    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
-  
+
 return (
         <>
           <Container fluid className='main_container' xxl={12}>

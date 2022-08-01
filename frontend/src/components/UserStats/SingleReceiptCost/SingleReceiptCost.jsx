@@ -9,7 +9,8 @@ import { Col, Row } from 'react-bootstrap';
 import './SingleReceiptCost.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPieChart } from '@fortawesome/free-solid-svg-icons';
-
+//helpers
+import { capitaliseMe } from "../../../helpers/helperFunctions";
 
 const SingleReceiptCost = ({ receiptListData }) => {
 
@@ -68,7 +69,7 @@ const SingleReceiptCost = ({ receiptListData }) => {
             <Col>{receiptListData.item_info.map((item) => {
               return(
                 <Col key={item._id}>
-                  <Col type="number" className="hide_array_index">{productNameArray.push(`${item.official_name}`)}</Col>
+                  <Col type="number" className="hide_array_index">{productNameArray.push(`${capitaliseMe(item.official_name)}`)}</Col>
                   {/* Populating the CostStringArray with the total cost of each item as an array of strings */}  
                   <Col type="number" className="hide_array_index">{costStringArray.push(`${item.price_per_unit*item.quantity}`)}</Col>
                   {/* Populating the costPercentArray with the % cost of each item as an array of strings */}           

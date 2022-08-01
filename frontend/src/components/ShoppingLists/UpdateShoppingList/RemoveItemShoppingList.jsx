@@ -12,6 +12,7 @@ import './UpdateShoppingList.css';
 import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons';
+import { capitaliseMe } from '../../../helpers/helperFunctions';
 
 function RemoveItemShoppingList( {product, shopping_list_id, shopping_list_name} ) {
 
@@ -50,7 +51,7 @@ const dispatch = useDispatch();
     const res = await axios.put(`/api/shopping_lists/${shopping_list_id}/remove_item`, deleted_item, config);
     const result = { data: res.data }
     setDeletedItem(formatData(result));
-    toast.success(`${product.product_name} removed from ${shopping_list_name}`);
+    toast.success(`${capitaliseMe(product.product_name)} removed from ${capitaliseMe(shopping_list_name)}`);
   }
   catch(error){
     toast.error(error.response.data.message + ' Please try again.');
@@ -101,6 +102,5 @@ const dispatch = useDispatch();
     </>
   )
 }
-
 
 export default RemoveItemShoppingList

@@ -20,7 +20,7 @@ const SearchBar = ({productData, setSearchResults}) => {
       pData.product_names[0].official_name.includes(e.target.value.toLowerCase())
     );
       setSearchResults(resultsArray);
-     
+      
   }  
   return (
     <>

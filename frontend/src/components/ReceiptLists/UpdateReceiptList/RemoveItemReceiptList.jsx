@@ -11,6 +11,8 @@ import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons';
+//helpers
+import { capitaliseMe } from '../../../helpers/helperFunctions';
 
 const RemoveItemReceiptList = ({item, receipt_list_id, receipt_list_name}) => {
 
@@ -49,12 +51,12 @@ const RemoveItemReceiptList = ({item, receipt_list_id, receipt_list_name}) => {
       const res = await axios.put(`/api/receipt_lists/${receipt_list_id}/remove_item`, deleted_item, config);
       const result = { data: res.data }
       setDeletedItem(formatData(result));
-      toast.success(`${item.official_name} removed from ${receipt_list_name}`);
+      toast.success(`${capitaliseMe(item.official_name)} removed from ${capitaliseMe(receipt_list_name)}`);
     }
     catch(error){
       toast.error(error.response.data.message + ' Please try again.');
     }
-  }
+  } 
 
   // onClick to delete the product and update the state of counter
   const onDelete = (e) => {

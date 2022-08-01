@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 //Slice/Redux import
-import { createProduct, reset_p } from '../../../features/products/productSlice';
+import { createProduct } from '../../../features/products/productSlice';
 import { useDispatch, useSelector } from "react-redux";
 //Components
-import Spinner from '../../Spinner/Spinner';
 //helpers
 import { shops, categories, onSale } from '../../../helpers/helpers';
 //CSS
@@ -13,6 +12,8 @@ import { faShrimp } from '@fortawesome/free-solid-svg-icons';
 import './NewProduct.css';
 //Toast Errors
 import { toast } from 'react-toastify';
+//helper
+import { capitaliseMe } from '../../../helpers/helperFunctions';
 
 const NewProduct = () => {
   //useState for form data
@@ -38,23 +39,7 @@ const NewProduct = () => {
   const dispatch = useDispatch();
 
   // getting the relevant product info from the redux store
-  const { isLoading_p, isError_p, isSuccess_p, message_p } = useSelector((state) => state.products);
-
-  useEffect(() => {
-    if(isLoading_p){
-      return <Spinner />
-    }
-
-    if(isError_p){
-      toast.error(message_p + ' Please try again.');
-    }
-    // undefined fixes a bug of the toast message showing when no product has been registered to the database
-    if(isSuccess_p && official_name !== undefined){
-      toast.success(official_name + ' has been added');
-      clearFormData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess_p, isError_p, dispatch]);
+  const { isError_p, isSuccess_p, message_p } = useSelector((state) => state.products);
 
   // onChange function for the form data
   const onChange = (e) => {
@@ -98,9 +83,19 @@ const NewProduct = () => {
       barcode        
      };
     dispatch(createProduct(productData));
-    dispatch(reset_p());
-    console.log(productData);
   }
+
+  useEffect(() => {
+    if(isError_p){
+      toast.error(message_p + ' Please try again.');
+    }
+    // undefined fixes a bug of the toast message showing when no product has been registered to the database
+    if(isSuccess_p && official_name !== undefined){
+      toast.success(capitaliseMe(official_name) + ' has been added');
+      clearFormData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ isError_p, isSuccess_p, dispatch, message_p ]);
 
   return (
           <>
