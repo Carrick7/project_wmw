@@ -1,8 +1,12 @@
+import { useEffect } from "react";
 //Components
 import Registration from "../components/Authentication/Registration";
 import HomePageFeatures from "../components/HopePageFeatures/Home_Page_Features";
 //Redux/Slice
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { reset_sl } from '../features/shopping_lists/shopping_listSlice';
+import { reset_rl } from '../features/receipt_lists/receipt_listSlice';
+import { reset_p } from '../features/products/productSlice';
 //CSS
 import './pages_css/Landing_and_Registration.css'
 import { Container, Col, Row, Card, OverlayTrigger, Popover } from "react-bootstrap";
@@ -12,10 +16,20 @@ import { faWallet } from '@fortawesome/free-solid-svg-icons';
 import img1 from "../images/img1.jpg";
 import img2 from "../images/img2.png";
 
+
 function LandingAndRegistration() {
 
 //fetching state from redux
 const { user } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+
+  //resetting states when changing pages to avoid crashing when a user inputs an error
+  useEffect (() => {
+    dispatch(reset_sl());
+    dispatch(reset_rl());
+    dispatch(reset_p());
+  }, [dispatch]);
 
   return (
     <> 
@@ -32,7 +46,14 @@ const { user } = useSelector((state) => state.auth);
           <Row className="scroll_down_buttons_row">
             <Col><button className="scroll_down_buttons"><a href="#about_us_target"> About Us</a></button></Col>
             <Col><button className="scroll_down_buttons"><a href="#features_target"> Features </a></button></Col>
-            <Col><button className="scroll_down_buttons"><a href="#sign_up_target"> Register </a></button></Col>
+            {/* if user is signed in, the button to scroll down to sign up is not shown        */}
+            {user ? (
+              <></> 
+            ):(
+              <> 
+               <Col><button className="scroll_down_buttons"><a href="#sign_up_target"> Register </a></button></Col>
+              </>
+             )}
           </Row>
         </Col>
         {/*Structure of Image*/}

@@ -24,7 +24,7 @@ export const createProduct = createAsyncThunk(
     }
 );
 
-// get all receipt lists
+// get products
 export const getAllProducts = createAsyncThunk(
   'product/getAll', async (_, thunkAPI) => {
   try{
@@ -51,15 +51,20 @@ export const productSlice = createSlice({
       // Create Product
       .addCase(createProduct.pending, (state) => {
         state.isLoading_p = true;
+        state.isError_p = false;
+        state.isSuccess_p = false;
+        state.message_p = '';
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading_p = false;
         state.isSuccess_p = true;
+        state.isError_p = false;
         state.products.push(action.payload);
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.isLoading_p = false;
         state.isError_p = true;
+        state.isSuccess_p = false;
         state.message_p = action.payload;
       })
 

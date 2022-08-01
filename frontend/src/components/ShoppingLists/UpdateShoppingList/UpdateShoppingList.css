@@ -1,0 +1,12 @@
+/*Covers Adding and Removing Items*/
+#add_product_to_slist{
+  padding: 3.5px;
+  width: 25%;
+}
+#delete_for_good{
+  background-color: #ff0000;
+  border: #ff0000 solid 1px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+}

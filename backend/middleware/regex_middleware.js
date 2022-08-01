@@ -10,7 +10,7 @@ const validatePassword = /^[a-zA-Z0-9]{6,}(?=.*[!()_@#$%^£~<>?&+=]).*$/;
 // shop validation
 const validateShop = ['aldi', 'lidl', 'spar', 'tesco', 'eurospar', 'donnybrook fair', 'fresh', "joyce's", 'supervalu', 'dunnes', 'waitrose', 'iceland', 'marks & spencer', 'centra', 'londis', 'mace', 'gala', 'daybreak', 'costcutter', 'other']
 // category validation
-const validateCategory = ['fruit', 'vegetable', 'dairy', 'meat', 'fish/Seafood', 'grains', 'drinks', 'sweets/biscuits', 'toiletries', 'home essentials', 'other']
+const validateCategory = ['fruit', 'vegetable', 'dairy', 'meat', 'fish/seafood', 'grains', 'drinks', 'sweets/biscuits', 'toiletries', 'home essentials', 'other']
 // sale validation
 const validateSale = ['yes', 'no']
 //barcode validation

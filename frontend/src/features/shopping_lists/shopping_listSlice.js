@@ -59,18 +59,21 @@ export const shopping_listSlice = createSlice({
     name: 'shopping_list',
     initialState,
     reducers: {
-      reset: (state) => initialState
+      reset_sl: (state) => initialState, 
     },
     extraReducers: (builder) => {
     builder
       // Create Shopping List
       .addCase(createShoppingList.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
+        state.message = '';
       })
       .addCase(createShoppingList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.shopping_lists.push(action.payload);
+        state.message_rl = '';
       })
       .addCase(createShoppingList.rejected, (state, action) => {
         state.isLoading = false;
@@ -81,6 +84,7 @@ export const shopping_listSlice = createSlice({
       // Get all shopping lists
       .addCase(getAllShoppingLists.pending, (state) => {
         state.isLoading = true;
+        state.message = '';
       })
       .addCase(getAllShoppingLists.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -111,5 +115,5 @@ export const shopping_listSlice = createSlice({
 }); 
 
   // Export Reducer
-  export const { reset } = shopping_listSlice.actions;
+  export const { reset_sl } = shopping_listSlice.actions;
   export default shopping_listSlice.reducer;

@@ -62,9 +62,10 @@ const all_productsSchema = new mongoose.Schema({
     immutable: true
   },
   barcode: {
-    type: Number,
-    min: [100000000000],
-    max: [9999999999999],
+    type: String,
+    // type: Number,
+    // min: [100000000000],
+    // max: [9999999999999],
     required: [true, 'The barcode is required'],
     immutable: true
   }} 

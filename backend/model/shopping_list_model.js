@@ -24,7 +24,7 @@ const shopping_listSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'title is required'],
-    maxlength: [50, 'title must be less than 50 characters'],
+    maxlength: [17, 'title must be less than 17 characters'],
   },
   product_info: [product_infoScehma]
 }, 

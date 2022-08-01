@@ -15,7 +15,7 @@ const login_user = asyncHandler( async(req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
+    return res.json({
       _id: user._id,
       user_name: user.user_name,
       email: user.email,
@@ -26,8 +26,6 @@ const login_user = asyncHandler( async(req, res) => {
     return res.status(400).send(
       {message: 'Invalid credentials'});
   }
-  
-  res.json({message: 'Login User'});	
 });
 
   //Generate a token for a user

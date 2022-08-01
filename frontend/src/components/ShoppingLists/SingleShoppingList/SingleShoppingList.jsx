@@ -3,16 +3,22 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { reset_c } from '../../../features/counter/counterSlice';
 //Router Dom import
-import { useNavigate, useLocation, Link } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 // Components imports
 import AddItemShoppingList from "../UpdateShoppingList/AddItemShoppingList";
 import RemoveItemShoppingList from "../UpdateShoppingList/RemoveItemShoppingList";
+import NotFound from "../../Spinner/NotFound/NotFound";
 //Axios
 import axios from "axios";
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS import
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Col, Tabs, Tab, Row } from "react-bootstrap";
+import './SingleShoppingList.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+//helper function to check if the item is checked off
+import {checkedOffList} from '../../../helpers/helperFunctions';
 
 const SingleShoppingList = () => {
 
@@ -45,6 +51,7 @@ const SingleShoppingList = () => {
   useEffect(() => {
     getSingleList();
     dispatch(reset_c());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
@@ -58,40 +65,70 @@ const SingleShoppingList = () => {
       const response = await axios.get(`/api/shopping_lists/${path}`, config);
       const res = response.data
       setShoppingListData(res);
-      setLoading(true);
+      if(res.product_info.length > 0){
+        setLoading(true);
+      }
+      else{
+        setLoading(false);
+      }
     } catch (error) {
       toast.error(error.response.data.message + ' Please try again.');
       navigate('/shopping_lists');
     }
   }
 
-  if(loading) {
-    return (
-      <Container>
-        <Row>
-          <Col>
-           <h1>{shoppingListData.title}</h1>
-
-        {/* Product Listings */}
-        {product_info.map((product) => {
-          return (
-            <Col key={product._id}>
-              { product.product_name } - { product.quantity } - 
-              <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id} shopping_list_name={shopping_list_name}/>
-            </Col>
-            
-          )
-        })}
-          </Col>
-
+  return (
+      <Container fluid className='main_container'>
+        <Col>
+          <h1 className="single_page_title">{shoppingListData.title}</h1>
+        </Col>
+        
+        <Tabs defaultActiveKey="add_products" id="testing" className="mb-3" justify>     
+        
           {/* Add Products */}
-          <AddItemShoppingList shoppingListData={shoppingListData}/>
+          <Tab eventKey="add_products" title="Add Item">
+            <AddItemShoppingList shoppingListData={shoppingListData}/>
+          </Tab>
+
+         {/* View Product Listing */}
+         <Tab eventKey="products" title="Items">
+            <h1 className='viewing_items_title'> 
+              Items in 
+              <span className="user_name_capitalise"> {shoppingListData.title} </span>
+              <span> <FontAwesomeIcon icon={faCartShopping} className="icon_orange"/> </span>  
+            </h1>
+            {loading ?  <>
+             {product_info.map((product) => {
+               return (
+                 <Col 
+                   key={product._id} 
+                   onClick={checkedOffList}
+                   id={`${product._id}`}
+                   className="items_in_list"
+                   >
+                     <Row>
+                       <Col xs={8}>
+                         <span className="user_name_capitalise">
+                         { product.product_name }
+                         </span>
+                       </Col>
+                       <Col xs={2} className='centre_me_items'>
+                       { product.quantity }
+                       </Col>
+                       <Col xs={2} className='centre_me_items'>
+                       <RemoveItemShoppingList product={product} shopping_list_id={shopping_list_id} shopping_list_name={shopping_list_name}/>
+                       </Col>
+                     </Row>
+                      <hr /> 
+                 </Col>  
+               )
+             })}
+            </>
+             :<NotFound /> }
+          </Tab> 
           
-
-
-        </Row>
+        </Tabs>
       </Container>
-    )
-  }
-}  
+    );
+ }  
 export default SingleShoppingList

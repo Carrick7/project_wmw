@@ -50,7 +50,7 @@ const receipt_listSchema = new mongoose.Schema({
   },
   list_name:  {
     type: String,
-    maxlength: [50, 'title must be less than 50 characters'],
+    maxlength: [17, 'title must be less than 17 characters'],
   },
   item_info: [products_in_receipt_listSchema]
 },

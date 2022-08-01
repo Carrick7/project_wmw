@@ -1,0 +1,44 @@
+/*Find Product Section*/
+#product_details_shop, 
+#product_details_list_choices1, 
+#product_details_list_choices2,
+#official_name{
+  text-transform: capitalize;
+}
+#choice_product_details,
+#choice_product_details2, 
+#choice_product_details3{
+  margin-bottom: 0;
+}
+#add_product_button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 120px;
+}
+#add_product_button_position{
+  text-align: center;
+}
+#delete_for_good_receipt{
+  background-color: #ff0000;
+  border: #ff0000 solid 1px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+}
+.listing_products_single_receipt{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: capitalize;
+}
+#remove_pointer{
+  cursor: auto;
+}
+@media screen and (max-width: 865px){
+  .listing_products_single_receipt{
+    text-align: left;
+  }
+  .listing_products_single_receipt:last-child{
+    text-align: right;
+  }
+}

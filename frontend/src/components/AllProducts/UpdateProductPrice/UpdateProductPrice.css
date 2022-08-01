@@ -1,0 +1,19 @@
+#sale_remove_margin {
+  margin-bottom: 0;
+}
+#sale_list_choices{
+  text-transform: capitalize;
+}
+#add_price_button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 120px;
+}
+#add_price_button_position{
+  text-align: center;
+}
+.capatilise_underline{
+  text-decoration: underline 1px #3145f5;
+  text-transform: capitalize;
+  font-size: 35px;
+}

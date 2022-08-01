@@ -6,13 +6,7 @@ import TrackingProductPrice from "../../UserStats/TrackingProductPrice/TrackingP
 const Product = ({OneProductData}) => {
   //getting the latest price 
 const latestEntry = OneProductData.historical_prices[OneProductData.historical_prices.length - 1];
- // console.log(OneProductData)
 
-//useEffect for getting testing
-useEffect(() => {
-
- 
-}, []);
   return (
     <>
     <hr/>

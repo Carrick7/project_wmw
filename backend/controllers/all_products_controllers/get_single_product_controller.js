@@ -14,7 +14,7 @@ const getSingleProduct = asyncHandler(async (req, res) => {
   const validBarcode = req.params.barcode;
   if (!validBarcode.match(validateBarcodeLength)){
     return res.status(400).send(
-      {message: `Barcode is not recognised. A barcode must be 12 or 13 characters long with no spaces, letters or special characters`});
+      {message: `Barcode must be 12 or 13 digits long.`});
   }
 
   // Validating the shop name

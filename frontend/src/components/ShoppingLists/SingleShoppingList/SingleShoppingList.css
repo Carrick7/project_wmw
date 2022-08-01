@@ -1,0 +1,18 @@
+/*tab*/
+#testing-tab-add_products, #testing-tab-products{
+  background-color: #3145f5;
+  color: #fff;
+  transition: .5s;
+  border: #fff solid 2px;
+ }
+#testing-tab-add_products.active, #testing-tab-products.active{
+  background: linear-gradient(30deg, #ff6d00, #ff7900, #ff8500, #ff9100, #ff9e00, #ffaa00, #ffb600);
+  color: #3145f5;
+  text-decoration: underline solid 1px;
+  font-weight: bold;
+ }
+ #testing-tabpane-products{
+  padding-left: 8%;
+  padding-right: 8%;
+ }
+ 

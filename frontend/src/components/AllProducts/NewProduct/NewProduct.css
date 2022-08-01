@@ -1,0 +1,16 @@
+#create_product_shop_details,
+#create_product_cat_details,
+#create_product_sale_details{
+  margin-bottom: 0;
+}
+#shop_create_product, 
+#cat_create_product, 
+#sale_create_product{
+  text-transform: capitalize;
+}
+#create_button_position{
+  text-align: center;
+}
+#create_product_button{
+  width: 30%;
+}

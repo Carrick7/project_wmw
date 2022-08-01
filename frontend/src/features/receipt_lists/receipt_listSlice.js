@@ -69,11 +69,14 @@ export const receipt_listSlice = createSlice({
       // Create Receipt List
       .addCase(createReceiptList.pending, (state) => {
         state.isLoading_rl = true;
+        state.isError_rl = false;
+        state.message_rl = '';
       })
       .addCase(createReceiptList.fulfilled, (state, action) => {
         state.isLoading_rl = false;
         state.isSuccess_rl = true;
         state.receipt_lists.push(action.payload);
+        state.message_rl = '';
       })
       .addCase(createReceiptList.rejected, (state, action) => {
         state.isLoading_rl = false;
@@ -84,6 +87,7 @@ export const receipt_listSlice = createSlice({
       // Get all receipt lists
       .addCase(getAllReceiptLists.pending, (state) => {
         state.isLoading_rl = true;
+        state.message_rl = '';
       })
       .addCase(getAllReceiptLists.fulfilled, (state, action) => {
         state.isLoading_rl = false;
