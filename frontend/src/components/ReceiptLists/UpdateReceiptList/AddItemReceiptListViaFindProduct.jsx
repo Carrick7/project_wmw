@@ -33,6 +33,7 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
     } 
 
     //set up for useState
+    // eslint-disable-next-line
     const [ updateResult , setUpdatedResult ] = useState(null);
     
     // formatting user input to JSON

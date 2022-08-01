@@ -32,6 +32,7 @@ function AddItemShoppingList( {shoppingListData } ) {
   const updated_product_name = useRef(null);
   const updated_quantity = useRef(null);
   //set up for useState
+  // eslint-disable-next-line
   const [ updateResult , setUpdatedResult ] = useState(null);
 
   // formatting user input to JSON
@@ -58,6 +59,7 @@ function AddItemShoppingList( {shoppingListData } ) {
   }
 
   //resetting input fields
+  // eslint-disable-next-line
   const [ clearInput , setClearInput ] = useState(false);
   const resetInputs = () => {
     updated_product_name.current.value = '';

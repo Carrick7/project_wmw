@@ -24,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
+export const options1 = {
   responsive: true,
   plugins: {
     legend: {
@@ -32,8 +32,23 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: 'Price History',
     },
+    maintainAspectRatio: false,
+  },
+};
+
+export const options2 = {
+  responsive: false,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: 'Price History',
+    },
+    maintainAspectRatio: false,
   },
 };
 
@@ -44,8 +59,9 @@ const TrackingProductPrice = ({prices}) => {
   const [priceArray, setPriceArray] = useState();
 
   useEffect(() => {
-    setDateArray(prices.map((price) => format(new Date (price.createdAt), "HH:mm 'on' dd-MM-yy")));
+    setDateArray(prices.map((price) => format(new Date (price.createdAt), "HH:mm '-' dd-M-yy")));
     setPriceArray(prices.map((price) => price.price_per_unit));
+    //eslint-disable-next-line
   }, []);
 
   const data = {
@@ -54,13 +70,12 @@ const TrackingProductPrice = ({prices}) => {
       {
         label: '€',
         data: priceArray, 
-        borderColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1.0)'
+        borderColor: '#3145f5'
       },
     ],
   };
   return (
-    <div> <Line options={options} data={data} /> </div>
+    <> <Line options={options1} data={data} /> </>
   )
 }
 

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { createShoppingList } from '../../../features/shopping_lists/shopping_listSlice';
 import { useDispatch, useSelector } from "react-redux";
 //CSS
-import './NewShoppingList.css';
 import { Col } from 'react-bootstrap';
 //Toast Errors
 import { toast } from 'react-toastify';

@@ -9,7 +9,6 @@ import { reset_c } from '../../../features/counter/counterSlice';
 import { useDispatch, useSelector } from "react-redux";
 //CSS
 import { Row, Col } from "react-bootstrap";
-import './AllShoppingLists.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 

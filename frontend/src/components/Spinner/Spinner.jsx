@@ -1,9 +1,12 @@
+//CSS
 import './Spinner.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 function Spinner() {
   return (
     <div className='loadingSpinnerContainer'>
-      <div className='loadingSpinner'></div>
+      <FontAwesomeIcon icon={faGear} spin className='spinner_gear'/>
     </div>
   )
 }

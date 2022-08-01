@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 //Slices/Redux
 import { useSelector } from "react-redux";
 //CSS
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import './AllReceiptsCost.css';
 
 const AllReceiptsCost = () => {
@@ -32,6 +32,7 @@ const AllReceiptsCost = () => {
   //useEffect 
   useEffect(() => {
     showData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ receipt_lists ]);
 
   return (
