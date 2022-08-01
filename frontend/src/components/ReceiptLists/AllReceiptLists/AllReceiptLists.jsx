@@ -11,7 +11,6 @@ import { reset_c } from '../../../features/counter/counterSlice';
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import './AllReceiptLists.css';
 
 const AllReceiptLists = () => {
   //Initialising dispatch & navigate

@@ -1,6 +1,6 @@
 //CSS
-import { Container, Row, Col } from "react-bootstrap";
-
+import { Col } from "react-bootstrap";
+import './SearchBar.css';
 const SearchBar = ({productData, setSearchResults}) => {
 
   //onSubmit
@@ -17,7 +17,8 @@ const SearchBar = ({productData, setSearchResults}) => {
       pData.shop.includes(e.target.value.toLowerCase()) || 
       pData.category.includes(e.target.value.toLowerCase()) ||
       pData.product_names[0].generic_name.includes(e.target.value.toLowerCase()) ||
-      pData.product_names[0].official_name.includes(e.target.value.toLowerCase())
+      pData.product_names[0].official_name.includes(e.target.value.toLowerCase()) || 
+      pData.barcode.includes(e.target.value)
     );
       setSearchResults(resultsArray);
       
@@ -25,11 +26,14 @@ const SearchBar = ({productData, setSearchResults}) => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <input
-          onChange={onChange}
-        >          
-        </input>
-        <button> Searching....</button>
+        <Col id="search_bar">
+          <input
+            onChange={onChange}
+            className="form-control"
+            placeholder="Search for a product by name, shop, category or barcode"
+          >          
+          </input>
+        </Col>
       </form>
     </>
   )

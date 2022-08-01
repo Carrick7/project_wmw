@@ -32,6 +32,7 @@ const RemoveItemReceiptList = ({item, receipt_list_id, receipt_list_name}) => {
 
   // useState for shopping list data
   const [targetId, setTargetId ] = useState(null);
+  // eslint-disable-next-line
   const [ deletedItem , setDeletedItem ] = useState(null);
 
   // formatting user input to JSON

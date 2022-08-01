@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 //redux/slices
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllProducts } from "../../../features/products/productSlice";
 import { reset_c } from '../../../features/counter/counterSlice';
 //Components
 import RemoveItemReceiptList from "../UpdateReceiptList/RemoveItemReceiptList";

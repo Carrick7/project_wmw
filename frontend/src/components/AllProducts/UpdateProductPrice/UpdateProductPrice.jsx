@@ -12,6 +12,8 @@ import './UpdateProductPrice.css';
 import { Col, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+//helper
+import { capitaliseMe } from '../../../helpers/helperFunctions';
 
 const UpdateProductPrice = ({productData, productNames}) => {
 
@@ -28,6 +30,7 @@ const UpdateProductPrice = ({productData, productNames}) => {
   const updated_sale = useRef(null);
   const updated_price_per_unit = useRef(null);
   //set up for useState
+  // eslint-disable-next-line
   const [ updateResult , setUpdatedResult ] = useState(null);
 
   // formatting user input to JSON
@@ -40,12 +43,12 @@ const UpdateProductPrice = ({productData, productNames}) => {
         sale: updated_sale.current.value,
         price_per_unit: updated_price_per_unit.current.value
       }]
-    }
+    } 
     try{
       const res = await axios.put(`/api/all_products/${productData.barcode}/${productData.shop}`, add_price, config);
       const result = { data: res.data };
       setUpdatedResult(formatData(result));
-      toast.success(`New Price Point added to ${productNames.official_name}`);
+      toast.success(`New Price Point added to ${capitaliseMe(productNames.official_name)}`);
       console.log(result);    
     }
     catch(error){

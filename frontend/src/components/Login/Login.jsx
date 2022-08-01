@@ -41,7 +41,7 @@ function Login() {
     if(isLoading){
       return <Spinner />
     }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError, message, navigate, dispatch]);
 
 

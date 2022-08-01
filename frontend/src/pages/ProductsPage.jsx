@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
 //components
-import GetSingleProduct from "../components/AllProducts/GetSingleProduct/GetSingleProduct"
 import SearchBar from "../components/SearchBar/SearchBar";
-import Spinner from "../components/Spinner/Spinner";
+import ListingAllProducts from "../components/SearchBar/ListingAllProducts/ListingAllProducts"; 
 //Slice/Reducx
-import { getAllProducts, reset_p } from "../features/products/productSlice";
+import { getAllProducts } from "../features/products/productSlice";
 import { useDispatch, useSelector } from "react-redux";
-//DOM
-import { useLocation } from "react-router-dom";
 //CSS
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 //Toast Errors
 import { toast } from 'react-toastify';
-import ListingAllProducts from "../components/SearchBar/ListingAllProducts/ListingAllProducts";
-
 
 const ProductsPage = () => {
   //Initialising dispatch & navigate
   const dispatch = useDispatch();
   
+  //fetching state from redux
+  const { user } = useSelector((state) => state.auth);
+
   //useState for search results 
   const [searchResults, setSearchResults] = useState([])
   const [productData, setProductData] = useState([]);
 
   // Get the products state from the redux store
-  const { products, isLoading_p, isError_p, message_p} = useSelector((state) => state.products);
+  const { isError_p, message_p} = useSelector((state) => state.products);
 
   //useEffect for getting all products
   useEffect(() => {
@@ -38,15 +38,43 @@ const ProductsPage = () => {
         setSearchResults(json.payload)
       }
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (
-    <>  
-      <Container>
-        <SearchBar productData={productData} setSearchResults={setSearchResults}/>
-        <ListingAllProducts searchResults={searchResults}/>
-      </Container>
-    </>
+          <Container fluid className="main_container">
+            <Col>
+              <h1 className='main_title' id='your_receipts_title'> Search For a Product </h1>
+               <Col className='main_text'>
+                <span>
+                  Welcome to the products page {user.user_name}. Here you can search for any item that is registered in the database 
+                  by their official/generic names, shop, category and barcode.
+                  <br /><br />
+                  If any of the search terms match, the products will be displayed in the list below.
+                  <br /><br />
+                  Each product listed will have its basic information alongside a line chart portraying its price points over time.
+                  This page can be used to compare product prices and to track the price of a product over time.
+                </span>
+               </Col>
+            </Col>
+
+            {/* Search Bar */}
+            <Col>
+              <Col>
+                <h1 className='viewing_items_title'> 
+                  Search Bar
+                    <span> <FontAwesomeIcon icon={faMagnifyingGlass} className="icon_orange"/></span>
+                </h1>
+              </Col>
+              <SearchBar productData={productData} setSearchResults={setSearchResults}/>
+            </Col>
+            
+            {/* Listing All Products */}
+            <Col>
+              <ListingAllProducts searchResults={searchResults}/>
+            </Col>
+
+          </Container>
   )
 }
 

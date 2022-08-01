@@ -46,7 +46,7 @@ function Registration() {
     if(isLoading){
       return <Spinner />
     }
-
+    //eslint-disable-next-line
   }, [isSuccess, isError, message, navigate, dispatch]);
 
   // onChange function for the form data

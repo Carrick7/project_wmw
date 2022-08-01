@@ -38,6 +38,7 @@ const GetSingleProduct = () => {
   const suggestionHandler = (digits) => {
     setDigits(digits);
     setSuggestions([]);
+    // eslint-disable-next-line no-restricted-syntax
   }
 
   const onChange = (digits) => { 
@@ -79,7 +80,6 @@ const GetSingleProduct = () => {
       const result = res.data;
       setProductData(result);
       setProductNames(result.product_names[0]);      
-      //getting latest price
       const latestPrice = result.historical_prices[result.historical_prices.length - 1]; //gets latest price
       setHistoricalPrices(latestPrice);
     }
