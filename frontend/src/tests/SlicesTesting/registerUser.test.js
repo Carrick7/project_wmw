@@ -39,15 +39,4 @@ describe('authReducer', () => {
       message: '',
   });
 });
-
-  // it('should handle registration error', () => {
-  //   expect(authReducer(undefined, register.rejected)).toEqual({
-  //     isLoading: false,
-  //     isError: true,
-  //     isSuccess: false,
-  //     message: '',
-  //     user: null,
-  //   });
-  // });
-
 })
