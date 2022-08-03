@@ -28,9 +28,8 @@ app.use('/api/receipt_lists', require('./routes/receipt_lists_routes'));
 //serve frontend
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html'));
-  }
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html'))
   );
 } else{
   app.get('/', (req, res) => {
