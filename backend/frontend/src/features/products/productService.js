@@ -1,5 +1,5 @@
 //Used for HTTP requests and sending data to the server
-import axios from 'axios';
+import { axiosInstance } from '../../axios';
 // targetting all the receipt lists
 const API_URL = '/api/all_products/';
 
@@ -11,7 +11,7 @@ const createProduct = async (productData, token) => {
       Authorization: `Bearer ${token}`,
     }
   }
-  const response = await axios.post(API_URL, productData, config);
+  const response = await axiosInstance.post(API_URL, productData, config);
   return response.data;
 }
 
@@ -23,7 +23,7 @@ const getAllProducts = async (token) => {
       Authorization: `Bearer ${token}`,
     }
   }
-  const response = await axios.get(API_URL, config);
+  const response = await axiosInstance.get(API_URL, config);
   return response.data;
 }
 

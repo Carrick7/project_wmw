@@ -9,7 +9,7 @@ import AddItemShoppingList from "../UpdateShoppingList/AddItemShoppingList";
 import RemoveItemShoppingList from "../UpdateShoppingList/RemoveItemShoppingList";
 import NotFound from "../../Spinner/NotFound/NotFound";
 //Axios
-import axios from "axios";
+import { axiosInstance } from "../../../axios";
 //Toast Errors
 import { toast } from 'react-toastify';
 //CSS import
@@ -62,7 +62,7 @@ const SingleShoppingList = () => {
   // axios get request to get the shopping list
   const getSingleList = async () => {
     try {
-      const response = await axios.get(`/api/shopping_lists/${path}`, config);
+      const response = await axiosInstance.get(`/api/shopping_lists/${path}`, config);
       const res = response.data
       setShoppingListData(res);
       if(res.product_info.length > 0){

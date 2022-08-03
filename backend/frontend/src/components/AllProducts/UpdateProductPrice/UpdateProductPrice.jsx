@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 //Toastify
 import { toast } from 'react-toastify';
 //Axios
-import axios from 'axios';
+import { axiosInstance } from '../../../axios';
 //helpers
 import { onSale } from '../../../helpers/helpers';
 //CSS
@@ -45,7 +45,7 @@ const UpdateProductPrice = ({productData, productNames}) => {
       }]
     } 
     try{
-      const res = await axios.put(`/api/all_products/${productData.barcode}/${productData.shop}`, add_price, config);
+      const res = await axiosInstance.put(`/api/all_products/${productData.barcode}/${productData.shop}`, add_price, config);
       const result = { data: res.data };
       setUpdatedResult(formatData(result));
       toast.success(`New Price Point added to ${capitaliseMe(productNames.official_name)}`);

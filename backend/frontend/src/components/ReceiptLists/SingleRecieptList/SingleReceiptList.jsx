@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 //Router Dom
 import { useLocation, useNavigate } from 'react-router-dom';
 //axios
-import axios from 'axios';
+import { axiosInstance } from "../../../axios";
 //redux/slices
 import { useSelector, useDispatch } from 'react-redux';
 import { reset_c } from '../../../features/counter/counterSlice';
@@ -59,7 +59,7 @@ const SingleReceiptList = () => {
   // axios get request to get the shopping list
   const getSingleList = async () => {
     try {
-      const response = await axios.get(`/api/receipt_lists/${path}`, config);
+      const response = await axiosInstance.get(`/api/receipt_lists/${path}`, config);
       const res = response.data
       setReceiptListData(res);
       if(res.item_info.length > 0){

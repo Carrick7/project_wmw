@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 //helpers
 import { shops, categories, onSale } from '../../../helpers/helpers';
 // Axios
-import axios from 'axios';
+import { axiosInstance } from "../../../axios";
 //Router Dom
 import { useLocation } from 'react-router-dom';
 //Redux/Slice
@@ -17,6 +17,7 @@ import './UpdateReceiptList.css';
 import { toast } from 'react-toastify';
 //helpers
 import { capitaliseMe } from "../../../helpers/helperFunctions";
+
 
 const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) => {
   
@@ -94,7 +95,7 @@ const AddItemReceiptList = ( { productData, productNames, historicalPrices } ) =
     // Add Item to Receipt List useState
     const addItemToReceipt = async () => {
       try {
-        const res = await axios.put(`/api/receipt_lists/` + path + '/', item_info, config);
+        const res = await axiosInstance.put(`/api/receipt_lists/` + path + '/', item_info, config);
         const result = { data: res.data };
         setUpdatedResult(formatData(result));
         toast.success(`${capitaliseMe(productNames.official_name)} Added`);

@@ -1,5 +1,5 @@
 //Used for HTTP requests and sending data to the server
-import axios from 'axios';
+import { axiosInstance } from '../../axios';
 // targetting all the shopping lists
 const API_URL = '/api/shopping_lists/';
 
@@ -11,7 +11,7 @@ const createShoppingList = async (shopping_listData, token) => {
       Authorization: `Bearer ${token}`,
     }
   }
-  const response = await axios.post(API_URL, shopping_listData, config);
+  const response = await axiosInstance.post(API_URL, shopping_listData, config);
     return response.data;
 }
 
@@ -23,7 +23,7 @@ const getAllShoppingLists = async (token) => {
       Authorization: `Bearer ${token}`,
     }
   }
-  const response = await axios.get(API_URL, config);
+  const response = await axiosInstance.get(API_URL, config);
     return response.data
 
 }
@@ -36,7 +36,7 @@ const deleteShoppingList = async (shopping_list_id, token) => {
       Authorization: `Bearer ${token}`,
     }
   }
-  const response = await axios.delete(API_URL + shopping_list_id, config);
+  const response = await axiosInstance.delete(API_URL + shopping_list_id, config);
     return response.data;
 }
 

@@ -10,7 +10,7 @@ import { Container, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCarrot } from '@fortawesome/free-solid-svg-icons';
 //Axios
-import axios from 'axios';
+import { axiosInstance } from '../../../axios';
 //helpers
 import { capitaliseMe } from '../../../helpers/helperFunctions';
 
@@ -48,7 +48,7 @@ function AddItemShoppingList( {shoppingListData } ) {
   }
   //setName(JSON.stringify(add_product.product_info.product_name, null, 2));
     try{
-      const res = await axios.put(`/api/shopping_lists/${shoppingListData._id}`, add_product, config);
+      const res = await axiosInstance.put(`/api/shopping_lists/${shoppingListData._id}`, add_product, config);
       const result = { data: res.data };
       setUpdatedResult(formatData(result));
       toast.success(`${(capitaliseMe(result.data.product_info.slice(-1)[0].product_name))} added to ${capitaliseMe(shoppingListData.title)}`);

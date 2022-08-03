@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 //axios
-import axios from 'axios'
+import { axiosInstance } from '../../../axios';
 //helpers
 import { shops } from '../../../helpers/helpers';
 //redux
@@ -76,7 +76,7 @@ const GetSingleProduct = () => {
   //getting the product from db
   const getProduct = async () => {
     try {
-      const res = await axios.get(`/api/all_products/${find_barcode.current.value}/${find_shop.current.value}`, config);
+      const res = await axiosInstance.get(`/api/all_products/${find_barcode.current.value}/${find_shop.current.value}`, config);
       const result = res.data;
       setProductData(result);
       setProductNames(result.product_names[0]);      
