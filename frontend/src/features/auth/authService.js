@@ -1,7 +1,7 @@
 //Used for HTTP requests and sending data to the server
 import axios from 'axios';
 
-const API_URL = '/api/users/';
+const API_URL = 'https://watch-my-wallet-web-app.herokuapp.com/api/users/';
 
 // Register User
 const register = async (userData) => {
