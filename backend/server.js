@@ -1,11 +1,10 @@
-const path = require('path');
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/error_middleware');
 
 const connectDB = require('./config/db');
-const port = process.env.PORT || 5000;
+const port = process.env.Port || 5000;
 
 //Connecting Database
 connectDB();
@@ -25,15 +24,8 @@ app.use('/api/all_products', require('./routes/all_products_routes'));
 // Receipt List Route
 app.use('/api/receipt_lists', require('./routes/receipt_lists_routes'));
 
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/frontend/build', 'index.html'));
-});
-
 //error handlers
 app.use(errorHandler);
 
 // Server running on port 5000
  app.listen(port, () => console.log(`Server running on port ${port}`));
- 
