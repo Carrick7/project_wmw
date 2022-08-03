@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 //Router Dom
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 //Toastify
 import { toast } from 'react-toastify';
 //Redux/Slice
@@ -71,7 +71,9 @@ function Login() {
         {/* login Form Title */}
         <section>
           <Col>
-            <h1 className='formTitle_footer'>Login</h1>
+            <h1 className='formTitle_footer'>
+              Login
+            </h1>
           </Col>
         </section>
         {/* login Form Body */}
@@ -88,8 +90,12 @@ function Login() {
             <input type="password" className="form-control" id='password_login' name='password' value={password} placeholder='Password' onChange={onChange}/>           
             </Col>          
             {/* submit button */}
-            <Col className='login_form_input'>
-              <button type='submit' id='login_button'> Login </button>
+            <Col className='login_form_input centre_me_login'>
+              <button type='submit' className='login_button'> Login </button>
+            </Col>
+            {/* submit button */}
+            <Col className='login_form_input centre_me_login' >
+              <Link to='/'><button className='login_button'> Register </button></Link>
             </Col>
           </form>
         </section>

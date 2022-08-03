@@ -43,7 +43,7 @@ export const login = createAsyncThunk(
 // Logout User
 export const logout = createAsyncThunk(
   'auth/logout', async () => {
-     await authService.logout();
+    return await authService.logout();
   }
 );
 
@@ -99,4 +99,4 @@ export const authSlice = createSlice({
 });
 
 export const { reset } = authSlice.actions
-export default authSlice.reducer
+export default authSlice.reducer;
