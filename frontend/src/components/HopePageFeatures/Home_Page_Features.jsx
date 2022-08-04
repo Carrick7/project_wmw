@@ -24,7 +24,7 @@ const HomePageFeatures = () => {
             Watch My Wallet can be used to track your grocery receipts. You can add all the products you bought from your shopping trip 
             to each receipt.
             <br /><br /> 
-            This allows the applciation to calculate and save the total cost of each receipt. 
+            This allows the application to calculate and save the total cost of each receipt. 
             The total precentage of each product is also calculated and displayed via a doughnut chart. 
           </span>
         </Col>
