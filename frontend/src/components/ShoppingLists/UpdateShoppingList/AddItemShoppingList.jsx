@@ -98,7 +98,7 @@ function AddItemShoppingList( {shoppingListData } ) {
           {/* quantity */}
           <span className='moving_input_titles'> Quantity </span>   
           <Col className='registration_form_input'>
-           <input type='number' className="form-control" id='quantity_sslist' ref={updated_quantity} placeholder='23'/>          
+           <input type='text' className="form-control" id='quantity_sslist' ref={updated_quantity} placeholder='23'/>          
           </Col>
           {/* submit button*/}
           <Col className='registration_form_input'>

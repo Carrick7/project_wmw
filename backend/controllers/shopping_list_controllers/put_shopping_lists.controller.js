@@ -51,9 +51,9 @@ const putShoppingLists = asyncHandler(async (req, res) => {
       {message: 'The product name must be between 2 & 50 characters'});
   }
 
-   if(product_info[0].quantity > 100 || product_info[0].quantity < 1){
+   if(product_info[0].quantity.length > 15 || product_info[0].quantity.length < 1){
      return res.status(400).send(
-      {message: 'The quantity must be between 1 and 100'});
+      {message: '15 characters max for quantity'});
     }
 
     const updatedShoppingList = await Shopping_list.findByIdAndUpdate(req.params.id, 

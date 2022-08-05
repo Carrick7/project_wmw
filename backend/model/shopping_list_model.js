@@ -6,10 +6,7 @@ const product_infoScehma = new mongoose.Schema([{
     type: String,
   },
   quantity: { 
-    type: Number,
-    min: [1, 'Quantity must be at least 1'],
-    max: [100, 'Quantity must be less than 100'],
-    runValidators: true
+    type: String,
   } 
 }],  
 );
