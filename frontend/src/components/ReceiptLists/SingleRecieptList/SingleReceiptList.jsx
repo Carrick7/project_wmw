@@ -51,12 +51,12 @@ const SingleReceiptList = () => {
       Authorization: `Bearer ${token}`,
     }
   }
-  //initialising the shopping lsit ID and the product info so they can be used for RemoveItemShoppingList
+  //initialising the receipt lsit ID and the product info so they can be used for RemoveItemShoppingList
   const item_info = receiptListData.item_info;
   const receipt_list_id = receiptListData._id;
   const receipt_list_name = receiptListData.list_name;
 
-  // axios get request to get the shopping list
+  // axios get request to get the receipt list
   const getSingleList = async () => {
     try {
       const response = await axios.get(`/api/receipt_lists/${path}`, config);

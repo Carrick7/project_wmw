@@ -46,7 +46,7 @@
   color: #ff9100;
   font-weight: bold;
 }
-#login_button{
+.login_button{
   color: #fff;
   padding: 3.5px;
   background-color: #3145f5;
@@ -57,7 +57,7 @@
   width: 50%;
   margin-top: 20px;
 }
-#login_button:hover{
+.login_button:hover{
   box-shadow: #ff9100 0px 0px 0px 3px;
   transition: .25s;
 }

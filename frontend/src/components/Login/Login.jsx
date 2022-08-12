@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 //Router Dom
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 //Toastify
 import { toast } from 'react-toastify';
 //Redux/Slice
@@ -89,7 +89,11 @@ function Login() {
             </Col>          
             {/* submit button */}
             <Col className='login_form_input'>
-              <button type='submit' id='login_button'> Login </button>
+              <button type='submit' className='login_button'> Login </button>
+              <br />              
+              <Link to='/'>
+                <button className='login_button'> Register </button>
+              </Link>
             </Col>
           </form>
         </section>

@@ -59,7 +59,7 @@ const additemsReceiptList = asyncHandler(async (req, res) => {
     items[0].quantity === undefined || 
     items[0].quantity === "" ||
     items[0].quantity <= 0){
-    return res.status(400).send({message: 'Quantity is required and cammot be 0 or less'});
+    return res.status(400).send({message: 'Quantity is required and cannot be 0 or less'});
   }
 
   //Updating the list with the new item(s)
